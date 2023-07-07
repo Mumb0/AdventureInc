@@ -4,6 +4,21 @@
     "com.unity.ide.rider": "3.0.24",
     "com.unity.inputsystem": "1.6.1",
     "com.unity.render-pipelines.universal": "14.0.8",
-    "com.unity.test-framework": "1.1.33"
-  }
+    "com.unity.test-framework": "1.1.33",
+    "org.nuget.system.collections.immutable": "7.0.0"
+  },
+  "scopedRegistries": [
+    {
+      "name": "package.openupm.com",
+      "url": "https://package.openupm.com",
+      "scopes": [
+        "com.openupm",
+        "org.nuget.system.buffers",
+        "org.nuget.system.collections.immutable",
+        "org.nuget.system.memory",
+        "org.nuget.system.numerics.vectors",
+        "org.nuget.system.runtime.compilerservices.unsafe"
+      ]
+    }
+  ]
 }
