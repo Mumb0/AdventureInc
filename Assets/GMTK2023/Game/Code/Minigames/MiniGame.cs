@@ -13,14 +13,14 @@ namespace GMTK2023.Game.MiniGames {
 
 #region Fields
 
-		[SerializeField] private Canvas? miniGameCanvas;
+		[SerializeField] internal Canvas? miniGameCanvas;
 
 #endregion
 
 #region Methods
 
 		private void Awake() {
-			miniGameCanvas!.worldCamera = Camera.main;
+			
 		}
 
 		public abstract void OnAdventurerEntered();
