@@ -1,5 +1,5 @@
 {
-    "name": "DefaultInputActions",
+    "name": "GameInputActions",
     "maps": [
         {
             "name": "Player",
@@ -767,6 +767,54 @@
                     "processors": "",
                     "groups": "XR",
                     "action": "TrackedDeviceOrientation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "PotMiniGame",
+            "id": "55e8b602-f2e9-4a38-b1aa-6ba77015ad72",
+            "actions": [
+                {
+                    "name": "Click",
+                    "type": "Button",
+                    "id": "c0d9716b-f270-40d0-bee6-5ecbf5421d2b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Point",
+                    "type": "PassThrough",
+                    "id": "2ace64b3-9bcf-47fc-bc27-4c4729a6e7b3",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "6a29df00-6291-495f-b913-e48d9492837e",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "15541194-1ca3-4293-9698-08ff75006329",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Point",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
