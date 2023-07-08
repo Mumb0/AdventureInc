@@ -26,7 +26,6 @@ namespace GMTK2023.Game
         public TimeSpan EnterTime => TimeSpan.FromSeconds(enterTimeSeconds);
     }
 
-
     /// <summary>
     /// Describes a shift. Equivalent to a level or night in FNAF
     /// </summary>
@@ -50,7 +49,10 @@ namespace GMTK2023.Game
     {
         public record ShiftStartedEvent;
 
+        public record ShiftProgressEvent(TimeSpan TimeSinceStart);
+
 
         public event Action<ShiftStartedEvent> OnShiftStarted;
+        public event Action<ShiftProgressEvent> OnShiftProgress;
     }
 }
