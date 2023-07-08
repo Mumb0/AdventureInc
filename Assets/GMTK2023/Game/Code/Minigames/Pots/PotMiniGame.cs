@@ -114,6 +114,8 @@ namespace GMTK2023.Game.MiniGames {
 				CurrentlySelectedTool = selectingTool;
 			}
 
+			Debug.Log(CurrentlySelectedTool.ToString());
+
 		}
 
 		public override void OnAdventurerEntered() {
