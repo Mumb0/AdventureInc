@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Linq;
 using GMTK2023.Game.MiniGames;
 using UnityEngine;
 
@@ -9,15 +10,15 @@ namespace GMTK2023.Game
     public class MapKeeper : MonoBehaviour, IMap
     {
         [Serializable]
-        public struct LocationMiniGameLink
+        public class LocationMiniGameLink
         {
-            [SerializeField] private LocationAsset location;
-            [SerializeField] private MiniGame miniGame;
+            [SerializeField] private LocationAsset? location;
+            [SerializeField] private MiniGame? miniGame;
 
 
-            public ILocation Location => location;
+            public ILocation Location => location!;
 
-            public IMiniGame MiniGame => miniGame;
+            public IMiniGame MiniGame => miniGame!;
         }
 
 
@@ -27,23 +28,23 @@ namespace GMTK2023.Game
         private IReadOnlyCollection<ILocation> locations =
             ImmutableArray<ILocation>.Empty;
 
-        private IReadOnlyDictionary<ILocation, IMiniGame> miniGamesByLocation =
-            new Dictionary<ILocation, IMiniGame>();
-
 
         public IEnumerable<ILocation> Locations => locations;
 
 
         public IMiniGame? TryGetMiniGameFor(ILocation location) =>
-            miniGamesByLocation.TryGet(location);
+            locationMiniGameLinks
+                .FirstOrDefault(it => it.Location == location)
+                ?.MiniGame;
 
+        public ILocation LocationOf(IMiniGame miniGame) =>
+            locationMiniGameLinks
+                // NOTE: We assume existence because every mini-game should have a location
+                .First(it => it.MiniGame == miniGame).Location;
 
         private void Awake()
         {
             locations = LocationDb.LoadLocations();
-            miniGamesByLocation = locationMiniGameLinks.ToImmutableDictionary(
-                it => it.Location,
-                it => it.MiniGame);
         }
     }
 }

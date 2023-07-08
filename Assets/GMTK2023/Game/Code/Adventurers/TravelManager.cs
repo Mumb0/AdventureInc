@@ -12,9 +12,17 @@ namespace GMTK2023.Game
 
 
         [SerializeField] private float travelOpportunityIntervalSeconds;
+        [SerializeField] [Range(0, 1)] private float baseMoveChance;
+
+        private readonly IDictionary<ILocation, ISet<Adventurer>> adventurersByLocation =
+            new Dictionary<ILocation, ISet<Adventurer>>();
+
+        private readonly IDictionary<Adventurer, ILocation> locationByAdventurer =
+            new Dictionary<Adventurer, ILocation>();
 
         private TimeSpan lastUpdateTime = TimeSpan.Zero;
         private IMap map = null!;
+        private IQuestTracker questTracker = null!;
 
 
         private TimeSpan TravelOpportunityInterval =>
@@ -23,6 +31,22 @@ namespace GMTK2023.Game
 
         private void SetAdventurerLocation(Adventurer adventurer, ILocation location)
         {
+            // Remove from current location
+            var currentLocation = locationByAdventurer.TryGet(adventurer);
+            if (currentLocation != null)
+            {
+                locationByAdventurer.Remove(adventurer);
+                adventurersByLocation[currentLocation].Remove(adventurer);
+                if (adventurersByLocation[currentLocation].Count == 0)
+                    adventurersByLocation.Remove(currentLocation);
+            }
+
+            // Add to new location
+            if (!adventurersByLocation.ContainsKey(location))
+                adventurersByLocation.Add(location, new HashSet<Adventurer>());
+            adventurersByLocation[location].Add(adventurer);
+            locationByAdventurer.Add(adventurer, location);
+
             AdventurerChangedLocation?.Invoke(
                 new AdventurerChangedLocationEvent(adventurer, location));
         }
@@ -38,7 +62,20 @@ namespace GMTK2023.Game
 
         private void UpdateAdventurerLocations()
         {
-           throw new NotImplementedException();
+            locationByAdventurer.ToArray().Iter((adventurer, _) =>
+            {
+                var canMove = Chance.Roll(baseMoveChance);
+                if (!canMove) return;
+
+                var quest = questTracker.CurrentQuestOf(adventurer);
+                var targetLocation = map.LocationOf(quest.MiniGame);
+
+                /*
+                 * TODO: Implement continuous movement
+                 * For now we just teleport to the target instantly
+                 */
+                SetAdventurerLocation(adventurer, targetLocation);
+            });
         }
 
         private void OnAdventurerEntered(IAdventurerTracker.AdventurerEnteredEvent e)
@@ -64,6 +101,7 @@ namespace GMTK2023.Game
             Singleton.TryFind<IShiftProgressTracker>()!.ShiftProgressed
                 += OnShiftProgressed;
             map = Singleton.TryFind<IMap>()!;
+            questTracker = Singleton.TryFind<IQuestTracker>()!;
         }
     }
 }
