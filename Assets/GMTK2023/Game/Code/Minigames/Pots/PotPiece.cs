@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 namespace GMTK2023.Game {
 
@@ -8,7 +10,7 @@ namespace GMTK2023.Game {
 #region Fields
 
 		[SerializeField] private Image? imageComponent;
-		[SerializeField] private Sprite[]? potPieceSprites;
+		[SerializeField] private Sprite[] potPieceSprites = Array.Empty<Sprite>();
 
 #endregion
 
@@ -19,7 +21,7 @@ namespace GMTK2023.Game {
 		}
 
 		private void SetRandomPieceSprite() {
-			imageComponent.sprite = potPieceSprites[Random.Range(0, potPieceSprites.Length - 1)];
+			imageComponent!.sprite = potPieceSprites[Random.Range(0, potPieceSprites.Length - 1)];
 		}
 
 #endregion
