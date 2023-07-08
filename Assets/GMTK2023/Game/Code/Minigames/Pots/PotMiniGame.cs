@@ -13,19 +13,20 @@ namespace GMTK2023.Game.MiniGames {
 		[SerializeField] private Transform[] potLocations = Array.Empty<Transform>();
 		[SerializeField] private GameObject? potPrefab;
 
+
 #endregion
 
 #region Properties
 
+		private Vector2 MousePosition { get; set; } = new Vector2();
 		public IList<Pot> ActivePots { get; set; } = new List<Pot>();
-
 		public PotTool CurrentlySelectedTool { get; set; } = PotTool.None;
 
 #endregion
 
 #region Methods
 
-		public void Awake() {
+		public void Start() {
 			SetupRoom();
 		}
 
@@ -41,14 +42,44 @@ namespace GMTK2023.Game.MiniGames {
 
 		}
 
-		public void OnMouseClickInput(InputAction.CallbackContext ctx) { }
+		public void OnPointerMoveInput(InputAction.CallbackContext ctx) {
+			MousePosition = ctx.ReadValue<Vector2>();
+		}
+
+		public void OnMouseClickInput(InputAction.CallbackContext ctx) {
+
+			if (ctx.canceled) {
+
+				switch (CurrentlySelectedTool) {
+
+					case PotTool.Broom:
+						break;
+					case PotTool.Pot:
+						break;
+					case PotTool.Coin:
+						break;
+					case PotTool.None:
+						break;
+					default:
+						throw new ArgumentOutOfRangeException();
+				}
+
+			}
+
+		}
 
 		public override void OnAdventurerEntered() {
-			throw new NotImplementedException();
+
+			Debug.Log("Hi I entered!");
+
 		}
 
 		public override void OnAdventurerLeft() {
-			throw new NotImplementedException();
+
+			foreach (Pot p in ActivePots) {
+				p.Smash();
+			}
+
 		}
 
 #endregion
