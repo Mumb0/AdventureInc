@@ -5,8 +5,9 @@
     "com.unity.inputsystem": "1.6.1",
     "com.unity.render-pipelines.universal": "14.0.8",
     "com.unity.test-framework": "1.1.33",
+    "jillejr.newtonsoft.json-for-unity": "13.0.102",
     "org.nuget.system.collections.immutable": "7.0.0",
-    "jillejr.newtonsoft.json-for-unity": "13.0.102"
+    "com.unity.modules.physics2d": "1.0.0"
   },
   "scopedRegistries": [
     {
