@@ -8,7 +8,7 @@ namespace GMTK2023.Game {
 
 #region Events
 
-		public Action? PieceBroomed;
+		public Action? CleanedPiece;
 
 #endregion
 
@@ -29,8 +29,8 @@ namespace GMTK2023.Game {
 			spriteRenderer!.sprite = potPieceSprites[Random.Range(0, potPieceSprites.Length)];
 		}
 
-		public void BroomPiece() {
-			PieceBroomed?.Invoke();
+		public void CleanPiece() {
+			CleanedPiece?.Invoke();
 			Destroy(gameObject);
 		}
 

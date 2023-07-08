@@ -10,7 +10,7 @@ namespace GMTK2023.Game.MiniGames {
 
 #region Events
 
-		public Action? BroomedAllPieces;
+		public Action? CleanedALlPieces;
 		public Action? PlacedPot;
 		public Action? FilledPot;
 
@@ -31,11 +31,8 @@ namespace GMTK2023.Game.MiniGames {
 
 #region Properties
 
-		public bool IsSmashed { get; set; }
-		public bool IsFilledWithCoins { get; set; }
 		public int BrokenPiecesCount { get; set; }
 		public PotState CurrentState { get; set; }
-		private IList<PotPiece> BrokenPieces { get; set; } = new Collection<PotPiece>();
 
 #endregion
 
@@ -52,9 +49,8 @@ namespace GMTK2023.Game.MiniGames {
 					);
 
 				PotPiece fallenPiece = Instantiate(potPiecePrefab, newPos, Quaternion.identity, transform)!.GetComponent<PotPiece>();
-				fallenPiece.PieceBroomed += OnPieceCleaned;
+				fallenPiece.CleanedPiece += OnPieceCleaned;
 
-				BrokenPieces.Add(fallenPiece);
 			}
 
 			spriteRenderer!.sprite = null;
@@ -64,28 +60,38 @@ namespace GMTK2023.Game.MiniGames {
 
 		public void OnPieceCleaned() {
 
-			BrokenPiecesCount--;
+			if (CurrentState == PotState.Broken) {
 
-			if (BrokenPiecesCount == 0) {
-				spriteRenderer!.sprite = emptyPotSpaceSprite;
-				CurrentState = PotState.Cleaned;
-				BroomedAllPieces?.Invoke();
+				BrokenPiecesCount--;
+
+				if (BrokenPiecesCount == 0) {
+					spriteRenderer!.sprite = emptyPotSpaceSprite;
+					CurrentState = PotState.Cleaned;
+					CleanedALlPieces?.Invoke();
+				}
+
 			}
 
 		}
 
 		public void PlacePot() {
-			IsSmashed = false;
-			spriteRenderer!.sprite = potSprite;
-			CurrentState = PotState.Placed;
-			PlacedPot?.Invoke();
+
+			if (CurrentState == PotState.Cleaned) {
+				spriteRenderer!.sprite = potSprite;
+				CurrentState = PotState.Placed;
+				PlacedPot?.Invoke();
+			}
+
 		}
 
 		public void FillPot() {
-			IsFilledWithCoins = true;
-			spriteRenderer!.sprite = filledPotSprite;
-			CurrentState = PotState.Filled;
-			FilledPot?.Invoke();
+
+			if (CurrentState == PotState.Placed) {
+				spriteRenderer!.sprite = filledPotSprite;
+				CurrentState = PotState.Filled;
+				FilledPot?.Invoke();
+			}
+
 		}
 
 #endregion

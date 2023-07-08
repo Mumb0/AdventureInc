@@ -45,7 +45,7 @@ namespace GMTK2023.Game.MiniGames {
 				// NOTE: We force because this should never be null
 				Pot pot = Instantiate(potPrefab, t.position, Quaternion.identity, t)!.GetComponent<Pot>();
 				ActivePots?.Add(pot);
-				pot.BroomedAllPieces += OnGameTaskCompleted;
+				pot.CleanedALlPieces += OnGameTaskCompleted;
 				pot.PlacedPot += OnGameTaskCompleted;
 				pot.FilledPot += OnGameTaskCompleted;
 			}
@@ -72,7 +72,7 @@ namespace GMTK2023.Game.MiniGames {
 							clickedObject = GetClickedObject(MousePosition, LayerMask.GetMask("PotPiece"));
 
 							if (clickedObject) {
-								clickedObject.GetComponent<PotPiece>().BroomPiece();
+								clickedObject.GetComponent<PotPiece>().CleanPiece();
 							}
 						}
 
