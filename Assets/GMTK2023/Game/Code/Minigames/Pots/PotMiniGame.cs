@@ -13,7 +13,6 @@ namespace GMTK2023.Game.MiniGames {
 		[SerializeField] private Transform[] potLocations = Array.Empty<Transform>();
 		[SerializeField] private GameObject? potPrefab;
 
-
 #endregion
 
 #region Properties
@@ -27,6 +26,7 @@ namespace GMTK2023.Game.MiniGames {
 #region Methods
 
 		public void Start() {
+			miniGameCanvas!.worldCamera = Camera.main;
 			SetupRoom();
 		}
 
@@ -64,6 +64,18 @@ namespace GMTK2023.Game.MiniGames {
 						throw new ArgumentOutOfRangeException();
 				}
 
+			}
+
+		}
+
+		public void OnToolButtonClicked(int toolIndex) {
+			PotTool selectingTool = (PotTool) toolIndex;
+
+			if (CurrentlySelectedTool == selectingTool) {
+				CurrentlySelectedTool = PotTool.None;
+			}
+			else {
+				CurrentlySelectedTool = selectingTool;
 			}
 
 		}
