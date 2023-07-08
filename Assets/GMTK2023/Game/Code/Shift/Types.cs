@@ -37,4 +37,12 @@ namespace GMTK2023.Game
         /// </summary>
         public IReadOnlyList<AdventurerInShift> Adventurers { get; }
     }
+
+    /// <summary>
+    /// Allows the starting of shifts
+    /// </summary>
+    public interface IShiftStarter
+    {
+        public void StartShift(IShiftInfo shiftInfo);
+    }
 }
