@@ -26,7 +26,6 @@ namespace GMTK2023.Game
         public TimeSpan EnterTime => TimeSpan.FromSeconds(enterTimeSeconds);
     }
 
-
     /// <summary>
     /// Describes a shift. Equivalent to a level or night in FNAF
     /// </summary>
@@ -38,11 +37,22 @@ namespace GMTK2023.Game
         public IReadOnlyList<AdventurerInShift> Adventurers { get; }
     }
 
-    /// <summary>
-    /// Allows the starting of shifts
-    /// </summary>
-    public interface IShiftStarter
+    public interface IShiftLoader
     {
-        public void StartShift(IShiftInfo shiftInfo);
+        public record ShiftLoadedEvent(IShiftInfo ShiftInfo);
+
+
+        public event Action<ShiftLoadedEvent> OnShiftLoaded;
+    }
+
+    public interface IShiftProgressTracker
+    {
+        public record ShiftStartedEvent;
+
+        public record ShiftProgressEvent(TimeSpan TimeSinceStart);
+
+
+        public event Action<ShiftStartedEvent> OnShiftStarted;
+        public event Action<ShiftProgressEvent> OnShiftProgress;
     }
 }

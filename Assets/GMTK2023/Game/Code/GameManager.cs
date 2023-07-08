@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace GMTK2023.Game
@@ -6,17 +7,18 @@ namespace GMTK2023.Game
     /// Top-level game-manager.
     /// Responsible for starting/stopping the game
     /// </summary>
-    public class GameManager : MonoBehaviour
+    public class GameManager : MonoBehaviour, IGameLoader
     {
+        public event Action<IGameLoader.GameLoadEvent>? OnGameLoaded;
+
+
         private async void Start()
         {
-            var savedGame = await GameSaving.TryLoadSavedGameAsync();
+            // Load game or start new if there is none
+            var savedGame = await GameSaving.TryLoadSavedGameAsync()
+                            ?? await GameSaving.StartNewGameAsync();
 
-            // If we dont have a saved game, just load the first shift
-            // NOTE: We force the nullable here because a shift should always be found
-            var shift = ShiftDb.TryLoadShiftByIndex(savedGame?.ShiftIndex ?? 0)!;
-
-            Singleton.TryFind<IShiftStarter>()!.StartShift(shift);
+            OnGameLoaded?.Invoke(new IGameLoader.GameLoadEvent(savedGame));
         }
     }
 }
