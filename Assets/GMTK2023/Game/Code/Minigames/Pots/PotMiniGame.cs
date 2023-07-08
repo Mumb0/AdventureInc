@@ -18,6 +18,8 @@ namespace GMTK2023.Game.MiniGames {
 
 		public IList<Pot> ActivePots { get; set; } = new List<Pot>();
 
+		public PotTool CurrentlySelectedTool { get; set; } = PotTool.None;
+
 #endregion
 
 #region Methods
