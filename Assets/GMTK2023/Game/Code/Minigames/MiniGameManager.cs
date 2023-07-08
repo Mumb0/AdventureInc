@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Random = System.Random;
 
 namespace GMTK2023.Game.MiniGames {
 
@@ -17,6 +16,7 @@ namespace GMTK2023.Game.MiniGames {
 
 #region Fields
 
+		[SerializeField] private GameObject? map;
 		[SerializeField] private MiniGame[] availableMiniGames = Array.Empty<MiniGame>();
 		[SerializeField] private TextMeshProUGUI[] stepMeshes = Array.Empty<TextMeshProUGUI>();
 		private MiniGame? activeMiniGame;
@@ -47,6 +47,8 @@ namespace GMTK2023.Game.MiniGames {
 
 			if (ctx.canceled) {
 
+				map!.SetActive(false);
+
 				if (ActiveMiniGame != null) {
 					ActiveMiniGame.transform.localPosition = new Vector2(0, 10);
 					ActiveMiniGame = availableMiniGames[Time.frameCount % 2 == 0 ? 0 : 1];
@@ -65,14 +67,22 @@ namespace GMTK2023.Game.MiniGames {
 
 		public void OnActiveMiniGameChanged(MiniGame miniGame) {
 
+			ActiveMiniGame!.MiniGameTaskCompleted -= OnMiniGameTaskCompleted;
+
 			foreach (var mesh in stepMeshes) {
 				mesh.text = "";
 			}
 
-			for (int i = 0; i < miniGame.StepTexts.Length; i++) {
-				stepMeshes[i].text = miniGame.StepTexts[i];
+			for (int i = 0; i < miniGame.MiniGameTasks.Length; i++) {
+				stepMeshes[i].text = miniGame.MiniGameTasks[i].taskText;
 			}
 
+			miniGame.MiniGameTaskCompleted += OnMiniGameTaskCompleted;
+
+		}
+
+		private void OnMiniGameTaskCompleted(int taskIndex) {
+			stepMeshes[taskIndex].fontStyle = FontStyles.Strikethrough;
 		}
 
 #endregion

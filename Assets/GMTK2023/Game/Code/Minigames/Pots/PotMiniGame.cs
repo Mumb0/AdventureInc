@@ -123,15 +123,15 @@ namespace GMTK2023.Game.MiniGames {
 		public void OnGameTaskCompleted() {
 
 			if (ActivePots.All(x => x.CurrentState == PotState.Cleaned)) {
-				CurrentTaskStep++;
+				CompleteTask();
 			}
 
 			if (ActivePots.All(x => x.CurrentState == PotState.Placed)) {
-				CurrentTaskStep++;
+				CompleteTask();
 			}
 
 			if (ActivePots.All(x => x.CurrentState == PotState.Filled)) {
-				CurrentTaskStep++;
+				CompleteTask();
 			}
 
 			if (CurrentTaskStep == 3) {
@@ -139,6 +139,12 @@ namespace GMTK2023.Game.MiniGames {
 				AllMiniGameTasksCompleted?.Invoke();
 			}
 
+		}
+
+		private void CompleteTask() {
+			MiniGameTasks[CurrentTaskStep].isCompleted = true;
+			MiniGameTaskCompleted?.Invoke(CurrentTaskStep);
+			CurrentTaskStep++;
 		}
 
 		public void OnToolButtonClicked(int toolIndex) {

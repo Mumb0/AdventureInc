@@ -9,6 +9,7 @@ namespace GMTK2023.Game.MiniGames {
 #region Events
 
 		public Action? AllMiniGameTasksCompleted;
+		public Action<int>? MiniGameTaskCompleted;
 
 #endregion
 
@@ -16,7 +17,7 @@ namespace GMTK2023.Game.MiniGames {
 
 		[SerializeField] internal Canvas? miniGameCanvas;
 		[SerializeField] internal PlayerInput? playerActions;
-		[SerializeField] private string[] stepGuideTexts = Array.Empty<string>();
+		[SerializeField] private MiniGameTask[] miniGameTasks = Array.Empty<MiniGameTask>();
 
 #endregion
 
@@ -24,7 +25,7 @@ namespace GMTK2023.Game.MiniGames {
 
 		public bool IsPrepared { get; set; } = true;
 		public int CurrentTaskStep { get; set; } = 0;
-		public string[] StepTexts => stepGuideTexts;
+		public MiniGameTask[] MiniGameTasks => miniGameTasks;
 		internal Camera? MainCamera { get; private set; }
 
 #endregion

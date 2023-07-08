@@ -1127,6 +1127,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   miniGameCanvas: {fileID: 5549153812243263070}
   playerActions: {fileID: 0}
+  miniGameTasks:
+  - isCompleted: 0
+    taskText: Clean up the broken pieces with the broom.
+  - isCompleted: 0
+    taskText: Place new pots on the empty spaces.
+  - isCompleted: 0
+    taskText: Fill up the pots with diamonds for the next adventurer.
   potLocations:
   - {fileID: 2134207075643759369}
   - {fileID: 3140951093753697322}
@@ -1141,10 +1148,6 @@ MonoBehaviour:
   - {fileID: 1400972895456508840}
   selectedToolSprite: {fileID: 21300000, guid: 44257f741be847848896897d03b8f27d, type: 3}
   deselectedToolSprite: {fileID: 21300000, guid: 715fd06fee2cfd144871235bd3f27a9a, type: 3}
-  stepGuideTexts:
-  - Clean up the broken pieces with the broom.
-  - Place new pots on the empty spaces.
-  - Fill up pots with loot for the next adventurer.
 --- !u!1 &7004778908169571088
 GameObject:
   m_ObjectHideFlags: 0
