@@ -6,7 +6,7 @@ namespace GMTK2023.Game.MiniGames {
 
 #region Fields
 
-		[SerializeField] private GameObject potPiecePrefab;
+		[SerializeField] private GameObject? potPiecePrefab;
 		[SerializeField] private float pieceRadius;
 
 #endregion

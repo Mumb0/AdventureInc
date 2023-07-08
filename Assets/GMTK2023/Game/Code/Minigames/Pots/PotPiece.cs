@@ -7,8 +7,8 @@ namespace GMTK2023.Game {
 
 #region Fields
 
-		[SerializeField] private Image imageComponent;
-		[SerializeField] private Sprite[] potPieceSprites;
+		[SerializeField] private Image? imageComponent;
+		[SerializeField] private Sprite[]? potPieceSprites;
 
 #endregion
 
