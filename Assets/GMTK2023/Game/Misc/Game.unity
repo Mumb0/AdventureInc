@@ -461,6 +461,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   travelOpportunityIntervalSeconds: 1
+  baseMoveChance: 0.25
 --- !u!114 &966599295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -486,7 +487,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   availableMiniGames:
-  - {fileID: 1890954447}
+  - {fileID: 3279789266440494459}
 --- !u!1 &968266579
 GameObject:
   m_ObjectHideFlags: 0
@@ -641,11 +642,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1837409805}
   m_CullTransparentMesh: 1
---- !u!1 &1890954447 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6879500697791941996, guid: 46a6aa2e64c106b4989877bb1fdfbf6a, type: 3}
-  m_PrefabInstance: {fileID: 3279789266440494457}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1976426324
 GameObject:
   m_ObjectHideFlags: 0
@@ -863,7 +859,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1658643844545398024, guid: 46a6aa2e64c106b4989877bb1fdfbf6a, type: 3}
   m_PrefabInstance: {fileID: 3279789266440494457}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1890954447}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e63a3f4dda4a2ee4bb8999d604504ee4, type: 3}

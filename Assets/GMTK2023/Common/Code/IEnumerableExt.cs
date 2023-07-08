@@ -16,6 +16,14 @@ namespace GMTK2023
             }
         }
 
+        public static void Iter<TKey,TValue>(this IEnumerable<KeyValuePair<TKey, TValue>> items, Action<TKey, TValue> action)
+        {
+            foreach (var item in items)
+            {
+                action(item.Key, item.Value);
+            }
+        }
+
         public static IEnumerable<T> WhereNot<T>(this IEnumerable<T> items, Func<T, bool> pred) =>
             items.Where(it => !pred(it));
 
