@@ -42,7 +42,8 @@ namespace GMTK2023.Game
         {
             locations = LocationDb.LoadLocations();
             miniGamesByLocation = locationMiniGameLinks.ToImmutableDictionary(
-                it => it.Location, it => it.MiniGame);
+                it => it.Location,
+                it => it.MiniGame);
         }
     }
 }
