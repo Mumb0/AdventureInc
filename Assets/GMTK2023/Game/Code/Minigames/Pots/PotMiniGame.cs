@@ -52,7 +52,9 @@ namespace GMTK2023.Game.MiniGames {
 		}
 
 		public void OnPointerMoveInput(InputAction.CallbackContext ctx) {
-			MousePosition = ctx.ReadValue<Vector2>();
+			if (ctx.performed) {
+				MousePosition = ctx.ReadValue<Vector2>();
+			}
 		}
 
 		public void OnMouseClickInput(InputAction.CallbackContext ctx) {
@@ -60,23 +62,15 @@ namespace GMTK2023.Game.MiniGames {
 			if (ctx.canceled) {
 
 				GameObject? clickedObject = GetClickedObject(MousePosition);
+				string objectTag = clickedObject == null ? string.Empty : clickedObject.tag;
 
-				string objectTag = string.Empty;
-
-				if (clickedObject == null) {
-					objectTag = string.Empty;
-				}
-				else {
-					objectTag = clickedObject.tag;
-				}
-
+				Debug.Log(objectTag);
 				switch (CurrentlySelectedTool) {
 
 					case PotTool.Broom:
 
 						if (objectTag == "PotPiece") {
-							Debug.Log("PieceClicked");
-							clickedObject?.GetComponent<PotPiece>().BroomPiece();
+							Debug.Log("Clicked on Piece");
 						}
 
 						break;
@@ -129,11 +123,7 @@ namespace GMTK2023.Game.MiniGames {
 
 		}
 
-		public override void OnAdventurerEntered() {
-
-			Debug.Log("Hi I entered!");
-
-		}
+		public override void OnAdventurerEntered() { }
 
 		public override void OnAdventurerLeft() {
 
