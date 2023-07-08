@@ -37,4 +37,12 @@ namespace GMTK2023.Game
         /// </summary>
         public IReadOnlyList<AdventurerInShift> Adventurers { get; }
     }
+
+    public interface IShiftLoader
+    {
+        public record ShiftLoadedEvent(IShiftInfo ShiftInfo);
+
+
+        public event Action<ShiftLoadedEvent> OnShiftLoaded;
+    }
 }
