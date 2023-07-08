@@ -40,6 +40,13 @@ namespace GMTK2023.Game.MiniGames {
 
 		}
 
+		/*
+		public void OnMouseClickInput(InputAction.CallbackContext ctx) {
+			
+		}
+		
+		*/
+
 		public override void OnAdventurerEntered() {
 			throw new NotImplementedException();
 		}
