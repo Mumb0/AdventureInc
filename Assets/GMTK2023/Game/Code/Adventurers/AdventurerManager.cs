@@ -2,30 +2,36 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static GMTK2023.Game.IAdventurerTracker;
 
 namespace GMTK2023.Game
 {
-    public class AdventureManager : MonoBehaviour
+    public class AdventurerManager : MonoBehaviour, IAdventurerTracker
     {
-        private record InactiveAdventurer(TimeSpan EnterTime);
+        private record InactiveAdventurer(IAdventurerInfo Info, TimeSpan EnterTime);
 
 
-        private readonly IList<InactiveAdventurer> inactiveAdventurers =
-            new List<InactiveAdventurer>();
+        public event Action<AdventurerEnteredEvent>? OnAdventurerEntered;
 
 
-        private void ActivateAdventurer(InactiveAdventurer adventurer)
+        private readonly ISet<InactiveAdventurer> inactiveAdventurers =
+            new HashSet<InactiveAdventurer>();
+
+
+        private void ActivateAdventurer(InactiveAdventurer inactiveAdventurer)
         {
-            throw new NotImplementedException();
+            var adventurer = new Adventurer(inactiveAdventurer.Info);
+            inactiveAdventurers.Remove(inactiveAdventurer);
+
+            OnAdventurerEntered?.Invoke(new AdventurerEnteredEvent(adventurer));
         }
 
         private void OnShiftLoaded(IShiftLoader.ShiftLoadedEvent e)
         {
             e.ShiftInfo.Adventurers
-                .Select(it => new InactiveAdventurer(it.EnterTime))
+                .Select(it => new InactiveAdventurer(it.Info, it.EnterTime))
                 .Iter(it => inactiveAdventurers.Add(it));
         }
-
 
         private void OnShiftProgress(IShiftProgressTracker.ShiftProgressEvent e)
         {
