@@ -44,7 +44,7 @@ namespace GMTK2023
         /// <returns>The game that was started</returns>
         public static async Task<SavedGame> StartNewGameAsync()
         {
-            if (!File.Exists(saveFilePath)) File.Create(saveFilePath);
+            if (!File.Exists(saveFilePath)) File.Create(saveFilePath).Close();
 
             var json = JsonConvert.SerializeObject(newGame);
 
