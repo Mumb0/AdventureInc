@@ -40,6 +40,7 @@ namespace GMTK2023.Game
 
             inactiveAdventurers
                 .Where(IsReadyToActivate)
+                .ToArray()
                 .Iter(ActivateAdventurer);
         }
 
