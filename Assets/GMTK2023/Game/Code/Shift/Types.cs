@@ -45,4 +45,12 @@ namespace GMTK2023.Game
 
         public event Action<ShiftLoadedEvent> OnShiftLoaded;
     }
+
+    public interface IShiftProgressTracker
+    {
+        public record ShiftStartedEvent;
+
+
+        public event Action<ShiftStartedEvent> OnShiftStarted;
+    }
 }
