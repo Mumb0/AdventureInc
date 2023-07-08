@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace GMTK2023.Game.MiniGames {
 
@@ -39,6 +40,8 @@ namespace GMTK2023.Game.MiniGames {
 			}
 
 		}
+
+		public void OnMouseClickInput(InputAction.CallbackContext ctx) { }
 
 		public override void OnAdventurerEntered() {
 			throw new NotImplementedException();

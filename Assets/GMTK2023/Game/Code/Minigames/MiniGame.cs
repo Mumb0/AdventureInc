@@ -7,7 +7,7 @@ namespace GMTK2023.Game.MiniGames {
 
 #region Events
 
-		public Action allMiniGameTasksCompleted;
+		public Action? AllMiniGameTasksCompleted;
 
 #endregion
 
