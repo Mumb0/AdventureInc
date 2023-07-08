@@ -34,7 +34,7 @@ namespace GMTK2023.Game.MiniGames {
 		public void Start() {
 			miniGameCanvas!.worldCamera = MainCamera;
 			SetupRoom();
-			playerActions!.SwitchCurrentActionMap("PotMiniGame");
+
 		}
 
 		public void SetupRoom() {
@@ -161,6 +161,10 @@ namespace GMTK2023.Game.MiniGames {
 				}
 			}
 
+		}
+
+		public override void SetActive() {
+			playerActions!.SwitchCurrentActionMap("PotMiniGame");
 		}
 
 		public override void OnAdventurerEntered() { }

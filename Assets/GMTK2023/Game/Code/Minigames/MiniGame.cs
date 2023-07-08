@@ -35,6 +35,8 @@ namespace GMTK2023.Game.MiniGames {
 			MainCamera = Camera.main;
 		}
 
+		public abstract void SetActive();
+
 		public abstract void OnAdventurerEntered();
 
 		public abstract void OnAdventurerLeft();
