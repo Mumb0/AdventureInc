@@ -9,8 +9,7 @@ namespace GMTK2023.Game.MiniGames {
 
 #region Fields
 
-		[SerializeField] private RectTransform[] potLocations =
-			Array.Empty<RectTransform>();
+		[SerializeField] private Transform[] potLocations = Array.Empty<Transform>();
 		[SerializeField] private GameObject? potPrefab;
 
 #endregion
@@ -31,9 +30,9 @@ namespace GMTK2023.Game.MiniGames {
 
 			ActivePots = new Collection<Pot>();
 
-			foreach (RectTransform rt in potLocations) {
+			foreach (Transform t in potLocations) {
 				// NOTE: We force because this should never be null
-				Pot pot = Instantiate(potPrefab, rt.anchoredPosition, Quaternion.identity)!.GetComponent<Pot>();
+				Pot pot = Instantiate(potPrefab, t.position, Quaternion.identity, t)!.GetComponent<Pot>();
 				ActivePots?.Add(pot);
 			}
 
