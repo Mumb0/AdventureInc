@@ -2,7 +2,8 @@
     "name": "GMTK2023.Game",
     "rootNamespace": "GMTK2023.Game",
     "references": [
-        "GUID:6db71ac4483e5324bb74c3d8ef29bcc7"
+        "GUID:6db71ac4483e5324bb74c3d8ef29bcc7",
+        "GUID:75469ad4d38634e559750d17036d5f7c"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
