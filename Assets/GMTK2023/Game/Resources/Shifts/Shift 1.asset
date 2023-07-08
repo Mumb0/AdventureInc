@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Shift 1
   m_EditorClassIdentifier: 
   adventurers:
-  - {fileID: 11400000, guid: dbf324123f4eaf14e8118f6824026dd5, type: 2}
+  - adventurerInfo: {fileID: 11400000, guid: dbf324123f4eaf14e8118f6824026dd5, type: 2}
+    enterTimeSeconds: 0
