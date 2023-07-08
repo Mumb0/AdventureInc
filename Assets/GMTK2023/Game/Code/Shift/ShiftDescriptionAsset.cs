@@ -10,6 +10,7 @@ namespace GMTK2023.Game
         [SerializeField] private AdventurerInfoAsset[] adventurers =
             Array.Empty<AdventurerInfoAsset>();
 
+
         public IReadOnlyList<IAdventurerInfo> Adventurers => adventurers;
     }
 }
