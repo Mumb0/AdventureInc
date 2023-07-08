@@ -8,13 +8,13 @@ namespace GMTK2023.Game.MiniGames {
 
 #region Fields
 
-		[SerializeField] private GameObject[] availableMiniGames = Array.Empty<GameObject>();
+		[SerializeField] private MiniGame[] availableMiniGames = Array.Empty<MiniGame>();
 
 #endregion
 
 #region Properties
 
-		public IReadOnlyList<MiniGame> AllMiniGames { get; }
+		public IReadOnlyList<IMiniGame> AllMiniGames => availableMiniGames;
 
 #endregion
 

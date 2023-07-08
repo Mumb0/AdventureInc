@@ -9,6 +9,6 @@ namespace GMTK2023.Game.MiniGames
 
     public interface IMiniGameTracker
     {
-        public IReadOnlyList<MiniGame> AllMiniGames { get; }
+        public IReadOnlyList<IMiniGame> AllMiniGames { get; }
     }
 }
