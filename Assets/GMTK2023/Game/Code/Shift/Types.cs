@@ -5,7 +5,7 @@ namespace GMTK2023.Game
     /// <summary>
     /// Describes a shift. Equivalent to a level or night in FNAF
     /// </summary>
-    public interface IShiftDescription
+    public interface IShiftInfo
     {
         /// <summary>
         /// The adventurers that will be active during this shift
