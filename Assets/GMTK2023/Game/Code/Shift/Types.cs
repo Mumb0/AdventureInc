@@ -42,6 +42,9 @@ namespace GMTK2023.Game
         public record ShiftLoadedEvent(IShiftInfo ShiftInfo);
 
 
+        /// <summary>
+        /// Invoked when a shift was loaded
+        /// </summary>
         public event Action<ShiftLoadedEvent> ShiftLoaded;
     }
 
@@ -52,7 +55,14 @@ namespace GMTK2023.Game
         public record ShiftProgressEvent(TimeSpan TimeSinceStart);
 
 
+        /// <summary>
+        /// Invoked when the shift starts
+        /// </summary>
         public event Action<ShiftStartedEvent> ShiftStarted;
+
+        /// <summary>
+        /// Invoked when the shift progressed
+        /// </summary>
         public event Action<ShiftProgressEvent> ShiftProgressed;
     }
 }

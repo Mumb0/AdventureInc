@@ -22,7 +22,10 @@ namespace GMTK2023.Game
     {
         public record AdventurerEnteredEvent(Adventurer Adventurer);
 
-
+        
+        /// <summary>
+        /// Invoked when an adventurer enters the shift (spawns)
+        /// </summary>
         public event Action<AdventurerEnteredEvent> AdventurerEntered;
     }
 
@@ -30,7 +33,10 @@ namespace GMTK2023.Game
     {
         public record AdventurerChangedLocationEvent(Adventurer Adventurer, ILocation Location);
 
-
+        
+        /// <summary>
+        /// Invoked when an adventurer changes their location
+        /// </summary>
         public event Action<AdventurerChangedLocationEvent> AdventurerChangedLocation;
     }
 }

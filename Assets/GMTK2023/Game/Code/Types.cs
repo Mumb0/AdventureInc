@@ -8,6 +8,9 @@ namespace GMTK2023.Game
         public record GameLoadEvent(SavedGame Game);
 
 
+        /// <summary>
+        /// Invoked when the game is loaded
+        /// </summary>
         public event Action<GameLoadEvent> GameLoaded;
     }
 }
