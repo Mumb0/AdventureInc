@@ -17,6 +17,7 @@ namespace GMTK2023.Game
         /// <summary>
         /// The adventurer
         /// </summary>
+        // NOTE: We force this nullable because it should never be not set
         public IAdventurerInfo Info => info!;
 
         /// <summary>
