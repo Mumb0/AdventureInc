@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using GMTK2023.Game.MiniGames;
 using UnityEngine;
 

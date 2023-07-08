@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using static GMTK2023.Game.IAdventurerLocationTracker;
-using Random = UnityEngine.Random;
 
 namespace GMTK2023.Game
 {
