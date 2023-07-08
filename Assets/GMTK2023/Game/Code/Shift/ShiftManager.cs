@@ -10,9 +10,9 @@ namespace GMTK2023.Game
         private record Shift(IShiftInfo Info, float StartTimeSeconds);
 
 
-        public event Action<ShiftLoadedEvent>? OnShiftLoaded;
-        public event Action<ShiftStartedEvent>? OnShiftStarted;
-        public event Action<ShiftProgressEvent>? OnShiftProgress;
+        public event Action<ShiftLoadedEvent>? ShiftLoaded;
+        public event Action<ShiftStartedEvent>? ShiftStarted;
+        public event Action<ShiftProgressEvent>? ShiftProgressed;
 
 
         private Shift? currentShift;
@@ -23,7 +23,7 @@ namespace GMTK2023.Game
             var secondsSinceStart = Time.time - shift.StartTimeSeconds;
             var timeSinceStart = TimeSpan.FromSeconds(secondsSinceStart);
 
-            OnShiftProgress?.Invoke(new ShiftProgressEvent(timeSinceStart));
+            ShiftProgressed?.Invoke(new ShiftProgressEvent(timeSinceStart));
         }
 
         private void Update()
@@ -36,7 +36,7 @@ namespace GMTK2023.Game
         {
             currentShift = new Shift(shiftInfo, Time.time);
 
-            OnShiftStarted?.Invoke(new ShiftStartedEvent());
+            ShiftStarted?.Invoke(new ShiftStartedEvent());
 
             ProgressShift(currentShift);
         }
@@ -46,14 +46,14 @@ namespace GMTK2023.Game
             // NOTE: We force the nullable here because a shift should always be found
             var shift = ShiftDb.TryLoadShiftByIndex(e.Game.ShiftIndex)!;
 
-            OnShiftLoaded?.Invoke(new ShiftLoadedEvent(shift));
+            ShiftLoaded?.Invoke(new ShiftLoadedEvent(shift));
 
             StartShift(shift);
         }
 
         private void Awake()
         {
-            Singleton.TryFind<IGameLoader>()!.OnGameLoaded += OnGameLoaded;
+            Singleton.TryFind<IGameLoader>()!.GameLoaded += OnGameLoaded;
         }
     }
 }

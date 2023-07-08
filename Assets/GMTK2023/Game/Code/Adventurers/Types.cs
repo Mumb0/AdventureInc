@@ -23,7 +23,7 @@ namespace GMTK2023.Game
         public record AdventurerEnteredEvent(Adventurer Adventurer);
 
 
-        public event Action<AdventurerEnteredEvent> OnAdventurerEntered;
+        public event Action<AdventurerEnteredEvent> AdventurerEntered;
     }
 
     public interface IAdventurerLocationTracker
@@ -31,6 +31,6 @@ namespace GMTK2023.Game
         public record AdventurerChangedLocationEvent(Adventurer Adventurer, ILocation Location);
 
 
-        public event Action<AdventurerChangedLocationEvent> OnAdventurerChangedLocation;
+        public event Action<AdventurerChangedLocationEvent> AdventurerChangedLocation;
     }
 }

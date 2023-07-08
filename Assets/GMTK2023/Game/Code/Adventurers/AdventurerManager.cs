@@ -11,7 +11,7 @@ namespace GMTK2023.Game
         private record InactiveAdventurer(IAdventurerInfo Info, TimeSpan EnterTime);
 
 
-        public event Action<AdventurerEnteredEvent>? OnAdventurerEntered;
+        public event Action<AdventurerEnteredEvent>? AdventurerEntered;
 
 
         private readonly ISet<InactiveAdventurer> inactiveAdventurers =
@@ -23,7 +23,7 @@ namespace GMTK2023.Game
             var adventurer = new Adventurer(inactiveAdventurer.Info);
             inactiveAdventurers.Remove(inactiveAdventurer);
 
-            OnAdventurerEntered?.Invoke(new AdventurerEnteredEvent(adventurer));
+            AdventurerEntered?.Invoke(new AdventurerEnteredEvent(adventurer));
         }
 
         private void OnShiftLoaded(IShiftLoader.ShiftLoadedEvent e)
@@ -33,7 +33,7 @@ namespace GMTK2023.Game
                 .Iter(it => inactiveAdventurers.Add(it));
         }
 
-        private void OnShiftProgress(IShiftProgressTracker.ShiftProgressEvent e)
+        private void OnShiftProgressed(IShiftProgressTracker.ShiftProgressEvent e)
         {
             bool IsReadyToActivate(InactiveAdventurer adventurer) =>
                 adventurer.EnterTime < e.TimeSinceStart;
@@ -46,8 +46,8 @@ namespace GMTK2023.Game
 
         private void Awake()
         {
-            Singleton.TryFind<IShiftLoader>()!.OnShiftLoaded += OnShiftLoaded;
-            Singleton.TryFind<IShiftProgressTracker>()!.OnShiftProgress += OnShiftProgress;
+            Singleton.TryFind<IShiftLoader>()!.ShiftLoaded += OnShiftLoaded;
+            Singleton.TryFind<IShiftProgressTracker>()!.ShiftProgressed += OnShiftProgressed;
         }
     }
 }

@@ -42,7 +42,7 @@ namespace GMTK2023.Game
         public record ShiftLoadedEvent(IShiftInfo ShiftInfo);
 
 
-        public event Action<ShiftLoadedEvent> OnShiftLoaded;
+        public event Action<ShiftLoadedEvent> ShiftLoaded;
     }
 
     public interface IShiftProgressTracker
@@ -52,7 +52,7 @@ namespace GMTK2023.Game
         public record ShiftProgressEvent(TimeSpan TimeSinceStart);
 
 
-        public event Action<ShiftStartedEvent> OnShiftStarted;
-        public event Action<ShiftProgressEvent> OnShiftProgress;
+        public event Action<ShiftStartedEvent> ShiftStarted;
+        public event Action<ShiftProgressEvent> ShiftProgressed;
     }
 }

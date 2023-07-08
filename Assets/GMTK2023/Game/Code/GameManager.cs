@@ -9,7 +9,7 @@ namespace GMTK2023.Game
     /// </summary>
     public class GameManager : MonoBehaviour, IGameLoader
     {
-        public event Action<IGameLoader.GameLoadEvent>? OnGameLoaded;
+        public event Action<IGameLoader.GameLoadEvent>? GameLoaded;
 
 
         private async void Start()
@@ -18,7 +18,7 @@ namespace GMTK2023.Game
             var savedGame = await GameSaving.TryLoadSavedGameAsync()
                             ?? await GameSaving.StartNewGameAsync();
 
-            OnGameLoaded?.Invoke(new IGameLoader.GameLoadEvent(savedGame));
+            GameLoaded?.Invoke(new IGameLoader.GameLoadEvent(savedGame));
         }
     }
 }

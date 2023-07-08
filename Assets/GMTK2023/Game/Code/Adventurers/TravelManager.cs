@@ -8,7 +8,7 @@ namespace GMTK2023.Game
 {
     public class TravelManager : MonoBehaviour, IAdventurerLocationTracker
     {
-        public event Action<AdventurerChangedLocationEvent>? OnAdventurerChangedLocation;
+        public event Action<AdventurerChangedLocationEvent>? AdventurerChangedLocation;
 
 
         private IMap map = null!;
@@ -16,7 +16,7 @@ namespace GMTK2023.Game
 
         private void SetAdventurerLocation(Adventurer adventurer, ILocation location)
         {
-            OnAdventurerChangedLocation?.Invoke(
+            AdventurerChangedLocation?.Invoke(
                 new AdventurerChangedLocationEvent(adventurer, location));
         }
 
@@ -36,7 +36,7 @@ namespace GMTK2023.Game
 
         private void Awake()
         {
-            Singleton.TryFind<IAdventurerTracker>()!.OnAdventurerEntered
+            Singleton.TryFind<IAdventurerTracker>()!.AdventurerEntered
                 += OnAdventurerEntered;
             map = Singleton.TryFind<IMap>()!;
         }
