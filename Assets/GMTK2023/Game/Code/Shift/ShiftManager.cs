@@ -1,12 +1,22 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace GMTK2023.Game
 {
-    public class ShiftManager : MonoBehaviour, IShiftStarter
+    public class ShiftManager : MonoBehaviour
     {
-        public void StartShift(IShiftInfo shiftInfo)
+        private void OnGameLoaded(IGameLoader.GameLoadEvent e)
         {
-            throw new System.NotImplementedException();
+            // NOTE: We force the nullable here because a shift should always be found
+            var shift = ShiftDb.TryLoadShiftByIndex(e.Game.ShiftIndex)!;
+
+            throw new NotImplementedException();
+        }
+
+        private void Awake()
+        {
+            Singleton.TryFind<IGameLoader>()!
+                .OnGameLoaded += OnGameLoaded;
         }
     }
 }

@@ -11,17 +11,19 @@ namespace GMTK2023
     /// </summary>
     public static class GameSaving
     {
-        private const string SaveFileName = "save.json";
-
-        private static readonly string saveFilePath =
-            Path.Join(Application.persistentDataPath, SaveFileName);
-
-
         /// <summary>
         /// Represents a saved game
         /// </summary>
         /// <param name="ShiftIndex">The index of the current shift. 0-based</param>
         public record SavedGame(int ShiftIndex);
+
+
+        private const string SaveFileName = "save.json";
+
+        private static readonly string saveFilePath =
+            Path.Join(Application.persistentDataPath, SaveFileName);
+
+        private static readonly SavedGame newGame = new SavedGame(0);
 
 
         /// <summary>
@@ -34,6 +36,20 @@ namespace GMTK2023
 
             var fileContent = await File.ReadAllTextAsync(saveFilePath);
             return JsonConvert.DeserializeObject<SavedGame>(fileContent!);
+        }
+
+        /// <summary>
+        /// Starts a new game
+        /// </summary>
+        /// <returns>The game that was started</returns>
+        public static async Task<SavedGame> StartNewGameAsync()
+        {
+            if (!File.Exists(saveFilePath)) File.Create(saveFilePath);
+
+            var json = JsonConvert.SerializeObject(newGame);
+
+            await File.WriteAllTextAsync(saveFilePath, json);
+            return newGame;
         }
     }
 }
