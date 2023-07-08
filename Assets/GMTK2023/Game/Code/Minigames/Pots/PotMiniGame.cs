@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 namespace GMTK2023.Game.MiniGames {
 
@@ -13,6 +13,10 @@ namespace GMTK2023.Game.MiniGames {
 
 		[SerializeField] private Transform[] potLocations = Array.Empty<Transform>();
 		[SerializeField] private GameObject? potPrefab;
+
+		[SerializeField] private Button[] toolButtons = Array.Empty<Button>();
+		[SerializeField] private Sprite? selectedToolSprite;
+		[SerializeField] private Sprite? deselectedToolSprite;
 
 		private bool wasVisited = false;
 
@@ -114,7 +118,14 @@ namespace GMTK2023.Game.MiniGames {
 				CurrentlySelectedTool = selectingTool;
 			}
 
-			Debug.Log(CurrentlySelectedTool.ToString());
+			for (int i = 0; i < toolButtons.Length; i++) {
+				if (CurrentlySelectedTool == PotTool.None) {
+					toolButtons[i].gameObject.GetComponent<Image>().sprite = deselectedToolSprite!;
+				}
+				else {
+					toolButtons[i].gameObject.GetComponent<Image>().sprite = i == toolIndex ? selectedToolSprite! : deselectedToolSprite!;
+				}
+			}
 
 		}
 
