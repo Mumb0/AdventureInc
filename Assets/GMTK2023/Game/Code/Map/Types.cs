@@ -16,7 +16,7 @@ namespace GMTK2023.Game
         /// <remarks>This will be null if the location has no mini-game</remarks>
         public IMiniGame? TryGetMiniGameFor(ILocation location);
 
-        public bool HasNoMiniGameAt(ILocation location) =>
-            TryGetMiniGameFor(location) == null;
+        public bool HasMiniGameAt(ILocation location) =>
+            TryGetMiniGameFor(location) != null;
     }
 }

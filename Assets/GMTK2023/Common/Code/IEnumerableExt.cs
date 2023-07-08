@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using Random = UnityEngine.Random;
 
 namespace GMTK2023
 {
@@ -12,6 +14,17 @@ namespace GMTK2023
             {
                 action(item);
             }
+        }
+
+        public static IEnumerable<T> WhereNot<T>(this IEnumerable<T> items, Func<T, bool> pred) =>
+            items.Where(it => !pred(it));
+
+        public static T? TryRandom<T>(this IReadOnlyCollection<T> items)
+        {
+            if (!items.Any()) return default;
+
+            var index = Random.Range(0, items.Count);
+            return items.ElementAt(index);
         }
     }
 }

@@ -25,4 +25,12 @@ namespace GMTK2023.Game
 
         public event Action<AdventurerEnteredEvent> OnAdventurerEntered;
     }
+
+    public interface IAdventurerLocationTracker
+    {
+        public record AdventurerChangedLocationEvent(Adventurer Adventurer, ILocation Location);
+
+
+        public event Action<AdventurerChangedLocationEvent> OnAdventurerChangedLocation;
+    }
 }

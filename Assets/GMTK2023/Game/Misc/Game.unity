@@ -372,6 +372,7 @@ GameObject:
   - component: {fileID: 966599290}
   - component: {fileID: 966599292}
   - component: {fileID: 966599293}
+  - component: {fileID: 966599294}
   m_Layer: 0
   m_Name: Singletons
   m_TagString: Singletons
@@ -445,6 +446,18 @@ MonoBehaviour:
   locationMiniGameLinks:
   - location: {fileID: 11400000, guid: a3bf672fc75d5fb459f962dbe98d74b4, type: 2}
     miniGame: {fileID: 3279789266440494459}
+--- !u!114 &966599294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966599288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c51c3c463bcc4e4db9c1d6aac761a6e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &968266579
 GameObject:
   m_ObjectHideFlags: 0
