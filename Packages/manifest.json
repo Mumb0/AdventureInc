@@ -5,7 +5,8 @@
     "com.unity.inputsystem": "1.6.1",
     "com.unity.render-pipelines.universal": "14.0.8",
     "com.unity.test-framework": "1.1.33",
-    "org.nuget.system.collections.immutable": "7.0.0"
+    "org.nuget.system.collections.immutable": "7.0.0",
+    "jillejr.newtonsoft.json-for-unity": "13.0.102"
   },
   "scopedRegistries": [
     {
@@ -13,6 +14,7 @@
       "url": "https://package.openupm.com",
       "scopes": [
         "com.openupm",
+        "jillejr.newtonsoft.json-for-unity",
         "org.nuget.system.buffers",
         "org.nuget.system.collections.immutable",
         "org.nuget.system.memory",
