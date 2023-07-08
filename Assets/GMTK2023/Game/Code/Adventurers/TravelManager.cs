@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using UnityEngine;
 using static GMTK2023.Game.IAdventurerLocationTracker;
 
@@ -11,7 +11,14 @@ namespace GMTK2023.Game
         public event Action<AdventurerChangedLocationEvent>? AdventurerChangedLocation;
 
 
+        [SerializeField] private float travelOpportunityIntervalSeconds;
+
+        private TimeSpan lastUpdateTime = TimeSpan.Zero;
         private IMap map = null!;
+
+
+        private TimeSpan TravelOpportunityInterval =>
+            TimeSpan.FromSeconds(travelOpportunityIntervalSeconds);
 
 
         private void SetAdventurerLocation(Adventurer adventurer, ILocation location)
@@ -29,15 +36,33 @@ namespace GMTK2023.Game
             SetAdventurerLocation(adventurer, location);
         }
 
+        private void UpdateAdventurerLocations()
+        {
+            throw new NotImplementedException();
+        }
+
         private void OnAdventurerEntered(IAdventurerTracker.AdventurerEnteredEvent e)
         {
             StartAdventurerAtRandomLocation(e.Adventurer);
+        }
+
+        private void OnShiftProgressed(IShiftProgressTracker.ShiftProgressEvent e)
+        {
+            var timeSinceLastTravelOpportunity =
+                e.TimeSinceStart - lastUpdateTime;
+            if (timeSinceLastTravelOpportunity < TravelOpportunityInterval)
+                return;
+
+            UpdateAdventurerLocations();
+            lastUpdateTime = e.TimeSinceStart;
         }
 
         private void Awake()
         {
             Singleton.TryFind<IAdventurerTracker>()!.AdventurerEntered
                 += OnAdventurerEntered;
+            Singleton.TryFind<IShiftProgressTracker>()!.ShiftProgressed
+                += OnShiftProgressed;
             map = Singleton.TryFind<IMap>()!;
         }
     }
