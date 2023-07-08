@@ -1,4 +1,5 @@
 ﻿using System;
+using GMTK2023.Game.MiniGames;
 
 namespace GMTK2023.Game
 {
@@ -18,11 +19,14 @@ namespace GMTK2023.Game
     /// </summary>
     public record Adventurer(IAdventurerInfo Info);
 
+    public record Quest(IMiniGame MiniGame);
+
+
     public interface IAdventurerTracker
     {
         public record AdventurerEnteredEvent(Adventurer Adventurer);
 
-        
+
         /// <summary>
         /// Invoked when an adventurer enters the shift (spawns)
         /// </summary>
@@ -33,10 +37,15 @@ namespace GMTK2023.Game
     {
         public record AdventurerChangedLocationEvent(Adventurer Adventurer, ILocation Location);
 
-        
+
         /// <summary>
         /// Invoked when an adventurer changes their location
         /// </summary>
         public event Action<AdventurerChangedLocationEvent> AdventurerChangedLocation;
+    }
+
+    public interface IQuestTracker
+    {
+        public Quest CurrentQuestOf(Adventurer adventurer);
     }
 }
