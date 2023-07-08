@@ -71,6 +71,7 @@ namespace GMTK2023.Game.MiniGames {
 					case PotTool.Broom:
 
 						if (objectTag == "PotPiece") {
+							Debug.Log("PieceClicked");
 							clickedObject?.GetComponent<PotPiece>().BroomPiece();
 						}
 
