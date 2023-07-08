@@ -6,7 +6,7 @@ using static GMTK2023.Game.IAdventurerTracker;
 
 namespace GMTK2023.Game
 {
-    public class AdventureManager : MonoBehaviour, IAdventurerTracker
+    public class AdventurerManager : MonoBehaviour, IAdventurerTracker
     {
         private record InactiveAdventurer(IAdventurerInfo Info, TimeSpan EnterTime);
 
