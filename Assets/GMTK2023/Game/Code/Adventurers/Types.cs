@@ -46,6 +46,15 @@ namespace GMTK2023.Game
 
     public interface IQuestTracker
     {
+        public record QuestStartEvent(Adventurer Adventurer, Quest Quest);
+
+
+        /// <summary>
+        /// Invoked when an adventurer reaches the location of their quest and starts it
+        /// </summary>
+        public event Action<QuestStartEvent> QuestStart;
+
+
         public Quest CurrentQuestOf(Adventurer adventurer);
     }
 }

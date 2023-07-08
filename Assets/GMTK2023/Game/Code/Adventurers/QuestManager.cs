@@ -1,14 +1,21 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using GMTK2023.Game.MiniGames;
 using UnityEngine;
+using static GMTK2023.Game.IAdventurerLocationTracker;
+using static GMTK2023.Game.IQuestTracker;
 
 namespace GMTK2023.Game
 {
     public class QuestManager : MonoBehaviour, IQuestTracker
     {
+        public event Action<QuestStartEvent>? QuestStart;
+
+
         private readonly IDictionary<Adventurer, Quest> questByAdventurer =
             new Dictionary<Adventurer, Quest>();
 
+        private IMap map = null!;
         private IMiniGameTracker miniGameTracker = null!;
 
 
@@ -30,11 +37,30 @@ namespace GMTK2023.Game
             questByAdventurer.Add(e.Adventurer, ChooseQuestFor(e.Adventurer));
         }
 
+        private void OnAdventurerReachedQuestLocation(Adventurer adventurer, Quest quest)
+        {
+            QuestStart?.Invoke(new QuestStartEvent(adventurer, quest));
+        }
+
+        private void OnAdventurerChangedLocation(AdventurerChangedLocationEvent e)
+        {
+            var quest = questByAdventurer[e.Adventurer];
+            var questLocation = map.LocationOf(quest.MiniGame);
+
+            if (e.Location != questLocation) return;
+
+            OnAdventurerReachedQuestLocation(e.Adventurer, quest);
+        }
+
         private void Awake()
         {
             Singleton.TryFind<IAdventurerTracker>()!.AdventurerEntered +=
                 OnAdventurerEntered;
+            Singleton.TryFind<IAdventurerLocationTracker>()!.AdventurerChangedLocation +=
+                OnAdventurerChangedLocation;
+
             miniGameTracker = Singleton.TryFind<IMiniGameTracker>()!;
+            map = Singleton.TryFind<IMap>()!;
         }
     }
 }
