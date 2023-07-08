@@ -46,7 +46,11 @@ namespace GMTK2023.Game
                 adventurersByLocation.Add(location, new HashSet<Adventurer>());
             adventurersByLocation[location].Add(adventurer);
             locationByAdventurer.Add(adventurer, location);
+        }
 
+        private void MoveAdventurerToLocation(Adventurer adventurer, ILocation location)
+        {
+            SetAdventurerLocation(adventurer, location);
             AdventurerChangedLocation?.Invoke(
                 new AdventurerChangedLocationEvent(adventurer, location));
         }
@@ -74,7 +78,7 @@ namespace GMTK2023.Game
                  * TODO: Implement continuous movement
                  * For now we just teleport to the target instantly
                  */
-                SetAdventurerLocation(adventurer, targetLocation);
+                MoveAdventurerToLocation(adventurer, targetLocation);
             });
         }
 
