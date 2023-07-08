@@ -98,8 +98,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48d264621488e254b97a41040f60b292, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 2986153812084430166}
   potPiecePrefab: {fileID: 8526950307484844261, guid: 6facff71e940d1a4a8dbe2477c4f7f8b, type: 3}
-  pieceRadius: 1.25
+  pieceRadius: 0.45
 --- !u!61 &6960700529652101961
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -1,9 +1,10 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace GMTK2023.Game.MiniGames {
 
-	public abstract class MiniGame : MonoBehaviour, IMiniGame{
+	public abstract class MiniGame : MonoBehaviour, IMiniGame {
 
 #region Events
 
@@ -14,13 +15,20 @@ namespace GMTK2023.Game.MiniGames {
 #region Fields
 
 		[SerializeField] internal Canvas? miniGameCanvas;
+		[SerializeField] internal PlayerInput? playerActions;
+
+#endregion
+
+#region Properties
+
+		internal Camera? MainCamera { get; private set; }
 
 #endregion
 
 #region Methods
 
 		private void Awake() {
-			
+			MainCamera = Camera.main;
 		}
 
 		public abstract void OnAdventurerEntered();

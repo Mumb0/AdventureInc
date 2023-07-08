@@ -38,7 +38,7 @@ namespace GMTK2023.Game
 
         private void UpdateAdventurerLocations()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         private void OnAdventurerEntered(IAdventurerTracker.AdventurerEnteredEvent e)

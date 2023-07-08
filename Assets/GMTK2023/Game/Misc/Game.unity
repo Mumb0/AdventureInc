@@ -738,13 +738,13 @@ MonoBehaviour:
     m_ActionName: UI/TrackedDeviceOrientation
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3279789266440494458}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 3279789266440494459}
+        m_TargetAssemblyTypeName: GMTK2023.Game.MiniGames.PotMiniGame, GMTK2023.Game
+        m_MethodName: OnMouseClickInput
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -754,13 +754,13 @@ MonoBehaviour:
     m_ActionName: PotMiniGame/Click[/Mouse/leftButton]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3279789266440494458}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 3279789266440494459}
+        m_TargetAssemblyTypeName: GMTK2023.Game.MiniGames.PotMiniGame, GMTK2023.Game
+        m_MethodName: OnPointerMoveInput
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -781,18 +781,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1976426325}
     m_Modifications:
-    - target: {fileID: 4396163831919773397, guid: 46a6aa2e64c106b4989877bb1fdfbf6a, type: 3}
-      propertyPath: m_fontAsset
+    - target: {fileID: 1658643844545398024, guid: 46a6aa2e64c106b4989877bb1fdfbf6a, type: 3}
+      propertyPath: playerActions
       value: 
-      objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-    - target: {fileID: 4396163831919773397, guid: 46a6aa2e64c106b4989877bb1fdfbf6a, type: 3}
-      propertyPath: m_isOrthographic
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4396163831919773397, guid: 46a6aa2e64c106b4989877bb1fdfbf6a, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+      objectReference: {fileID: 1976426326}
     - target: {fileID: 5349078455686843341, guid: 46a6aa2e64c106b4989877bb1fdfbf6a, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -837,10 +829,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5549153812243263070, guid: 46a6aa2e64c106b4989877bb1fdfbf6a, type: 3}
-      propertyPath: m_AdditionalShaderChannelsFlag
-      value: 25
-      objectReference: {fileID: 0}
     - target: {fileID: 6879500697791941996, guid: 46a6aa2e64c106b4989877bb1fdfbf6a, type: 3}
       propertyPath: m_Name
       value: PotsMiniGame
@@ -850,17 +838,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46a6aa2e64c106b4989877bb1fdfbf6a, type: 3}
---- !u!1 &3279789266440494458 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6879500697791941996, guid: 46a6aa2e64c106b4989877bb1fdfbf6a, type: 3}
-  m_PrefabInstance: {fileID: 3279789266440494457}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &3279789266440494459 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1658643844545398024, guid: 46a6aa2e64c106b4989877bb1fdfbf6a, type: 3}
   m_PrefabInstance: {fileID: 3279789266440494457}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3279789266440494458}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e63a3f4dda4a2ee4bb8999d604504ee4, type: 3}
