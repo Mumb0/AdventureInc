@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -17,8 +18,6 @@ namespace GMTK2023.Game.MiniGames {
 		[SerializeField] private Button[] toolButtons = Array.Empty<Button>();
 		[SerializeField] private Sprite? selectedToolSprite;
 		[SerializeField] private Sprite? deselectedToolSprite;
-
-		private bool wasVisited = false;
 
 #endregion
 
@@ -46,7 +45,9 @@ namespace GMTK2023.Game.MiniGames {
 				// NOTE: We force because this should never be null
 				Pot pot = Instantiate(potPrefab, t.position, Quaternion.identity, t)!.GetComponent<Pot>();
 				ActivePots?.Add(pot);
-				pot.SetupPot();
+				pot.BroomedAllPieces += OnGameTaskCompleted;
+				pot.PlacedPot += OnGameTaskCompleted;
+				pot.FilledPot += OnGameTaskCompleted;
 			}
 
 		}
@@ -61,23 +62,46 @@ namespace GMTK2023.Game.MiniGames {
 
 			if (ctx.canceled) {
 
+				GameObject? clickedObject;
+
 				switch (CurrentlySelectedTool) {
 
 					case PotTool.Broom:
 
-						GameObject? clickedObject = GetClickedObject(MousePosition, LayerMask.GetMask("PotPiece"));
+						if (CurrentTaskStep == 0) {
+							clickedObject = GetClickedObject(MousePosition, LayerMask.GetMask("PotPiece"));
 
-						if (clickedObject) {
-							clickedObject.GetComponent<PotPiece>().BroomPiece();
+							if (clickedObject) {
+								clickedObject.GetComponent<PotPiece>().BroomPiece();
+							}
 						}
 
 						break;
 					case PotTool.Pot:
+
+						if (CurrentTaskStep == 1) {
+							clickedObject = GetClickedObject(MousePosition, LayerMask.GetMask("Pot"));
+
+							if (clickedObject) {
+								clickedObject.GetComponent<Pot>().PlacePot();
+							}
+						}
+
 						break;
 					case PotTool.Coin:
+
+						if (CurrentTaskStep == 2) {
+							clickedObject = GetClickedObject(MousePosition, LayerMask.GetMask("Pot"));
+
+							if (clickedObject) {
+								clickedObject.GetComponent<Pot>().FillPot();
+							}
+						}
+
 						break;
 					case PotTool.None:
-						if (!wasVisited) {
+
+						if (IsPrepared) {
 							OnAdventurerLeft();
 						}
 
@@ -94,6 +118,27 @@ namespace GMTK2023.Game.MiniGames {
 			RaycastHit2D rayHit = Physics2D.GetRayIntersection(MainCamera!.ScreenPointToRay(clickPos), Mathf.Infinity, targetLayer);
 			Collider2D? hitCollider = rayHit.collider;
 			return hitCollider ? hitCollider.gameObject : null;
+		}
+
+		public void OnGameTaskCompleted() {
+
+			if (ActivePots.All(x => x.CurrentState == PotState.Cleaned)) {
+				CurrentTaskStep++;
+			}
+
+			if (ActivePots.All(x => x.CurrentState == PotState.Placed)) {
+				CurrentTaskStep++;
+			}
+
+			if (ActivePots.All(x => x.CurrentState == PotState.Filled)) {
+				CurrentTaskStep++;
+			}
+
+			if (CurrentTaskStep == 3) {
+				IsPrepared = true;
+				AllMiniGameTasksCompleted?.Invoke();
+			}
+
 		}
 
 		public void OnToolButtonClicked(int toolIndex) {
@@ -126,7 +171,8 @@ namespace GMTK2023.Game.MiniGames {
 				p.Smash();
 			}
 
-			wasVisited = true;
+			IsPrepared = false;
+			CurrentTaskStep = 0;
 
 		}
 

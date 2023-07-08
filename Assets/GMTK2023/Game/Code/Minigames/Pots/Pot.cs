@@ -10,7 +10,9 @@ namespace GMTK2023.Game.MiniGames {
 
 #region Events
 
-		public Action? PotCleaned;
+		public Action? BroomedAllPieces;
+		public Action? PlacedPot;
+		public Action? FilledPot;
 
 #endregion
 
@@ -21,29 +23,27 @@ namespace GMTK2023.Game.MiniGames {
 		[SerializeField] private float pieceRadius;
 		[SerializeField] private int minGeneratedPieces;
 		[SerializeField] private int maxGeneratedPieces;
+		[SerializeField] private Sprite? emptyPotSpaceSprite;
+		[SerializeField] private Sprite? potSprite;
+		[SerializeField] private Sprite? filledPotSprite;
 
 #endregion
 
 #region Properties
 
+		public bool IsSmashed { get; set; }
 		public bool IsFilledWithCoins { get; set; }
 		public int BrokenPiecesCount { get; set; }
-
+		public PotState CurrentState { get; set; }
 		private IList<PotPiece> BrokenPieces { get; set; } = new Collection<PotPiece>();
 
 #endregion
 
 #region Methods
 
-		public void SetupPot() {
-			spriteRenderer!.enabled = true;
-		}
-
 		public void Smash() {
 
 			BrokenPiecesCount = Random.Range(minGeneratedPieces, maxGeneratedPieces);
-
-			spriteRenderer!.enabled = false;
 
 			for (int i = 0; i < BrokenPiecesCount; i++) {
 				Vector2 newPos = new Vector2(
@@ -52,19 +52,40 @@ namespace GMTK2023.Game.MiniGames {
 					);
 
 				PotPiece fallenPiece = Instantiate(potPiecePrefab, newPos, Quaternion.identity, transform)!.GetComponent<PotPiece>();
-				fallenPiece.PieceBroomed += CleanedPiece;
+				fallenPiece.PieceBroomed += OnPieceCleaned;
 
 				BrokenPieces.Add(fallenPiece);
 			}
 
+			spriteRenderer!.sprite = null;
+			CurrentState = PotState.Broken;
+
 		}
 
-		public void CleanedPiece() {
+		public void OnPieceCleaned() {
+
 			BrokenPiecesCount--;
 
 			if (BrokenPiecesCount == 0) {
-				PotCleaned?.Invoke();
+				spriteRenderer!.sprite = emptyPotSpaceSprite;
+				CurrentState = PotState.Cleaned;
+				BroomedAllPieces?.Invoke();
 			}
+
+		}
+
+		public void PlacePot() {
+			IsSmashed = false;
+			spriteRenderer!.sprite = potSprite;
+			CurrentState = PotState.Placed;
+			PlacedPot?.Invoke();
+		}
+
+		public void FillPot() {
+			IsFilledWithCoins = true;
+			spriteRenderer!.sprite = filledPotSprite;
+			CurrentState = PotState.Filled;
+			FilledPot?.Invoke();
 		}
 
 #endregion

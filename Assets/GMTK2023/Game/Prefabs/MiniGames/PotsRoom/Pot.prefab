@@ -103,6 +103,9 @@ MonoBehaviour:
   pieceRadius: 0.55
   minGeneratedPieces: 1
   maxGeneratedPieces: 4
+  emptyPotSpaceSprite: {fileID: 21300000, guid: 93b99f26207eef349acde8988305a746, type: 3}
+  potSprite: {fileID: 21300000, guid: b1dc15c7a11e8844abb18b8662bb625d, type: 3}
+  filledPotSprite: {fileID: 21300000, guid: 87ad73dd881fb21408373ba7d0071f3b, type: 3}
 --- !u!61 &6960700529652101961
 BoxCollider2D:
   m_ObjectHideFlags: 0

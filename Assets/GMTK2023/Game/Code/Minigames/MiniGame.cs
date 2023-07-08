@@ -16,11 +16,15 @@ namespace GMTK2023.Game.MiniGames {
 
 		[SerializeField] internal Canvas? miniGameCanvas;
 		[SerializeField] internal PlayerInput? playerActions;
+		[SerializeField] private string[] stepGuideTexts = Array.Empty<string>();
 
 #endregion
 
 #region Properties
 
+		public bool IsPrepared { get; set; } = true;
+		public int CurrentTaskStep { get; set; } = 0;
+		public string[] StepTexts => stepGuideTexts;
 		internal Camera? MainCamera { get; private set; }
 
 #endregion
