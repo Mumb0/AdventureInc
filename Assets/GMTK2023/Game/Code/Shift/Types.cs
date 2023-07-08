@@ -10,14 +10,14 @@ namespace GMTK2023.Game
     [Serializable]
     public class AdventurerInShift
     {
-        [SerializeField] private AdventurerInfoAsset? adventurerInfo;
+        [SerializeField] private AdventurerInfoAsset? info;
         [SerializeField] private float enterTimeSeconds;
 
 
         /// <summary>
         /// The adventurer
         /// </summary>
-        public IAdventurerInfo AdventurerInfo => adventurerInfo!;
+        public IAdventurerInfo Info => info!;
 
         /// <summary>
         /// After what time does this adventurer enter the shift
