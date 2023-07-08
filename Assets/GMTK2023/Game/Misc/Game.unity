@@ -624,7 +624,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 41587103541a84d449f5759beb7e7664, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f3f2b4f49fc82354d85a3f8ed488084f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -797,22 +797,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1976426325}
     m_Modifications:
-    - target: {fileID: 1154670774295996769, guid: 46a6aa2e64c106b4989877bb1fdfbf6a, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1154670774295996769, guid: 46a6aa2e64c106b4989877bb1fdfbf6a, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0.8
-      objectReference: {fileID: 0}
     - target: {fileID: 1658643844545398024, guid: 46a6aa2e64c106b4989877bb1fdfbf6a, type: 3}
       propertyPath: playerActions
       value: 
       objectReference: {fileID: 1976426326}
-    - target: {fileID: 2569935036535419001, guid: 46a6aa2e64c106b4989877bb1fdfbf6a, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: b1dc15c7a11e8844abb18b8662bb625d, type: 3}
     - target: {fileID: 5349078455686843341, guid: 46a6aa2e64c106b4989877bb1fdfbf6a, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -857,10 +845,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6175513180702276974, guid: 46a6aa2e64c106b4989877bb1fdfbf6a, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 79900707e0874f34591631e1aff4d498, type: 3}
     - target: {fileID: 6879500697791941996, guid: 46a6aa2e64c106b4989877bb1fdfbf6a, type: 3}
       propertyPath: m_Name
       value: PotsMiniGame

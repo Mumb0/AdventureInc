@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2986153812084430166}
   - component: {fileID: 182313003736658882}
   - component: {fileID: 7110814815127460613}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PotPiece
   m_TagString: PotPiece
   m_Icon: {fileID: 0}
@@ -75,12 +75,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 35e02d891a8d9e743972f8acb625a242, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0a2a535bd06f66d4cb56b7d99ca792ca, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.64, y: 0.64}
+  m_Size: {x: 0.32, y: 0.32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -100,7 +100,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 2986153812084430166}
   potPieceSprites:
-  - {fileID: 21300000, guid: 35e02d891a8d9e743972f8acb625a242, type: 3}
+  - {fileID: 21300000, guid: 0a2a535bd06f66d4cb56b7d99ca792ca, type: 3}
+  - {fileID: 21300000, guid: 9bf32882ccc427245b0f6a2b4d0d0433, type: 3}
+  - {fileID: 21300000, guid: 12f2e448426ff2d4f95bf2776d201190, type: 3}
 --- !u!61 &7110814815127460613
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -138,7 +140,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 0.32, y: 0.32}
-    newSize: {x: 0.64, y: 0.64}
+    newSize: {x: 0.32, y: 0.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0

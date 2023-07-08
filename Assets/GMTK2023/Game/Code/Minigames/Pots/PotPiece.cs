@@ -26,7 +26,7 @@ namespace GMTK2023.Game {
 		}
 
 		private void SetRandomPieceSprite() {
-			spriteRenderer!.sprite = potPieceSprites[Random.Range(0, potPieceSprites.Length - 1)];
+			spriteRenderer!.sprite = potPieceSprites[Random.Range(0, potPieceSprites.Length)];
 		}
 
 		public void BroomPiece() {

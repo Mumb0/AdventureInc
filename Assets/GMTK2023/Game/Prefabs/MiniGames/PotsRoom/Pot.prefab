@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2986153812084430166}
   - component: {fileID: 7115007838743772555}
   - component: {fileID: 6960700529652101961}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,7 +100,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 2986153812084430166}
   potPiecePrefab: {fileID: 8526950307484844261, guid: 6facff71e940d1a4a8dbe2477c4f7f8b, type: 3}
-  pieceRadius: 0.45
+  pieceRadius: 0.55
+  minGeneratedPieces: 1
+  maxGeneratedPieces: 4
 --- !u!61 &6960700529652101961
 BoxCollider2D:
   m_ObjectHideFlags: 0

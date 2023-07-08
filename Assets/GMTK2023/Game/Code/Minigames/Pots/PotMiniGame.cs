@@ -61,16 +61,14 @@ namespace GMTK2023.Game.MiniGames {
 
 			if (ctx.canceled) {
 
-				GameObject? clickedObject = GetClickedObject(MousePosition);
-				string objectTag = clickedObject == null ? string.Empty : clickedObject.tag;
-
-				Debug.Log(objectTag);
 				switch (CurrentlySelectedTool) {
 
 					case PotTool.Broom:
 
-						if (objectTag == "PotPiece") {
-							Debug.Log("Clicked on Piece");
+						GameObject? clickedObject = GetClickedObject(MousePosition, LayerMask.GetMask("PotPiece"));
+
+						if (clickedObject) {
+							clickedObject.GetComponent<PotPiece>().BroomPiece();
 						}
 
 						break;
@@ -79,11 +77,8 @@ namespace GMTK2023.Game.MiniGames {
 					case PotTool.Coin:
 						break;
 					case PotTool.None:
-
-						if (objectTag == string.Empty) {
-							if (!wasVisited) {
-								OnAdventurerLeft();
-							}
+						if (!wasVisited) {
+							OnAdventurerLeft();
 						}
 
 						break;
@@ -95,8 +90,8 @@ namespace GMTK2023.Game.MiniGames {
 
 		}
 
-		private GameObject? GetClickedObject(Vector2 clickPos) {
-			RaycastHit2D rayHit = Physics2D.GetRayIntersection(MainCamera!.ScreenPointToRay(clickPos), Mathf.Infinity);
+		private GameObject? GetClickedObject(Vector2 clickPos, LayerMask targetLayer) {
+			RaycastHit2D rayHit = Physics2D.GetRayIntersection(MainCamera!.ScreenPointToRay(clickPos), Mathf.Infinity, targetLayer);
 			Collider2D? hitCollider = rayHit.collider;
 			return hitCollider ? hitCollider.gameObject : null;
 		}

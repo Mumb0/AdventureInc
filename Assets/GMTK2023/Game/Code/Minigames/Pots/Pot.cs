@@ -19,6 +19,8 @@ namespace GMTK2023.Game.MiniGames {
 		[SerializeField] private SpriteRenderer? spriteRenderer;
 		[SerializeField] private GameObject? potPiecePrefab;
 		[SerializeField] private float pieceRadius;
+		[SerializeField] private int minGeneratedPieces;
+		[SerializeField] private int maxGeneratedPieces;
 
 #endregion
 
@@ -39,7 +41,7 @@ namespace GMTK2023.Game.MiniGames {
 
 		public void Smash() {
 
-			BrokenPiecesCount = Random.Range(3, 6);
+			BrokenPiecesCount = Random.Range(minGeneratedPieces, maxGeneratedPieces);
 
 			spriteRenderer!.enabled = false;
 
