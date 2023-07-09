@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace GMTK2023.Game
 {
@@ -23,10 +24,18 @@ namespace GMTK2023.Game
             GameLoaded?.Invoke(new IGameLoader.GameLoadEvent(savedGame));
         }
 
+        private void HandleGameOver()
+        {
+            GameOver?.Invoke(new IGameOverTracker.GameOverEvent());
+
+            // TODO: Go to game over screen instead
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
         private void OnCredibilityChanged(ICredibilityTracker.CredibilityChangedEvent e)
         {
             if (e.Credibility > 0) return;
-            GameOver?.Invoke(new IGameOverTracker.GameOverEvent());
+            HandleGameOver();
         }
 
         private void Awake()
