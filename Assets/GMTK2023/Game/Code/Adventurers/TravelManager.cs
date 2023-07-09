@@ -34,6 +34,11 @@ namespace GMTK2023.Game
         public ILocation LocationOf(Adventurer adventurer) =>
             locationByAdventurer[adventurer];
 
+        public IEnumerable<Adventurer> AdventurersAt(ILocation location)
+        {
+            return adventurersByLocation.TryGet(location) ?? Enumerable.Empty<Adventurer>();
+        }
+
         private void SetAdventurerLocation(Adventurer adventurer, ILocation location)
         {
             // Remove from current location

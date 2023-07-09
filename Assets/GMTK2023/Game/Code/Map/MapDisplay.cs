@@ -6,115 +6,87 @@ using GMTK2023.Game.MiniGames;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace GMTK2023.Game {
+namespace GMTK2023.Game
+{
+    public class MapDisplay : MonoBehaviour
+    {
+        #region Constants
 
-	public class MapDisplay : MonoBehaviour {
+        public const int MaxAdventurers = 4;
 
-#region Constants
+        #endregion
 
-		public const int MaxAdventurers = 4;
+        #region Fields
 
-#endregion
+        [SerializeField] private LocationDisplayLink[] locationDisplays = Array.Empty<LocationDisplayLink>();
+        [SerializeField] private SpriteRenderer? backgroundSpriteRenderer;
+        [SerializeField] private Image? backArrowImage;
+        [SerializeField] private CanvasGroup? canvasGroup;
 
-#region Fields
+        private IAdventurerLocationTracker adventurerLocationTracker = null!;
 
-		[SerializeField] private LocationDisplayLink[] locationDisplays = Array.Empty<LocationDisplayLink>();
-		[SerializeField] private SpriteRenderer? backgroundSpriteRenderer;
-		[SerializeField] private Image? backArrowImage;
-		[SerializeField] private CanvasGroup? canvasGroup;
+        #endregion
 
-		private IList<Adventurer> ActiveAdventurers { get; } = new Collection<Adventurer>();
-		private Dictionary<Adventurer, ILocation> locationLog = new Dictionary<Adventurer, ILocation>();
+        #region Methods
 
-#endregion
+        private void Awake()
+        {
+            foreach (var link in locationDisplays)
+            {
+                link.LocationDisplay.LocationClicked += _ =>
+                    OnLocationClicked(link.LocationDisplay, link.Location);
+            }
 
-#region Properties
+            adventurerLocationTracker = Singleton.TryFind<IAdventurerLocationTracker>()!;
 
-		public Dictionary<ILocation, LocationDisplay>? Locations { get; } = new Dictionary<ILocation, LocationDisplay>();
+            Singleton.TryFind<TravelManager>()!.AdventurerLocationStart += OnAdventurerStarted;
+            Singleton.TryFind<TravelManager>()!.AdventurerChangedLocation += OnAdventurerMoved;
+        }
 
-#endregion
+        public void SwapMapDisplayState(bool isShown)
+        {
+            backgroundSpriteRenderer!.enabled = isShown;
+            backArrowImage!.enabled = !isShown;
+            canvasGroup!.alpha = isShown ? 1 : 0;
+            canvasGroup!.blocksRaycasts = isShown;
+        }
 
-#region Methods
+        private void RefreshAdventurerImages()
+        {
+            foreach (var link in locationDisplays)
+            {
+                var (location, display) = (link.Location, link.LocationDisplay);
+                var adventurers = adventurerLocationTracker.AdventurersAt(location).ToArray();
+                for (var i = 0; i < display.AdventurerSlots.Length; i++)
+                {
+                    var slot = display.AdventurerSlots[i];
+                    var hasAdventurer = i < adventurers.Length;
+                    slot.enabled = hasAdventurer;
+                    if (!hasAdventurer) continue;
+                    slot.color = adventurers[i].Info.DisplayColor;
+                }
+            }
+        }
 
-		private void Awake() {
+        private void OnLocationClicked(LocationDisplay locationDisplay, ILocation location)
+        {
+            IMiniGame? locationMiniGame = Singleton.TryFind<MapKeeper>()!.TryGetMiniGameFor(location);
 
-			foreach (LocationDisplayLink ldl in locationDisplays) {
-				Locations?.Add(ldl.Location, ldl.LocationDisplay);
-				ldl.LocationDisplay.LocationClicked += OnLocationClicked;
-			}
+            if (locationMiniGame == null) return;
 
-			Singleton.TryFind<AdventurerManager>()!.AdventurerEntered += OnAdventurerEnteredWorld;
-			Singleton.TryFind<TravelManager>()!.AdventurerLocationStart += OnAdventurerStarted;
-			Singleton.TryFind<TravelManager>()!.AdventurerChangedLocation += OnAdventurerMoved;
-		}
+            Singleton.TryFind<MiniGameManager>()!.OnMiniGameClicked(locationMiniGame);
+        }
 
-		public void SwapMapDisplayState(bool isShown) {
-			backgroundSpriteRenderer!.enabled = isShown;
-			backArrowImage!.enabled = !isShown;
-			canvasGroup!.alpha = isShown ? 1 : 0;
-			canvasGroup!.blocksRaycasts = isShown;
-		}
+        private void OnAdventurerStarted(IAdventurerLocationTracker.AdventurerLocationStartEvent e)
+        {
+            RefreshAdventurerImages();
+        }
 
-		private void OnLocationClicked(LocationDisplay locationDisplay) {
+        private void OnAdventurerMoved(IAdventurerLocationTracker.AdventurerChangedLocationEvent e)
+        {
+            RefreshAdventurerImages();
+        }
 
-			ILocation? clickedLocation = Locations?.FirstOrDefault(x => x.Value == locationDisplay).Key;
-
-			if (clickedLocation == null) return;
-
-			IMiniGame? locationMiniGame = Singleton.TryFind<MapKeeper>()!.TryGetMiniGameFor(clickedLocation);
-
-			if (locationMiniGame == null) return;
-
-			Singleton.TryFind<MiniGameManager>()!.OnMiniGameClicked(locationMiniGame);
-
-		}
-
-		private void OnAdventurerEnteredWorld(IAdventurerTracker.AdventurerEnteredEvent e) {
-			ActiveAdventurers.Add(e.Adventurer);
-		}
-
-		private void OnAdventurerStarted(IAdventurerLocationTracker.AdventurerLocationStartEvent e) {
-
-			int? currentLocationAdventurers = Locations?[e.Location].CurrentAdventurers;
-
-			if (currentLocationAdventurers < MaxAdventurers) {
-
-				if (Locations != null) {
-					Locations[e.Location].CurrentAdventurers++;
-					Locations[e.Location].AdventurerSlots[currentLocationAdventurers.Value].color = e.Adventurer.Info.DisplayColor;
-					locationLog.Add(e.Adventurer, e.Location);
-				}
-
-			}
-
-		}
-
-		private void OnAdventurerMoved(IAdventurerLocationTracker.AdventurerChangedLocationEvent e) {
-
-			int? currentLocationAdventurers = Locations?[e.Location].CurrentAdventurers;
-
-			if (currentLocationAdventurers < MaxAdventurers) {
-
-				if (Locations != null) {
-					Locations[locationLog[e.Adventurer]].CurrentAdventurers--;
-
-					IMiniGame? visitedMiniGame = Singleton.TryFind<MapKeeper>()!.TryGetMiniGameFor(locationLog[e.Adventurer]);
-
-					if (visitedMiniGame != null) {
-						Singleton.TryFind<MiniGameManager>()!.OnAdventurerCompletedQuest(visitedMiniGame);
-					}
-
-					Locations[e.Location].CurrentAdventurers++;
-					Locations[e.Location].AdventurerSlots[currentLocationAdventurers.Value].color = e.Adventurer.Info.DisplayColor;
-					locationLog[e.Adventurer] = e.Location;
-
-				}
-
-			}
-		}
-
-#endregion
-
-	}
-
+        #endregion
+    }
 }

@@ -4,8 +4,6 @@ using GMTK2023.Game.MiniGames;
 
 namespace GMTK2023.Game
 {
-
-
     /// <summary>
     /// An adventurer that is active in the game
     /// </summary>
@@ -43,6 +41,8 @@ namespace GMTK2023.Game
         public event Action<AdventurerChangedLocationEvent> AdventurerChangedLocation;
 
         public ILocation LocationOf(Adventurer adventurer);
+
+        public IEnumerable<Adventurer> AdventurersAt(ILocation location);
     }
 
     public interface IQuestTracker
@@ -71,6 +71,4 @@ namespace GMTK2023.Game
 
         public Quest CurrentQuestOf(Adventurer adventurer);
     }
-
-
 }
