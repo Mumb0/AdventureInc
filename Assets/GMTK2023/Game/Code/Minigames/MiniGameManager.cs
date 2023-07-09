@@ -56,7 +56,7 @@ namespace GMTK2023.Game.MiniGames {
 
 			}
 
-			map!.SetActive(false);
+			map!.GetComponent<MapDisplay>().SwapMapDisplayState(false);
 
 		}
 
@@ -78,6 +78,12 @@ namespace GMTK2023.Game.MiniGames {
 
 		private void OnMiniGameTaskCompleted(int taskIndex) {
 			stepMeshes[taskIndex].fontStyle = FontStyles.Strikethrough;
+		}
+
+		public void OnMapActive() {
+			foreach (IMiniGame mg in AllMiniGames) {
+				mg.SetActive(false);
+			}
 		}
 
 #endregion

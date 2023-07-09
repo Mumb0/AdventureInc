@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using GMTK2023.Game.MiniGames;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace GMTK2023.Game {
 
@@ -18,6 +19,9 @@ namespace GMTK2023.Game {
 #region Fields
 
 		[SerializeField] private LocationDisplayLink[] locationDisplays = Array.Empty<LocationDisplayLink>();
+		[SerializeField] private SpriteRenderer? backgroundSpriteRenderer;
+		[SerializeField] private Image? backArrowImage;
+		[SerializeField] private CanvasGroup? canvasGroup;
 
 		private IList<Adventurer> ActiveAdventurers { get; } = new Collection<Adventurer>();
 		private Dictionary<Adventurer, ILocation> locationLog = new Dictionary<Adventurer, ILocation>();
@@ -42,6 +46,13 @@ namespace GMTK2023.Game {
 			Singleton.TryFind<AdventurerManager>()!.AdventurerEntered += OnAdventurerEnteredWorld;
 			Singleton.TryFind<TravelManager>()!.AdventurerLocationStart += OnAdventurerStarted;
 			Singleton.TryFind<TravelManager>()!.AdventurerChangedLocation += OnAdventurerMoved;
+		}
+
+		public void SwapMapDisplayState(bool isShown) {
+			backgroundSpriteRenderer!.enabled = isShown;
+			backArrowImage!.enabled = !isShown;
+			canvasGroup.alpha = isShown ? 1 : 0;
+			canvasGroup.blocksRaycasts = isShown;
 		}
 
 		private void OnLocationClicked(LocationDisplay locationDisplay) {

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Singletons
   - PotPiece
+  - BackArrow
   layers:
   - Default
   - TransparentFX
