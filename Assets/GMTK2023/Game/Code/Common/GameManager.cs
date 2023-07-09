@@ -29,7 +29,7 @@ namespace GMTK2023.Game
             GameOver?.Invoke(new IGameOverTracker.GameOverEvent());
 
             // TODO: Go to game over screen instead
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            SceneManager.LoadScene(0); // Menu
         }
 
         private void OnCredibilityChanged(ICredibilityTracker.CredibilityChangedEvent e)
