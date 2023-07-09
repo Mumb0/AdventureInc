@@ -13,4 +13,12 @@ namespace GMTK2023.Game
         /// </summary>
         public event Action<GameLoadEvent> GameLoaded;
     }
+
+    public interface ICredibilityTracker
+    {
+        public record CredibilityChangedEvent(float Credibility);
+
+
+        public event Action<CredibilityChangedEvent> CredibilityChanged;
+    }
 }
