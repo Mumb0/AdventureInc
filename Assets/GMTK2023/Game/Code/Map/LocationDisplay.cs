@@ -11,6 +11,8 @@ namespace GMTK2023.Game {
 
 		public ILocation? AssignedLocation { get; set; }
 
+		public Image? LocationIconSlot { get; set; }
+
 	}
 
 }

@@ -19,6 +19,7 @@ namespace GMTK2023.Game.MiniGames {
 		[SerializeField] internal Canvas? miniGameCanvas;
 		[SerializeField] internal PlayerInput? playerActions;
 		[SerializeField] private MiniGameTask[] miniGameTasks = Array.Empty<MiniGameTask>();
+		[SerializeField] private float questDurationInSeconds;
 
 #endregion
 

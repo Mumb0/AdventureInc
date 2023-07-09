@@ -19,7 +19,7 @@ namespace GMTK2023.Game.MiniGames {
 		[SerializeField] private Sprite? selectedToolSprite;
 		[SerializeField] private Sprite? deselectedToolSprite;
 
-		[SerializeField] private TimeSpan questDuration;
+		
 
 #endregion
 
@@ -28,6 +28,7 @@ namespace GMTK2023.Game.MiniGames {
 		private Vector2 MousePosition { get; set; } = new Vector2();
 		public IList<Pot> ActivePots { get; set; } = new List<Pot>();
 		public PotTool CurrentlySelectedTool { get; set; } = PotTool.None;
+		
 
 #endregion
 
