@@ -35,14 +35,6 @@ namespace GMTK2023.Game.MiniGames
         {
         }
 
-        public void OnMouseMove(InputAction.CallbackContext ctx)
-        {
-        }
-
-        public void OnMouseClick(InputAction.CallbackContext ctx)
-        {
-        }
-
         protected override void Awake()
         {
             base.Awake();
