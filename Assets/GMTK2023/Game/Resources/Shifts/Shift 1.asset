@@ -15,3 +15,5 @@ MonoBehaviour:
   adventurers:
   - info: {fileID: 11400000, guid: dbf324123f4eaf14e8118f6824026dd5, type: 2}
     enterTimeSeconds: 0
+  - info: {fileID: 11400000, guid: 4274a7c0b78fdb44e9cf9e1266ac7620, type: 2}
+    enterTimeSeconds: 0
