@@ -6,7 +6,6 @@ using GMTK2023.Game.MiniGames;
 using UnityEngine;
 using static GMTK2023.Game.IAdventurerLocationTracker;
 using static GMTK2023.Game.IQuestTracker;
-using static GMTK2023.Game.TimeUtil;
 
 namespace GMTK2023.Game
 {

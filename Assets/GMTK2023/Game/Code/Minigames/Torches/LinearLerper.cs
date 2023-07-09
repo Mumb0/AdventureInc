@@ -7,10 +7,12 @@ namespace GMTK2023.Game.MiniGames
     {
         [SerializeField] private float start;
         [SerializeField] private float target;
-        [SerializeField] private float time;
+        [SerializeField] private float minTime;
+        [SerializeField] private float maxTime;
         [SerializeField] private UnityEvent<float> onTChanged = new UnityEvent<float>();
 
         private float t;
+        private float time;
 
 
         public float T
@@ -28,12 +30,13 @@ namespace GMTK2023.Game.MiniGames
 
         private void Update()
         {
-            T = Mathf.MoveTowards(T, target, Time.deltaTime / time);
+            T = Mathf.MoveTowards(T, target, UnityEngine.Time.deltaTime / time);
         }
 
         public void ResetToStart()
         {
             T = start;
+            time = Random.Range(minTime, maxTime);
         }
 
         private void Start()

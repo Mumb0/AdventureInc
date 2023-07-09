@@ -110,7 +110,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   start: 1
   target: 0
-  time: 30
+  minTime: 20
+  maxTime: 40
   onTChanged:
     m_PersistentCalls:
       m_Calls:
