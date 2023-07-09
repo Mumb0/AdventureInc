@@ -51,8 +51,8 @@ namespace GMTK2023.Game {
 		public void SwapMapDisplayState(bool isShown) {
 			backgroundSpriteRenderer!.enabled = isShown;
 			backArrowImage!.enabled = !isShown;
-			canvasGroup.alpha = isShown ? 1 : 0;
-			canvasGroup.blocksRaycasts = isShown;
+			canvasGroup!.alpha = isShown ? 1 : 0;
+			canvasGroup!.blocksRaycasts = isShown;
 		}
 
 		private void OnLocationClicked(LocationDisplay locationDisplay) {
