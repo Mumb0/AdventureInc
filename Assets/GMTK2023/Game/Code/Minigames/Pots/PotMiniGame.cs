@@ -173,7 +173,16 @@ namespace GMTK2023.Game.MiniGames {
 			playerActions!.SwitchCurrentActionMap("PotMiniGame");
 		}
 
-		public override void OnAdventurerEntered() { }
+		public override void OnAdventurerEntered() {
+
+			if (!IsPrepared) {
+				AdventurerEnteredUnpreparedRoom?.Invoke();
+			}
+			else {
+				Debug.Log("Adventurer is adventuring.");
+			}
+
+		}
 
 		public override void OnAdventurerLeft() {
 

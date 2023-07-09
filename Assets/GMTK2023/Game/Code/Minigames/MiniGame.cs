@@ -10,6 +10,7 @@ namespace GMTK2023.Game.MiniGames {
 
 		public Action? AllMiniGameTasksCompleted;
 		public Action<int>? MiniGameTaskCompleted;
+		public Action? AdventurerEnteredUnpreparedRoom;
 
 #endregion
 
