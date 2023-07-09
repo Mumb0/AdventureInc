@@ -18,7 +18,7 @@ namespace GMTK2023.Game.MiniGames {
 #region Fields
 
 		[SerializeField] private GameObject? map;
-		[SerializeField] private IMiniGame[] availableMiniGames = Array.Empty<MiniGame>();
+		[SerializeField] private MiniGame[] availableMiniGames = Array.Empty<MiniGame>();
 		[SerializeField] private TextMeshProUGUI[] stepMeshes = Array.Empty<TextMeshProUGUI>();
 		private IMiniGame? activeMiniGame;
 
