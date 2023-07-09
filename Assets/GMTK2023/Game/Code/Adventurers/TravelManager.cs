@@ -8,6 +8,7 @@ namespace GMTK2023.Game
 {
     public class TravelManager : MonoBehaviour, IAdventurerLocationTracker
     {
+        public event Action<AdventurerLocationStartEvent>? AdventurerLocationStart;
         public event Action<AdventurerChangedLocationEvent>? AdventurerChangedLocation;
 
 
@@ -62,6 +63,8 @@ namespace GMTK2023.Game
             var location = possibleLocations.TryRandom()!;
 
             SetAdventurerLocation(adventurer, location);
+            AdventurerLocationStart?.Invoke(
+                new AdventurerLocationStartEvent(adventurer, location));
         }
 
         private void UpdateAdventurerLocations()
