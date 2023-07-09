@@ -11,8 +11,8 @@ namespace GMTK2023.Game.MiniGames
             Array.Empty<LinearLerper>();
 
         public override bool IsCredible =>
-            // All torches must be lit
-            torchLerpers.All(it => it.T > 0);
+            // Any torch must be lit
+            torchLerpers.Any(it => it.T > 0);
 
 
         public override void SetActive(bool state)
