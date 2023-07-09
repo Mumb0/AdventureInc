@@ -35,8 +35,15 @@ namespace GMTK2023.Game
 
     public interface IAdventurerLocationTracker
     {
+        public record AdventurerLocationStartEvent(Adventurer Adventurer, ILocation Location);
+
         public record AdventurerChangedLocationEvent(Adventurer Adventurer, ILocation Location);
 
+
+        /// <summary>
+        /// Invoked when an adventurer first spawns and is put on a location
+        /// </summary>
+        public event Action<AdventurerLocationStartEvent> AdventurerLocationStart;
 
         /// <summary>
         /// Invoked when an adventurer changes their location
