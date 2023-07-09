@@ -91,21 +91,13 @@ namespace GMTK2023.Game
         {
             QuestStart?.Invoke(new QuestStartEvent(adventurer, quest));
 
-            var startTime = TimeSinceUnityStart;
-            var elapsed = TimeSpan.Zero;
-
-            while (elapsed <= quest.MiniGame.Duration)
+            if (!quest.MiniGame.IsCredible)
             {
-                if (!quest.MiniGame.IsCredible)
-                {
-                    AbandonQuest(adventurer, quest);
-                    return;
-                }
-
-                await Task.Yield();
-                elapsed = TimeSinceUnityStart - startTime;
+                AbandonQuest(adventurer, quest);
+                return;
             }
 
+            await Task.Delay(quest.MiniGame.Duration);
             CompleteQuest(adventurer);
         }
 
