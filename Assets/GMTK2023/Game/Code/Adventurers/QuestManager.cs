@@ -10,6 +10,7 @@ namespace GMTK2023.Game
     public class QuestManager : MonoBehaviour, IQuestTracker
     {
         public event Action<QuestStartEvent>? QuestStart;
+        public event Action<QuestCompletedEvent>? QuestComplete;
 
 
         private readonly IDictionary<Adventurer, Quest> questByAdventurer =
@@ -40,6 +41,10 @@ namespace GMTK2023.Game
         private void OnAdventurerReachedQuestLocation(Adventurer adventurer, Quest quest)
         {
             QuestStart?.Invoke(new QuestStartEvent(adventurer, quest));
+
+            // TODO: Do mini-game
+
+            QuestComplete?.Invoke(new QuestCompletedEvent(adventurer));
         }
 
         private void OnAdventurerChangedLocation(AdventurerChangedLocationEvent e)

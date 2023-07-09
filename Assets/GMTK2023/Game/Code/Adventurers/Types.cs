@@ -55,11 +55,18 @@ namespace GMTK2023.Game
     {
         public record QuestStartEvent(Adventurer Adventurer, Quest Quest);
 
+        public record QuestCompletedEvent(Adventurer Adventurer);
+
 
         /// <summary>
         /// Invoked when an adventurer reaches the location of their quest and starts it
         /// </summary>
         public event Action<QuestStartEvent> QuestStart;
+
+        /// <summary>
+        /// Invoked when an adventurer completes quest
+        /// </summary>
+        public event Action<QuestCompletedEvent> QuestComplete;
 
 
         public Quest CurrentQuestOf(Adventurer adventurer);
