@@ -1,7 +1,6 @@
 using System;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace GMTK2023.Game.MiniGames
 {
