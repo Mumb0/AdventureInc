@@ -46,15 +46,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 203382f1f5fb71e478f1a7c9256d7698, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  miniGameCanvas: {fileID: 0}
+  miniGameCanvas: {fileID: 8858406398396149123}
   playerActions: {fileID: 0}
+  activity: {fileID: 11400000, guid: c2f1c7c1501afc04ba658d12656a259c, type: 2}
   miniGameTasks:
   - isCompleted: 0
     taskText: Light torches
-  questDurationInSeconds: 1
-  supportedAdventurerCount: 100
-  displayName: rest at the town-square
-  abandonmentReason: they could not see anything
 --- !u!1 &3367759672621155284
 GameObject:
   m_ObjectHideFlags: 0

@@ -23,8 +23,8 @@ namespace GMTK2023.Game
 
         private void OnQuestAbandoned(IQuestTracker.QuestAbandonedEvent e)
         {
-            var miniGame = e.Quest.MiniGame;
-            var text = $"Attention!\nThe {e.Adventurer.Info.ColorName} adventurer could not {miniGame.ActivityDescription} because {miniGame.AbandonmentReason}";
+            var activity = e.Quest.MiniGame.Activity;
+            var text = $"Attention!\nThe {e.Adventurer.Info.ColorName} adventurer could not {activity.Description} because {activity.AbandonmentReason}";
             lastMessageTime = TimeSinceUnityStart;
             label.text = text;
         }

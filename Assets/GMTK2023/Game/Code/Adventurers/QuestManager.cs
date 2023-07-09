@@ -46,7 +46,7 @@ namespace GMTK2023.Game
             bool CanPlay(IMiniGame miniGame)
             {
                 var isNotCurrent = currentMiniGame == null || miniGame != currentMiniGame;
-                var hasCapacity = NumberOfAdventurersPlaying(miniGame) < miniGame.SupportedAdventurerCount;
+                var hasCapacity = NumberOfAdventurersPlaying(miniGame) < miniGame.Activity.SupportedAdventurerCount;
 
                 return isNotCurrent && hasCapacity;
             }
@@ -96,7 +96,7 @@ namespace GMTK2023.Game
                 return;
             }
 
-            await Task.Delay(quest.MiniGame.Duration);
+            await Task.Delay(quest.MiniGame.Activity.Duration);
             CompleteQuest(adventurer);
         }
 

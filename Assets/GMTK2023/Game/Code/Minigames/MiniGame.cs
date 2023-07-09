@@ -18,11 +18,8 @@ namespace GMTK2023.Game.MiniGames {
 
 		[SerializeField] internal Canvas? miniGameCanvas;
 		[SerializeField] internal PlayerInput? playerActions;
+		[SerializeField] private ActivityAsset activity;
 		[SerializeField] private MiniGameTask[] miniGameTasks = Array.Empty<MiniGameTask>();
-		[SerializeField] private float questDurationInSeconds;
-		[SerializeField] private int supportedAdventurerCount = 1;
-		[SerializeField] private string displayName = "";
-		[SerializeField] private string abandonmentReason = "";
 
 #endregion
 
@@ -31,13 +28,11 @@ namespace GMTK2023.Game.MiniGames {
 		public bool IsPrepared { get; set; } = true;
 		public abstract bool IsCredible { get; }
 
-		public string ActivityDescription => displayName;
-		public int SupportedAdventurerCount => supportedAdventurerCount;
-		public TimeSpan Duration => TimeSpan.FromSeconds(questDurationInSeconds);
+		public IActivity Activity => activity;
+
 		public int CurrentTaskStep { get; set; } = 0;
 		public MiniGameTask[] MiniGameTasks => miniGameTasks;
 		public Camera? MainCamera { get; private set; }
-		public string AbandonmentReason => abandonmentReason;
 
 		protected Vector2 Origin { get; set; }
 

@@ -1127,6 +1127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   miniGameCanvas: {fileID: 5549153812243263070}
   playerActions: {fileID: 0}
+  activity: {fileID: 11400000, guid: 29e7e3f8fbc58264fafe4fcd22d9cb3b, type: 2}
   miniGameTasks:
   - isCompleted: 0
     taskText: Clean up the broken pieces with the broom.
@@ -1134,9 +1135,6 @@ MonoBehaviour:
     taskText: Place new pots on the empty spaces.
   - isCompleted: 0
     taskText: Fill up the pots with diamonds for the next adventurer.
-  questDurationInSeconds: 5
-  displayName: loot pots
-  abandonmentReason: the pots were not ready
   potLocations:
   - {fileID: 2134207075643759369}
   - {fileID: 3140951093753697322}

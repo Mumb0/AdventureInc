@@ -1,23 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace GMTK2023.Game.MiniGames {
 
 	public interface IMiniGame {
 
-		public string ActivityDescription { get; }
+
+		public IActivity Activity { get; }
+		
 
 		public bool IsCredible { get; }
 		
-		public int SupportedAdventurerCount { get; }
 
-		public TimeSpan Duration { get; }
-		public bool IsPrepared { get; set; }
-		public int CurrentTaskStep { get; set; }
 		public MiniGameTask[] MiniGameTasks { get; }
-		public Camera? MainCamera { get; }
-		string AbandonmentReason { get; }
 
 		public void SetActive(bool state);
 

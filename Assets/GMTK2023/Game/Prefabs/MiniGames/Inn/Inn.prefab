@@ -48,13 +48,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   miniGameCanvas: {fileID: 919703298156849082}
   playerActions: {fileID: 0}
+  activity: {fileID: 11400000, guid: 54b2404fb3cccd34dbbcfcdf09190fa1, type: 2}
   miniGameTasks:
   - isCompleted: 0
     taskText: Serve correct food
-  questDurationInSeconds: 5
-  supportedAdventurerCount: 100
-  displayName: eat at the inn
-  abandonmentReason: it did not serve the right meal
   breakfastStartTime: 6
   lunchStartTime: 12
   dinnerStartTime: 17
