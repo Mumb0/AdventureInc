@@ -42,5 +42,15 @@ namespace GMTK2023
 
         public static IEnumerable<T> Except<T>(this IEnumerable<T> items, T exclude) =>
             items.Except(exclude.Yield());
+
+        public static IEnumerable<TMapped> TrySelect<T, TMapped>(this IEnumerable<T> items, Func<T, TMapped?> map)
+        {
+            // ReSharper disable once LoopCanBeConvertedToQuery
+            foreach (var item in items)
+            {
+                var mapped = map(item);
+                if (mapped != null) yield return mapped;
+            }
+        }
     }
 }
