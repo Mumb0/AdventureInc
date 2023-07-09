@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6aaedd59539e4598bb6448e8a1c69d34, type: 3}
   m_Name: Chiller
   m_EditorClassIdentifier: 
-  moveChance: 0.3
-  randomWalkChance: 0.2
+  moveChance: 0.65
+  randomWalkChance: 0.15
   colorName: orange
   displayColor:
     serializedVersion: 2

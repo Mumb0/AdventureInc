@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Speedrunner
   m_EditorClassIdentifier: 
   moveChance: 0.9
-  randomWalkChance: 0.1
+  randomWalkChance: 0.05
   colorName: blue
   displayColor:
     serializedVersion: 2
     rgba: 4294958080
+  weights: []

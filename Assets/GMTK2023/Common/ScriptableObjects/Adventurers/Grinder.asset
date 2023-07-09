@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6aaedd59539e4598bb6448e8a1c69d34, type: 3}
   m_Name: Grinder
   m_EditorClassIdentifier: 
-  moveChance: 0.6
-  randomWalkChance: 0.2
+  moveChance: 0.85
+  randomWalkChance: 0.15
   colorName: yellow
   displayColor:
     serializedVersion: 2
     rgba: 4281396442
   weights:
   - activity: {fileID: 11400000, guid: 29e7e3f8fbc58264fafe4fcd22d9cb3b, type: 2}
-    weight: 3
+    weight: 5

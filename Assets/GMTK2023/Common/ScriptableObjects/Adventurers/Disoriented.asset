@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6aaedd59539e4598bb6448e8a1c69d34, type: 3}
   m_Name: Disoriented
   m_EditorClassIdentifier: 
-  moveChance: 0.9
-  randomWalkChance: 0.9
+  moveChance: 0.95
+  randomWalkChance: 0.5
   colorName: purple
   displayColor:
     serializedVersion: 2
     rgba: 4286983324
+  weights: []
