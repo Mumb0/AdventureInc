@@ -81,7 +81,9 @@ namespace GMTK2023.Game
                 var quest = questTracker.CurrentQuestOf(adventurer);
                 var targetLocation = map.LocationOf(quest.MiniGame);
 
-                var nextLocation = routePlanner.FindNextLocationOnRoute(currentLocation, targetLocation);
+                var nextLocation = Chance.Roll(adventurer.Info.RandomWalkChance)
+                    ? routePlanner.ConnectedLocations(currentLocation).ToArray().TryRandom()!
+                    : routePlanner.FindNextLocationOnRoute(currentLocation, targetLocation);
 
                 MoveAdventurerToLocation(adventurer, nextLocation);
             });

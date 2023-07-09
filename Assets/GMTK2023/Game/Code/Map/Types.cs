@@ -25,6 +25,9 @@ namespace GMTK2023.Game
 
     public interface IRoutePlanner
     {
+
+        IEnumerable<ILocation> ConnectedLocations(ILocation location);
+
         ILocation FindNextLocationOnRoute(ILocation start, ILocation target);
     }
 }

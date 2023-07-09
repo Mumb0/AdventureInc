@@ -70,7 +70,7 @@ namespace GMTK2023.Game
             locations = LocationDb.LoadLocations();
         }
 
-        private IEnumerable<ILocation> ConnectedLocations(ILocation location)
+        public IEnumerable<ILocation> ConnectedLocations(ILocation location)
         {
             return connections.TrySelect(route =>
             {

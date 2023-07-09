@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: The Chiller
   m_EditorClassIdentifier: 
   moveChance: 0.4
+  randomWalkChance: 0.1

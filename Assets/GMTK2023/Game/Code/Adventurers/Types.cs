@@ -14,6 +14,8 @@ namespace GMTK2023.Game
         public string Title { get; }
 
         public float MoveChance { get; }
+
+        public float RandomWalkChance { get; }
     }
 
     /// <summary>

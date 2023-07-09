@@ -6,10 +6,13 @@ namespace GMTK2023.Game
     public class AdventurerInfoAsset : ScriptableObject, IAdventurerInfo
     {
         [SerializeField] [Range(0, 1)] private float moveChance;
+        [SerializeField] [Range(0, 1)] private float randomWalkChance;
 
         /// <remarks>We use the asset name as the adventurers title</remarks>>
         public string Title => name;
 
         public float MoveChance => moveChance;
+
+        public float RandomWalkChance => randomWalkChance;
     }
 }
