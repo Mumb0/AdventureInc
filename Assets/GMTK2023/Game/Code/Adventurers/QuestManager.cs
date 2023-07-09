@@ -6,6 +6,7 @@ using GMTK2023.Game.MiniGames;
 using UnityEngine;
 using static GMTK2023.Game.IAdventurerLocationTracker;
 using static GMTK2023.Game.IQuestTracker;
+using static GMTK2023.Game.TimeUtil;
 
 namespace GMTK2023.Game
 {
@@ -13,7 +14,10 @@ namespace GMTK2023.Game
     {
         public event Action<QuestStartEvent>? QuestStart;
         public event Action<QuestCompletedEvent>? QuestComplete;
+        public event Action<QuestAbandonedEvent>? QuestAbandoned;
 
+
+        [SerializeField] private float waitSecondsAfterQuestAbandon;
 
         private readonly IDictionary<Adventurer, Quest> questByAdventurer =
             new Dictionary<Adventurer, Quest>();
@@ -21,6 +25,10 @@ namespace GMTK2023.Game
         private IMap map = null!;
         private IAdventurerLocationTracker adventurerLocationTracker = null!;
         private IMiniGameTracker miniGameTracker = null!;
+
+
+        private TimeSpan WaitTimeAfterQuestAbandon =>
+            TimeSpan.FromSeconds(waitSecondsAfterQuestAbandon);
 
 
         public Quest CurrentQuestOf(Adventurer adventurer) =>
@@ -55,14 +63,39 @@ namespace GMTK2023.Game
             AssignQuest(e.Adventurer);
         }
 
+        private void CompleteQuest(Adventurer adventurer)
+        {
+            QuestComplete?.Invoke(new QuestCompletedEvent(adventurer));
+            AssignQuest(adventurer);
+        }
+
+        private async void AbandonQuest(Adventurer adventurer)
+        {
+            QuestAbandoned?.Invoke(new QuestAbandonedEvent(adventurer));
+            await Task.Delay(WaitTimeAfterQuestAbandon);
+            AssignQuest(adventurer);
+        }
+
         private async void DoQuest(Adventurer adventurer, Quest quest)
         {
             QuestStart?.Invoke(new QuestStartEvent(adventurer, quest));
 
-            await Task.Delay(quest.MiniGame.Duration);
-            
-            QuestComplete?.Invoke(new QuestCompletedEvent(adventurer));
-            AssignQuest(adventurer);
+            var startTime = TimeSinceUnityStart;
+            var elapsed = TimeSpan.Zero;
+
+            while (elapsed <= quest.MiniGame.Duration)
+            {
+                if (!quest.MiniGame.IsCredible)
+                {
+                    AbandonQuest(adventurer);
+                    return;
+                }
+
+                await Task.Yield();
+                elapsed = TimeSinceUnityStart - startTime;
+            }
+
+            CompleteQuest(adventurer);
         }
 
         private void OnAdventurerReachedQuestLocation(Adventurer adventurer, Quest quest)

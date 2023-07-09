@@ -1,8 +1,11 @@
+using System;
 using UnityEngine;
 
 namespace GMTK2023.Game.MiniGames {
 
-	public class RestingPlace : MiniGame {
+	public class RestingPlace : MiniGame
+	{
+		public override bool IsCredible => true;
 
 		public override void SetActive() {
 			playerActions!.SwitchCurrentActionMap("General");

@@ -643,6 +643,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22b9a14d7a1449d4b41770ecc9480087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waitSecondsAfterQuestAbandon: 1.5
 --- !u!114 &966599296
 MonoBehaviour:
   m_ObjectHideFlags: 0

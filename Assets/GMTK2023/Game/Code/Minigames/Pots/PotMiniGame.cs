@@ -25,6 +25,7 @@ namespace GMTK2023.Game.MiniGames {
 
 #region Properties
 
+		public override bool IsCredible => IsPrepared;
 		private Vector2 MousePosition { get; set; } = new Vector2();
 		public IList<Pot> ActivePots { get; set; } = new List<Pot>();
 		public PotTool CurrentlySelectedTool { get; set; } = PotTool.None;

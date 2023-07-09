@@ -27,6 +27,9 @@ namespace GMTK2023.Game.MiniGames {
 
 		public bool IsPrepared { get; set; } = true;
 
+		public abstract bool IsCredible { get; }
+
+
 		// NOTE: We re-use the game-objects name for the mini-games name
 		public string Name => gameObject.name;
 
