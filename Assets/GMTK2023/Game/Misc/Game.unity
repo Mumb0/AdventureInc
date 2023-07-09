@@ -1011,7 +1011,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startCredibility: 100
-  questAbandonPenalty: 10
+  questAbandonPenalty: 40
 --- !u!114 &966599298
 MonoBehaviour:
   m_ObjectHideFlags: 0
