@@ -8,9 +8,9 @@ namespace GMTK2023.Game.MiniGames {
 
 #region Events
 
-		public Action? AllMiniGameTasksCompleted;
-		public Action<int>? MiniGameTaskCompleted;
-		public Action? AdventurerEnteredUnpreparedRoom;
+		public event Action? AllMiniGameTasksCompleted;
+		public event Action<int>? MiniGameTaskCompleted;
+		public event Action? AdventurerEnteredUnpreparedRoom;
 
 #endregion
 
@@ -26,19 +26,14 @@ namespace GMTK2023.Game.MiniGames {
 #region Properties
 
 		public bool IsPrepared { get; set; } = true;
-
 		public abstract bool IsCredible { get; }
-
 
 		// NOTE: We re-use the game-objects name for the mini-games name
 		public string Name => gameObject.name;
-
 		public TimeSpan Duration => TimeSpan.FromSeconds(questDurationInSeconds);
-
 		public int CurrentTaskStep { get; set; } = 0;
-
 		public MiniGameTask[] MiniGameTasks => miniGameTasks;
-		internal Camera? MainCamera { get; private set; }
+		public Camera? MainCamera { get; private set; }
 
 #endregion
 
@@ -53,6 +48,10 @@ namespace GMTK2023.Game.MiniGames {
 		public abstract void OnAdventurerEntered();
 
 		public abstract void OnAdventurerLeft();
+
+		public virtual void OnTasksCompleted() {
+			AllMiniGameTasksCompleted?.Invoke();
+		}
 
 #endregion
 

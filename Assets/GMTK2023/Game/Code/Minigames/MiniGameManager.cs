@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,16 +11,16 @@ namespace GMTK2023.Game.MiniGames {
 
 #region Events
 
-		public Action<MiniGame>? ActiveMiniGameChanged;
+		public Action<IMiniGame>? ActiveMiniGameChanged;
 
 #endregion
 
 #region Fields
 
 		[SerializeField] private GameObject? map;
-		[SerializeField] private MiniGame[] availableMiniGames = Array.Empty<MiniGame>();
+		[SerializeField] private IMiniGame[] availableMiniGames = Array.Empty<MiniGame>();
 		[SerializeField] private TextMeshProUGUI[] stepMeshes = Array.Empty<TextMeshProUGUI>();
-		private MiniGame? activeMiniGame;
+		private IMiniGame? activeMiniGame;
 
 #endregion
 
@@ -27,7 +28,7 @@ namespace GMTK2023.Game.MiniGames {
 
 		public IReadOnlyList<IMiniGame> AllMiniGames => availableMiniGames;
 
-		public MiniGame? ActiveMiniGame {
+		public IMiniGame? ActiveMiniGame {
 			get => activeMiniGame;
 			set {
 				activeMiniGame = value;
@@ -48,6 +49,7 @@ namespace GMTK2023.Game.MiniGames {
 			if (ctx.canceled) {
 
 				map!.SetActive(false);
+				/*
 
 				if (ActiveMiniGame != null) {
 					ActiveMiniGame.transform.localPosition = new Vector2(0, 10);
@@ -58,6 +60,8 @@ namespace GMTK2023.Game.MiniGames {
 					ActiveMiniGame = availableMiniGames[Time.frameCount % 2 == 0 ? 0 : 1];
 					ActiveMiniGame!.transform.localPosition = new Vector2(0, 0);
 				}
+				
+				*/
 
 				ActiveMiniGame.SetActive();
 
@@ -65,7 +69,7 @@ namespace GMTK2023.Game.MiniGames {
 
 		}
 
-		public void OnActiveMiniGameChanged(MiniGame miniGame) {
+		public void OnActiveMiniGameChanged(IMiniGame miniGame) {
 
 			ActiveMiniGame!.MiniGameTaskCompleted -= OnMiniGameTaskCompleted;
 

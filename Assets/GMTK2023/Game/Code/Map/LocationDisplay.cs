@@ -1,14 +1,27 @@
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace GMTK2023.Game {
 
-	public class LocationDisplay : MonoBehaviour {
+	public class LocationDisplay : MonoBehaviour, IPointerDownHandler {
+
+#region Events
+
+		public Action<LocationDisplay>? LocationClicked;
+
+#endregion
+
+#region Fields
 
 		[SerializeField] private Image[] adventurerSlots = Array.Empty<Image>();
 
 		private int currentAdventurers = 0;
+
+#endregion
+
+#region Properties
 
 		public Image[] AdventurerSlots => adventurerSlots;
 
@@ -19,6 +32,10 @@ namespace GMTK2023.Game {
 				UpdateAdventurerSlots();
 			}
 		}
+
+#endregion
+
+#region Methods
 
 		private void UpdateAdventurerSlots() {
 
@@ -31,6 +48,12 @@ namespace GMTK2023.Game {
 			}
 
 		}
+
+		public void OnPointerDown(PointerEventData eventData) {
+			LocationClicked?.Invoke(this);
+		}
+
+#endregion
 
 	}
 

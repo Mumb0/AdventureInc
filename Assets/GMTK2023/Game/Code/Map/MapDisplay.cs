@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using GMTK2023.Game.MiniGames;
 using UnityEngine;
 
 namespace GMTK2023.Game {
@@ -34,11 +36,20 @@ namespace GMTK2023.Game {
 
 			foreach (LocationDisplayLink ldl in locationDisplays) {
 				Locations?.Add(ldl.Location, ldl.LocationDisplay);
+				ldl.LocationDisplay.LocationClicked += OnLocationClicked;
 			}
 
 			Singleton.TryFind<AdventurerManager>()!.AdventurerEntered += OnAdventurerEnteredWorld;
 			Singleton.TryFind<TravelManager>()!.AdventurerLocationStart += OnAdventurerStarted;
 			Singleton.TryFind<TravelManager>()!.AdventurerChangedLocation += OnAdventurerMoved;
+		}
+
+		private void OnLocationClicked(LocationDisplay locationDisplay) {
+
+			ILocation? clickedLocation = Locations?.FirstOrDefault(x => x.Value == locationDisplay).Key;
+			//MiniGame locationMiniGame = Singleton.TryFind<MapKeeper>()!.LocationOf();
+
+
 		}
 
 		private void OnAdventurerEnteredWorld(IAdventurerTracker.AdventurerEnteredEvent e) {

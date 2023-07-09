@@ -19,8 +19,6 @@ namespace GMTK2023.Game.MiniGames {
 		[SerializeField] private Sprite? selectedToolSprite;
 		[SerializeField] private Sprite? deselectedToolSprite;
 
-		
-
 #endregion
 
 #region Properties
@@ -29,7 +27,6 @@ namespace GMTK2023.Game.MiniGames {
 		private Vector2 MousePosition { get; set; } = new Vector2();
 		public IList<Pot> ActivePots { get; set; } = new List<Pot>();
 		public PotTool CurrentlySelectedTool { get; set; } = PotTool.None;
-		
 
 #endregion
 
@@ -139,7 +136,7 @@ namespace GMTK2023.Game.MiniGames {
 
 			if (CurrentTaskStep == 3) {
 				IsPrepared = true;
-				AllMiniGameTasksCompleted?.Invoke();
+				OnTasksCompleted();
 			}
 
 		}
