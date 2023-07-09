@@ -62,7 +62,7 @@ namespace GMTK2023.Game.MiniGames {
 
 				BrokenPiecesCount--;
 
-				if (BrokenPiecesCount == 0) {
+				if (BrokenPiecesCount <= 0) {
 					spriteRenderer!.sprite = emptyPotSpaceSprite;
 					CurrentState = PotState.Cleaned;
 					CleanedALlPieces?.Invoke();

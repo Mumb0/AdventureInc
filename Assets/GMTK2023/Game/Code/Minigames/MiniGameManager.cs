@@ -67,10 +67,18 @@ namespace GMTK2023.Game.MiniGames {
 
 			foreach (var mesh in stepMeshes) {
 				mesh.text = "";
+				mesh.enabled = true;
 			}
 
 			for (int i = 0; i < miniGame.MiniGameTasks.Length; i++) {
 				stepMeshes[i].text = miniGame.MiniGameTasks[i].TaskText;
+
+				if (miniGame.MiniGameTasks[i].IsCompleted) {
+					stepMeshes[i].fontStyle = FontStyles.Strikethrough;
+				}
+				else {
+					stepMeshes[i].fontStyle = FontStyles.Normal;
+				}
 			}
 
 			miniGame.MiniGameTaskCompleted += OnMiniGameTaskCompleted;
@@ -88,6 +96,10 @@ namespace GMTK2023.Game.MiniGames {
 		public void OnMapActive() {
 			foreach (IMiniGame mg in AllMiniGames) {
 				mg.SetActive(false);
+			}
+
+			foreach (var mesh in stepMeshes) {
+				mesh.enabled = false;
 			}
 		}
 

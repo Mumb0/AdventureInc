@@ -196,6 +196,10 @@ namespace GMTK2023.Game.MiniGames {
 			IsPrepared = false;
 			CurrentTaskStep = 0;
 
+			for (int i = 0; i < MiniGameTasks.Length; i++) {
+				MiniGameTasks[i].IsCompleted = false;
+			}
+
 		}
 
 #endregion
