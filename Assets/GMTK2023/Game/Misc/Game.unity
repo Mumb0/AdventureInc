@@ -2180,37 +2180,11 @@ MonoBehaviour:
     m_ActionId: 3122cf6b-0cc1-4868-b991-90fb22c94d91
     m_ActionName: General/SwapMiniGame[/Keyboard/k]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1800434480}
-        m_TargetAssemblyTypeName: GMTK2023.Game.MiniGames.TorchesMiniGameController,
-          GMTK2023.Game
-        m_MethodName: OnMouseClick
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: f22e1d64-e0d8-4549-81ab-1fdd65fb27e3
     m_ActionName: Torches/Click[/Mouse/leftButton]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1800434480}
-        m_TargetAssemblyTypeName: GMTK2023.Game.MiniGames.TorchesMiniGameController,
-          GMTK2023.Game
-        m_MethodName: OnMouseMove
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 3d954972-2412-4d9a-97a2-d9d5d16157e8
     m_ActionName: Torches/Point[/Mouse/position]
   m_NeverAutoSwitchControlSchemes: 0
