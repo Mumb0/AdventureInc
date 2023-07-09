@@ -44,35 +44,20 @@ namespace GMTK2023.Game.MiniGames {
 			ActiveMiniGameChanged += OnActiveMiniGameChanged;
 		}
 
-		public void MiniGameClickedInput(InputAction.CallbackContext ctx) {
+		public void OnMiniGameClicked(IMiniGame clickedMiniGame) {
 
-			if (ctx.canceled) {
+			foreach (IMiniGame mg in AllMiniGames) {
 
-				map!.SetActive(false);
-				/*
-
-				if (ActiveMiniGame != null) {
-					ActiveMiniGame.transform.localPosition = new Vector2(0, 10);
-					ActiveMiniGame = availableMiniGames[Time.frameCount % 2 == 0 ? 0 : 1];
-					ActiveMiniGame!.transform.localPosition = new Vector2(0, 0);
+				if (mg == clickedMiniGame) {
+					ActiveMiniGame = mg;
+					ActiveMiniGame.SetActive(true);
 				}
 				else {
-					ActiveMiniGame = availableMiniGames[Time.frameCount % 2 == 0 ? 0 : 1];
-					ActiveMiniGame!.transform.localPosition = new Vector2(0, 0);
+					mg.SetActive(false);
 				}
-				
-				*/
-
-				
 
 			}
 
-		}
-
-		public void OnMiniGameClicked(IMiniGame clickedMiniGame) {
-			
-			//foreach(IMiniGame mg in ActiveMiniGame)
-			
 		}
 
 		public void OnActiveMiniGameChanged(IMiniGame miniGame) {

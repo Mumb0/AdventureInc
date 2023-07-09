@@ -47,8 +47,14 @@ namespace GMTK2023.Game {
 		private void OnLocationClicked(LocationDisplay locationDisplay) {
 
 			ILocation? clickedLocation = Locations?.FirstOrDefault(x => x.Value == locationDisplay).Key;
-			//MiniGame locationMiniGame = Singleton.TryFind<MapKeeper>()!.LocationOf();
 
+			if (clickedLocation == null) return;
+
+			IMiniGame? locationMiniGame = Singleton.TryFind<MapKeeper>()!.TryGetMiniGameFor(clickedLocation);
+
+			if (locationMiniGame == null) return;
+
+			Singleton.TryFind<MiniGameManager>()!.OnMiniGameClicked(locationMiniGame);
 
 		}
 
