@@ -1,22 +1,23 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
-namespace GMTK2023.Game
-{
-    public class MapDisplay : MonoBehaviour
-    {
-        [SerializeField] private LocationDisplay[] locationDisplays = new LocationDisplay[7];
-        [SerializeField] private LocationDisplayLink[] locationIconAssets = new LocationDisplayLink[7];
+namespace GMTK2023.Game {
 
-        private void Start()
-        {
-            for (int i = 0; i < locationDisplays.Length; i++)
-            {
-                var display = locationDisplays[i];
-                var locationIcon = locationIconAssets[i];
+	public class MapDisplay : MonoBehaviour {
 
-                display.LocationIconSlot!.sprite = locationIcon.LocationIcon;
-        //        display.AssignedLocation = locationIcon.Location;
-            }
-        }
-    }
+		[SerializeField] private LocationDisplayLink[] locationDisplays = Array.Empty<LocationDisplayLink>();
+
+		public Dictionary<ILocation, LocationDisplay>? Locations { get; } = new Dictionary<ILocation, LocationDisplay>();
+
+		private void Start() {
+
+			foreach (LocationDisplayLink ldl in locationDisplays) {
+				Locations?.Add(ldl.Location, ldl.LocationDisplay);
+			}
+
+		}
+
+	}
+
 }
