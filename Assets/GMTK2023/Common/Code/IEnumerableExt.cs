@@ -35,6 +35,24 @@ namespace GMTK2023
             return items.ElementAt(index);
         }
 
+        public static T? TryWeightedRandom<T>(this IReadOnlyCollection<T> items, Func<T, float> weightSelector)
+        {
+            var totalWeight = items.Sum(weightSelector);
+            var itemWeightIndex = Random.Range(0, totalWeight);
+            float currentWeightIndex = 0;
+
+            foreach (var item in from weightedItem in items select new {Value = weightedItem, Weight = weightSelector(weightedItem)})
+            {
+                currentWeightIndex += item.Weight;
+
+                // If we've hit or passed the weight we are after for this item then it's the one we want....
+                if (currentWeightIndex >= itemWeightIndex)
+                    return item.Value;
+            }
+
+            return default;
+        }
+
         public static IEnumerable<T> Yield<T>(this T item)
         {
             yield return item;

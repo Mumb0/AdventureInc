@@ -55,7 +55,8 @@ namespace GMTK2023.Game
             var possibleMiniGames = miniGames.Where(CanPlay).ToArray();
 
             // NOTE: We force the nullable because there should always be at least 1 mini-game
-            var chosenMiniGame = possibleMiniGames.TryRandom()
+            var chosenMiniGame = possibleMiniGames.TryWeightedRandom(
+                                     miniGame => adventurer.Info.WeightForActivity(miniGame.Activity))
                                  ?? throw new Exception("No mini-game possible");
 
             return new Quest(chosenMiniGame);

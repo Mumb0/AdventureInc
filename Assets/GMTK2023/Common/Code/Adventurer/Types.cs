@@ -1,7 +1,19 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace GMTK2023
 {
+    [Serializable]
+    public class CustomActivityWeight
+    {
+        [SerializeField] private ActivityAsset? activity;
+        [SerializeField] private float weight;
+
+        public IActivity Activity => activity!;
+
+        public float Weight => weight;
+    }
+
     /// <summary>
     /// Describes an adventurer
     /// </summary>
@@ -17,5 +29,8 @@ namespace GMTK2023
         public float RandomWalkChance { get; }
 
         public Color DisplayColor { get; }
+
+
+        public float WeightForActivity(IActivity activity);
     }
 }

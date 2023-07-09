@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Linq;
+using System.Reflection;
+using UnityEngine;
 
 namespace GMTK2023
 {
@@ -10,6 +13,9 @@ namespace GMTK2023
         [SerializeField] private string colorName = "";
         [SerializeField] private Color32 displayColor;
 
+        [SerializeField] private CustomActivityWeight[] weights =
+            Array.Empty<CustomActivityWeight>();
+
         public string ColorName => colorName;
 
         public float MoveChance => moveChance;
@@ -17,5 +23,10 @@ namespace GMTK2023
         public float RandomWalkChance => randomWalkChance;
 
         public Color DisplayColor => displayColor;
+
+        public float WeightForActivity(IActivity activity)
+        {
+            return weights.FirstOrDefault(it => it.Activity == activity)?.Weight ?? 1;
+        }
     }
 }
