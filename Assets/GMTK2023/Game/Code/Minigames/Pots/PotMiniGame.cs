@@ -19,6 +19,8 @@ namespace GMTK2023.Game.MiniGames {
 		[SerializeField] private Sprite? selectedToolSprite;
 		[SerializeField] private Sprite? deselectedToolSprite;
 
+		[SerializeField] private TimeSpan questDuration;
+
 #endregion
 
 #region Properties
@@ -34,7 +36,6 @@ namespace GMTK2023.Game.MiniGames {
 		public void Start() {
 			miniGameCanvas!.worldCamera = MainCamera;
 			SetupRoom();
-
 		}
 
 		public void SetupRoom() {
