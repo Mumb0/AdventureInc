@@ -35,6 +35,6 @@ namespace GMTK2023.Game
 
     public interface IIngameTimeKeeper
     {
-        public float IngameTimeProgress { get; }
+        public int Hour { get; }
     }
 }

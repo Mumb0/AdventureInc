@@ -11,8 +11,7 @@ namespace GMTK2023.Game.GMTK2023.Game.Code.Common
 
         private void Update()
         {
-            var hour = ingameTimeKeeper.IngameTimeProgress * 24;
-            label.text = $"Ingame-time: {hour:00}:00";
+            label.text = $"Ingame-time: {ingameTimeKeeper.Hour:00}:00";
         }
 
         private void Awake()

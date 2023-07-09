@@ -640,6 +640,54 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Inn",
+            "id": "6fc33c8c-4e86-4c89-a919-092ded40fe8c",
+            "actions": [
+                {
+                    "name": "Click",
+                    "type": "Button",
+                    "id": "60cdd252-4ab3-497e-b1ff-aa7c7a888214",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Point",
+                    "type": "Value",
+                    "id": "54430908-1a2a-44f3-b97f-3318a61af4c0",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "6a4ed1ce-d8c3-47b5-be04-b82cdea0c493",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "82edb73a-5008-4699-ab48-d119e3b696bd",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Point",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

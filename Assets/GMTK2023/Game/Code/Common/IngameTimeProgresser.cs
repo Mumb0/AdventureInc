@@ -6,19 +6,20 @@ namespace GMTK2023.Game
     {
         [SerializeField] private float secondsPerDay;
         private bool shouldProgressTime;
+        private float ingameTimeProgress;
 
-        public float IngameTimeProgress { get; private set; }
 
+        public int Hour => Mathf.FloorToInt(ingameTimeProgress * 24);
 
         private void Update()
         {
             if (!shouldProgressTime) return;
-            IngameTimeProgress = (IngameTimeProgress + Time.deltaTime / secondsPerDay) % 1f;
+            ingameTimeProgress = (ingameTimeProgress + Time.deltaTime / secondsPerDay) % 1f;
         }
 
         private void OnShiftStarted(IShiftProgressTracker.ShiftStartedEvent _)
         {
-            IngameTimeProgress = 0;
+            ingameTimeProgress = 0;
         }
 
         private void Awake()
