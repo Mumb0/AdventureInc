@@ -20,6 +20,8 @@ namespace GMTK2023.Game.MiniGames {
 		[SerializeField] internal PlayerInput? playerActions;
 		[SerializeField] private MiniGameTask[] miniGameTasks = Array.Empty<MiniGameTask>();
 		[SerializeField] private float questDurationInSeconds;
+		[SerializeField] private string displayName = "";
+		[SerializeField] private string abandonmentReason = "";
 
 #endregion
 
@@ -28,12 +30,12 @@ namespace GMTK2023.Game.MiniGames {
 		public bool IsPrepared { get; set; } = true;
 		public abstract bool IsCredible { get; }
 
-		// NOTE: We re-use the game-objects name for the mini-games name
-		public string Name => gameObject.name;
+		public string ActivityDescription => displayName;
 		public TimeSpan Duration => TimeSpan.FromSeconds(questDurationInSeconds);
 		public int CurrentTaskStep { get; set; } = 0;
 		public MiniGameTask[] MiniGameTasks => miniGameTasks;
 		public Camera? MainCamera { get; private set; }
+		public string AbandonmentReason => abandonmentReason;
 
 		protected Vector2 Origin { get; set; }
 

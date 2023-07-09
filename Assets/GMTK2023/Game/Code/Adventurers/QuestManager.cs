@@ -69,9 +69,9 @@ namespace GMTK2023.Game
             AssignQuest(adventurer);
         }
 
-        private async void AbandonQuest(Adventurer adventurer)
+        private async void AbandonQuest(Adventurer adventurer, Quest quest)
         {
-            QuestAbandoned?.Invoke(new QuestAbandonedEvent(adventurer));
+            QuestAbandoned?.Invoke(new QuestAbandonedEvent(adventurer, quest));
             await Task.Delay(WaitTimeAfterQuestAbandon);
             AssignQuest(adventurer);
         }
@@ -87,7 +87,7 @@ namespace GMTK2023.Game
             {
                 if (!quest.MiniGame.IsCredible)
                 {
-                    AbandonQuest(adventurer);
+                    AbandonQuest(adventurer, quest);
                     return;
                 }
 

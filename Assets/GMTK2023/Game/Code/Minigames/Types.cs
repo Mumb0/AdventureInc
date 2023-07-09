@@ -6,7 +6,7 @@ namespace GMTK2023.Game.MiniGames {
 
 	public interface IMiniGame {
 
-		public string Name { get; }
+		public string ActivityDescription { get; }
 
 		public bool IsCredible { get; }
 
@@ -15,6 +15,7 @@ namespace GMTK2023.Game.MiniGames {
 		public int CurrentTaskStep { get; set; }
 		public MiniGameTask[] MiniGameTasks { get; }
 		public Camera? MainCamera { get; }
+		string AbandonmentReason { get; }
 
 		public void SetActive(bool state);
 

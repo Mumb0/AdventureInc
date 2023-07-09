@@ -63,7 +63,7 @@ namespace GMTK2023.Game
 
         public record QuestCompletedEvent(Adventurer Adventurer);
 
-        public record QuestAbandonedEvent(Adventurer Adventurer);
+        public record QuestAbandonedEvent(Adventurer Adventurer, Quest Quest);
 
         /// <summary>
         /// Invoked when an adventurer reaches the location of their quest and starts it
