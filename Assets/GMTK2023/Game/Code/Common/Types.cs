@@ -16,7 +16,7 @@ namespace GMTK2023.Game
 
     public interface ICredibilityTracker
     {
-        public record CredibilityChangedEvent(float Credibility);
+        public record CredibilityChangedEvent(int Credibility);
 
 
         public event Action<CredibilityChangedEvent> CredibilityChanged;

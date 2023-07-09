@@ -677,6 +677,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a5316e9ff4b478982ad80684bd00fea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startCredibility: 100
+  questAbandonPenalty: 10
 --- !u!1 &968266579
 GameObject:
   m_ObjectHideFlags: 0
