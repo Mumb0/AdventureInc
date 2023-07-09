@@ -74,7 +74,7 @@ namespace GMTK2023.Game.MiniGames {
 			}
 
 			for (int i = 0; i < miniGame.MiniGameTasks.Length; i++) {
-				stepMeshes[i].text = miniGame.MiniGameTasks[i].taskText;
+				stepMeshes[i].text = miniGame.MiniGameTasks[i].TaskText;
 			}
 
 			miniGame.MiniGameTaskCompleted += OnMiniGameTaskCompleted;

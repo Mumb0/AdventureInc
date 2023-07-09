@@ -1,13 +1,20 @@
 using System;
+using UnityEngine;
 
-namespace GMTK2023.Game {
+namespace GMTK2023.Game
+{
+    [Serializable]
+    public struct MiniGameTask
+    {
+        [SerializeField] private bool isCompleted;
+        [SerializeField] private string taskText;
 
-	[Serializable]
-	public struct MiniGameTask {
+        public bool IsCompleted
+        {
+            get => isCompleted;
+            set => isCompleted = value;
+        }
 
-		public bool isCompleted;
-		public string taskText;
-
-	}
-
+        public string TaskText => taskText;
+    }
 }

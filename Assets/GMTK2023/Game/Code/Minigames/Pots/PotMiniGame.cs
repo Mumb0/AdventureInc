@@ -142,7 +142,7 @@ namespace GMTK2023.Game.MiniGames {
 		}
 
 		private void CompleteTask() {
-			MiniGameTasks[CurrentTaskStep].isCompleted = true;
+			MiniGameTasks[CurrentTaskStep].IsCompleted = true;
 			MiniGameTaskCompleted?.Invoke(CurrentTaskStep);
 			CurrentTaskStep++;
 		}
