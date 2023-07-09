@@ -630,7 +630,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   travelOpportunityIntervalSeconds: 1
-  baseMoveChance: 0.25
 --- !u!114 &966599295
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ namespace GMTK2023.Game
 
 
         [SerializeField] private float travelOpportunityIntervalSeconds;
-        [SerializeField] [Range(0, 1)] private float baseMoveChance;
+
 
         private readonly IDictionary<ILocation, ISet<Adventurer>> adventurersByLocation =
             new Dictionary<ILocation, ISet<Adventurer>>();
@@ -75,7 +75,7 @@ namespace GMTK2023.Game
         {
             locationByAdventurer.ToArray().Iter((adventurer, currentLocation) =>
             {
-                var canMove = Chance.Roll(baseMoveChance);
+                var canMove = Chance.Roll(adventurer.Info.MoveChance);
                 if (!canMove) return;
 
                 var quest = questTracker.CurrentQuestOf(adventurer);

@@ -12,6 +12,8 @@ namespace GMTK2023.Game
         /// Name/title of the adventurer
         /// </summary>
         public string Title { get; }
+
+        public float MoveChance { get; }
     }
 
     /// <summary>
