@@ -4,8 +4,6 @@ using UnityEngine;
 
 namespace GMTK2023.Game
 {
-
-
     public interface IShiftLoader
     {
         public record ShiftLoadedEvent(IShiftInfo ShiftInfo);
@@ -21,7 +19,7 @@ namespace GMTK2023.Game
     {
         public record ShiftStartedEvent;
 
-        public record ShiftProgressEvent(TimeSpan TimeSinceStart);
+        public record ShiftProgressEvent(TimeSpan TimeSinceStart, float ProgressionT);
 
         public record ShiftCompletedEvent;
 

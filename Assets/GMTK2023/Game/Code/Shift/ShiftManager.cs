@@ -34,8 +34,9 @@ namespace GMTK2023.Game
         {
             var secondsSinceStart = Time.time - shift.StartTimeSeconds;
             var timeSinceStart = TimeSpan.FromSeconds(secondsSinceStart);
+            var t = (float) (timeSinceStart.TotalSeconds / ShiftDuration.TotalSeconds);
 
-            ShiftProgressed?.Invoke(new ShiftProgressEvent(timeSinceStart));
+            ShiftProgressed?.Invoke(new ShiftProgressEvent(timeSinceStart, t));
 
             if (timeSinceStart >= ShiftDuration)
                 CompleteShift();
