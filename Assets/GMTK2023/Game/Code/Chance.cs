@@ -20,6 +20,6 @@ namespace GMTK2023
         }
 
         public static bool Roll(float chance) =>
-            Random.Range(0, 1) <= chance;
+            Random.Range(0f, 1f) < chance;
     }
 }
