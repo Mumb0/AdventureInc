@@ -17,7 +17,7 @@ namespace GMTK2023.Game {
 
 		[SerializeField] private LocationDisplayLink[] locationDisplays = Array.Empty<LocationDisplayLink>();
 
-		private IList<Adventurer> ActiveAdventurers { get; set; } = new Collection<Adventurer>();
+		private IList<Adventurer> ActiveAdventurers { get; } = new Collection<Adventurer>();
 		private Dictionary<Adventurer, ILocation> locationLog = new Dictionary<Adventurer, ILocation>();
 
 #endregion
@@ -46,35 +46,35 @@ namespace GMTK2023.Game {
 		}
 
 		private void OnAdventurerStarted(IAdventurerLocationTracker.AdventurerLocationStartEvent e) {
-			if (ActiveAdventurers.Contains(e.Adventurer)) {
 
-				int? currentLocationAdventurers = Locations?[e.Location].CurrentAdventurers;
+			int? currentLocationAdventurers = Locations?[e.Location].CurrentAdventurers;
 
-				if (currentLocationAdventurers < MaxAdventurers) {
-					Locations![e.Location].CurrentAdventurers++;
+			if (currentLocationAdventurers < MaxAdventurers) {
+
+				if (Locations != null) {
+					Locations[e.Location].CurrentAdventurers++;
 					Locations[e.Location].AdventurerSlots[currentLocationAdventurers.Value].color = e.Adventurer.Info.DisplayColor;
+					Debug.Log(locationLog);
 					locationLog.Add(e.Adventurer, e.Location);
 				}
 
 			}
+
 		}
 
 		private void OnAdventurerMoved(IAdventurerLocationTracker.AdventurerChangedLocationEvent e) {
 
-			if (ActiveAdventurers.Contains(e.Adventurer)) {
+			int? currentLocationAdventurers = Locations?[e.Location].CurrentAdventurers;
 
-				int? currentLocationAdventurers = Locations?[e.Location].CurrentAdventurers;
+			if (currentLocationAdventurers < MaxAdventurers) {
 
-				if (currentLocationAdventurers < MaxAdventurers) {
-
-					Locations![locationLog[e.Adventurer]].CurrentAdventurers--;
-
+				if (Locations != null) {
+					Locations[locationLog[e.Adventurer]].CurrentAdventurers--;
 					Locations[e.Location].CurrentAdventurers++;
 					Locations[e.Location].AdventurerSlots[currentLocationAdventurers.Value].color = e.Adventurer.Info.DisplayColor;
-
 					locationLog[e.Adventurer] = e.Location;
-
 				}
+
 			}
 		}
 
