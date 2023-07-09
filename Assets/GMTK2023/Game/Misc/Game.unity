@@ -2187,6 +2187,14 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 3d954972-2412-4d9a-97a2-d9d5d16157e8
     m_ActionName: Torches/Point[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 60cdd252-4ab3-497e-b1ff-aa7c7a888214
+    m_ActionName: Inn/Click[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 54430908-1a2a-44f3-b97f-3318a61af4c0
+    m_ActionName: Inn/Point[/Mouse/position]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: General
