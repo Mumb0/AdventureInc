@@ -597,14 +597,8 @@ MonoBehaviour:
     b: {fileID: 11400000, guid: c228144e5c6ce2d48b3d03c854b043a2, type: 2}
     distance: 20
   - a: {fileID: 11400000, guid: 63337df429a5172468c70aa76004a38d, type: 2}
-    b: {fileID: 11400000, guid: c228144e5c6ce2d48b3d03c854b043a2, type: 2}
-    distance: 15
-  - a: {fileID: 11400000, guid: 63337df429a5172468c70aa76004a38d, type: 2}
     b: {fileID: 11400000, guid: a806daed9b32219408e86cb2b7ed29a5, type: 2}
     distance: 10
-  - a: {fileID: 11400000, guid: c228144e5c6ce2d48b3d03c854b043a2, type: 2}
-    b: {fileID: 11400000, guid: a806daed9b32219408e86cb2b7ed29a5, type: 2}
-    distance: 5
   - a: {fileID: 11400000, guid: 25531601da79d28449832a708505a9cd, type: 2}
     b: {fileID: 11400000, guid: a806daed9b32219408e86cb2b7ed29a5, type: 2}
     distance: 10

@@ -97,9 +97,17 @@ namespace GMTK2023.Game {
 
 				if (Locations != null) {
 					Locations[locationLog[e.Adventurer]].CurrentAdventurers--;
+
+					IMiniGame? visitedMiniGame = Singleton.TryFind<MapKeeper>()!.TryGetMiniGameFor(locationLog[e.Adventurer]);
+
+					if (visitedMiniGame != null) {
+						Singleton.TryFind<MiniGameManager>()!.OnAdventurerCompletedQuest(visitedMiniGame);
+					}
+
 					Locations[e.Location].CurrentAdventurers++;
 					Locations[e.Location].AdventurerSlots[currentLocationAdventurers.Value].color = e.Adventurer.Info.DisplayColor;
 					locationLog[e.Adventurer] = e.Location;
+
 				}
 
 			}

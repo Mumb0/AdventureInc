@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -74,6 +75,10 @@ namespace GMTK2023.Game.MiniGames {
 
 			miniGame.MiniGameTaskCompleted += OnMiniGameTaskCompleted;
 
+		}
+
+		public void OnAdventurerCompletedQuest(IMiniGame miniGame) {
+			availableMiniGames.First(x => x == (MiniGame) miniGame).OnAdventurerLeft();
 		}
 
 		private void OnMiniGameTaskCompleted(int taskIndex) {
