@@ -54,7 +54,6 @@ namespace GMTK2023.Game {
 				if (Locations != null) {
 					Locations[e.Location].CurrentAdventurers++;
 					Locations[e.Location].AdventurerSlots[currentLocationAdventurers.Value].color = e.Adventurer.Info.DisplayColor;
-					Debug.Log(locationLog);
 					locationLog.Add(e.Adventurer, e.Location);
 				}
 
