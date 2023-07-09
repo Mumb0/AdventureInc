@@ -13,10 +13,22 @@ namespace GMTK2023.Game
         public event Action<ShiftLoadedEvent>? ShiftLoaded;
         public event Action<ShiftStartedEvent>? ShiftStarted;
         public event Action<ShiftProgressEvent>? ShiftProgressed;
+        public event Action<ShiftCompletedEvent>? ShiftCompleted;
 
+
+        [SerializeField] private float shiftDurationInMinutes;
 
         private Shift? currentShift;
 
+
+        private TimeSpan ShiftDuration => TimeSpan.FromMinutes(shiftDurationInMinutes);
+
+
+        private void CompleteShift()
+        {
+            currentShift = null;
+            ShiftCompleted?.Invoke(new ShiftCompletedEvent());
+        }
 
         private void ProgressShift(Shift shift)
         {
@@ -24,6 +36,9 @@ namespace GMTK2023.Game
             var timeSinceStart = TimeSpan.FromSeconds(secondsSinceStart);
 
             ShiftProgressed?.Invoke(new ShiftProgressEvent(timeSinceStart));
+
+            if (timeSinceStart >= ShiftDuration)
+                CompleteShift();
         }
 
         private void Update()

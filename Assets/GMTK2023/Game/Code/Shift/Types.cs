@@ -54,6 +54,8 @@ namespace GMTK2023.Game
 
         public record ShiftProgressEvent(TimeSpan TimeSinceStart);
 
+        public record ShiftCompletedEvent;
+
 
         /// <summary>
         /// Invoked when the shift starts
@@ -64,5 +66,10 @@ namespace GMTK2023.Game
         /// Invoked when the shift progressed
         /// </summary>
         public event Action<ShiftProgressEvent> ShiftProgressed;
+
+        /// <summary>
+        /// Invoked when the player reached the end of the shift
+        /// </summary>
+        public event Action<ShiftCompletedEvent> ShiftCompleted;
     }
 }
