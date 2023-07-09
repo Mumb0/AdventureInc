@@ -26,7 +26,17 @@ namespace GMTK2023.Game.MiniGames
             }
         }
 
-        public override bool IsCredible => servedMealType == CorrectMealType;
+        public override bool IsCredible => ServedMealType == CorrectMealType;
+
+        public MealType ServedMealType
+        {
+            get => servedMealType;
+            set
+            {
+                servedMealType = value;
+                mealDisplay.Display(servedMealType);
+            }
+        }
 
 
         public override void SetActive(bool state)
@@ -56,16 +66,20 @@ namespace GMTK2023.Game.MiniGames
             mealDisplay = GetComponentInChildren<MealDisplay>();
         }
 
+        private void Start()
+        {
+            ServedMealType = MealType.Dinner;
+        }
+
         public void CycleMeal()
         {
-            servedMealType = servedMealType switch
+            ServedMealType = ServedMealType switch
             {
                 MealType.Breakfast => MealType.Lunch,
                 MealType.Lunch => MealType.Dinner,
                 MealType.Dinner => MealType.Breakfast,
                 _ => throw new ArgumentOutOfRangeException()
             };
-            mealDisplay.Display(servedMealType);
         }
     }
 }
