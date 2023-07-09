@@ -24,6 +24,7 @@ namespace GMTK2023.Game
         private TimeSpan lastUpdateTime = TimeSpan.Zero;
         private IMap map = null!;
         private IQuestTracker questTracker = null!;
+        private IRoutePlanner routePlanner = null!;
 
 
         private TimeSpan TravelOpportunityInterval =>
@@ -72,7 +73,7 @@ namespace GMTK2023.Game
 
         private void UpdateAdventurerLocations()
         {
-            locationByAdventurer.ToArray().Iter((adventurer, _) =>
+            locationByAdventurer.ToArray().Iter((adventurer, currentLocation) =>
             {
                 var canMove = Chance.Roll(baseMoveChance);
                 if (!canMove) return;
@@ -80,11 +81,9 @@ namespace GMTK2023.Game
                 var quest = questTracker.CurrentQuestOf(adventurer);
                 var targetLocation = map.LocationOf(quest.MiniGame);
 
-                /*
-                 * TODO: Implement continuous movement
-                 * For now we just teleport to the target instantly
-                 */
-                MoveAdventurerToLocation(adventurer, targetLocation);
+                var nextLocation = routePlanner.FindNextLocationOnRoute(currentLocation, targetLocation);
+
+                MoveAdventurerToLocation(adventurer, nextLocation);
             });
         }
 
@@ -112,6 +111,7 @@ namespace GMTK2023.Game
                 += OnShiftProgressed;
             map = Singleton.TryFind<IMap>()!;
             questTracker = Singleton.TryFind<IQuestTracker>()!;
+            routePlanner = Singleton.TryFind<IRoutePlanner>()!;
         }
     }
 }
