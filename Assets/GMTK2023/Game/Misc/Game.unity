@@ -1783,18 +1783,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Inn
       objectReference: {fileID: 0}
-    - target: {fileID: 8950549466676837738, guid: dbd2339dcbe38594fb22bde1110ed02b, type: 3}
-      propertyPath: lunchSprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 8d0bd24de777ded4498d1b3471f16eb0, type: 3}
-    - target: {fileID: 8950549466676837738, guid: dbd2339dcbe38594fb22bde1110ed02b, type: 3}
-      propertyPath: dinnerSprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 8b1f3924ced347b40a0b8fb4b9fb949a, type: 3}
-    - target: {fileID: 8950549466676837738, guid: dbd2339dcbe38594fb22bde1110ed02b, type: 3}
-      propertyPath: breakfastSprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 7c7941caf9803db488ef661a80fb5df4, type: 3}
+    - target: {fileID: 3346771781197876040, guid: dbd2339dcbe38594fb22bde1110ed02b, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3346771781197876040, guid: dbd2339dcbe38594fb22bde1110ed02b, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3346771781197876040, guid: dbd2339dcbe38594fb22bde1110ed02b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.38
+      objectReference: {fileID: 0}
+    - target: {fileID: 3346771781197876040, guid: dbd2339dcbe38594fb22bde1110ed02b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.94
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
