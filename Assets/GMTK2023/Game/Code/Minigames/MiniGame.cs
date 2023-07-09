@@ -25,6 +25,8 @@ namespace GMTK2023.Game.MiniGames {
 #region Properties
 
 		public bool IsPrepared { get; set; } = true;
+		// NOTE: We re-use the game-objects name for the mini-games name
+		public string Name => gameObject.name;
 		public int CurrentTaskStep { get; set; } = 0;
 		public MiniGameTask[] MiniGameTasks => miniGameTasks;
 		internal Camera? MainCamera { get; private set; }

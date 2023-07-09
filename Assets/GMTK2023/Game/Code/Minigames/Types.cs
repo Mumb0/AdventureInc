@@ -4,6 +4,7 @@ namespace GMTK2023.Game.MiniGames
 {
     public interface IMiniGame
     {
+        public string Name { get; }
     }
 
     public interface IMiniGameTracker
