@@ -143,7 +143,7 @@ namespace GMTK2023.Game.MiniGames {
 
 		private void CompleteTask() {
 			MiniGameTasks[CurrentTaskStep].IsCompleted = true;
-			MiniGameTaskCompleted?.Invoke(CurrentTaskStep);
+			OnMiniGameTaskCompleted(CurrentTaskStep);
 			CurrentTaskStep++;
 		}
 
@@ -169,14 +169,22 @@ namespace GMTK2023.Game.MiniGames {
 
 		}
 
-		public override void SetActive() {
-			playerActions!.SwitchCurrentActionMap("PotMiniGame");
+		public override void SetActive(bool state) {
+
+			if (state) {
+				playerActions!.SwitchCurrentActionMap("PotMiniGame");
+				gameObject.transform.localPosition = new Vector2(0, 0);
+				return;
+			}
+			
+			gameObject.transform.localPosition = new Vector2(0, 10);
+			
 		}
 
 		public override void OnAdventurerEntered() {
 
 			if (!IsPrepared) {
-				AdventurerEnteredUnpreparedRoom?.Invoke();
+				OnAdventurerEnteredUnpreparedRoom();
 			}
 			else {
 				Debug.Log("Adventurer is adventuring.");

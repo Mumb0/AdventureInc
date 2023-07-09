@@ -63,10 +63,16 @@ namespace GMTK2023.Game.MiniGames {
 				
 				*/
 
-				ActiveMiniGame.SetActive();
+				
 
 			}
 
+		}
+
+		public void OnMiniGameClicked(IMiniGame clickedMiniGame) {
+			
+			//foreach(IMiniGame mg in ActiveMiniGame)
+			
 		}
 
 		public void OnActiveMiniGameChanged(IMiniGame miniGame) {

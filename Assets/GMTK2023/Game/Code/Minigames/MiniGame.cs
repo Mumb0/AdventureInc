@@ -43,14 +43,22 @@ namespace GMTK2023.Game.MiniGames {
 			MainCamera = Camera.main;
 		}
 
-		public abstract void SetActive();
+		public abstract void SetActive(bool state);
 
 		public abstract void OnAdventurerEntered();
 
 		public abstract void OnAdventurerLeft();
 
-		public virtual void OnTasksCompleted() {
+		protected virtual void OnTasksCompleted() {
 			AllMiniGameTasksCompleted?.Invoke();
+		}
+
+		protected virtual void OnAdventurerEnteredUnpreparedRoom() {
+			AdventurerEnteredUnpreparedRoom?.Invoke();
+		}
+
+		protected virtual void OnMiniGameTaskCompleted(int currentTaskStep) {
+			MiniGameTaskCompleted?.Invoke(CurrentTaskStep);
 		}
 
 #endregion

@@ -16,7 +16,7 @@ namespace GMTK2023.Game.MiniGames {
 		public MiniGameTask[] MiniGameTasks { get; }
 		public Camera? MainCamera { get; }
 
-		public void SetActive();
+		public void SetActive(bool state);
 
 		public void OnAdventurerEntered();
 
