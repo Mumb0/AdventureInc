@@ -92,9 +92,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprites:
-  - {fileID: 21300000, guid: 93b99f26207eef349acde8988305a746, type: 3}
-  - {fileID: 21300000, guid: b1dc15c7a11e8844abb18b8662bb625d, type: 3}
-  - {fileID: 21300000, guid: 87ad73dd881fb21408373ba7d0071f3b, type: 3}
+  - {fileID: 21300000, guid: dcfcf4fd0b40d2d47b17bb30d7caa1d3, type: 3}
+  - {fileID: 21300000, guid: fb3d3378d5824b342a0a036e85fd7927, type: 3}
+  - {fileID: 21300000, guid: 7090341c34184c04f950cc0811bbdb8e, type: 3}
+  - {fileID: 21300000, guid: 8bb20cf3b8c437e42ba56fe26d4438db, type: 3}
 --- !u!114 &91390827720162332
 MonoBehaviour:
   m_ObjectHideFlags: 0
