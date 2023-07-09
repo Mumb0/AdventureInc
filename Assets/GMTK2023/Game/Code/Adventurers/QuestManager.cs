@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using GMTK2023.Game.MiniGames;
 using UnityEngine;
 using static GMTK2023.Game.IAdventurerLocationTracker;
@@ -17,6 +18,7 @@ namespace GMTK2023.Game
             new Dictionary<Adventurer, Quest>();
 
         private IMap map = null!;
+        private IAdventurerLocationTracker adventurerLocationTracker = null!;
         private IMiniGameTracker miniGameTracker = null!;
 
 
@@ -24,11 +26,18 @@ namespace GMTK2023.Game
             // NOTE: We dont check for existence, because an adventurer should always have a quest
             questByAdventurer[adventurer];
 
-        private Quest ChooseQuestFor(Adventurer _)
+        private Quest ChooseQuestFor(Adventurer adventurer)
         {
+            var currentLocation = adventurerLocationTracker.LocationOf(adventurer);
+            var currentMiniGame = map.TryGetMiniGameFor(currentLocation);
+
             var miniGames = miniGameTracker.AllMiniGames;
+            var possibleMiniGames = currentMiniGame != null
+                ? miniGames.Except(currentMiniGame).ToArray()
+                : miniGames;
+
             // NOTE: We force the nullable because there should always be at least 1 mini-game
-            var chosenMiniGame = miniGames.TryRandom()!;
+            var chosenMiniGame = possibleMiniGames.TryRandom()!;
 
             return new Quest(chosenMiniGame);
         }
@@ -73,6 +82,7 @@ namespace GMTK2023.Game
                 OnAdventurerChangedLocation;
 
             miniGameTracker = Singleton.TryFind<IMiniGameTracker>()!;
+            adventurerLocationTracker = Singleton.TryFind<IAdventurerLocationTracker>()!;
             map = Singleton.TryFind<IMap>()!;
         }
     }

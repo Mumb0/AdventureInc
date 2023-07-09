@@ -16,7 +16,7 @@ namespace GMTK2023
             }
         }
 
-        public static void Iter<TKey,TValue>(this IEnumerable<KeyValuePair<TKey, TValue>> items, Action<TKey, TValue> action)
+        public static void Iter<TKey, TValue>(this IEnumerable<KeyValuePair<TKey, TValue>> items, Action<TKey, TValue> action)
         {
             foreach (var item in items)
             {
@@ -34,5 +34,13 @@ namespace GMTK2023
             var index = Random.Range(0, items.Count);
             return items.ElementAt(index);
         }
+
+        public static IEnumerable<T> Yield<T>(this T item)
+        {
+            yield return item;
+        }
+
+        public static IEnumerable<T> Except<T>(this IEnumerable<T> items, T exclude) =>
+            items.Except(exclude.Yield());
     }
 }

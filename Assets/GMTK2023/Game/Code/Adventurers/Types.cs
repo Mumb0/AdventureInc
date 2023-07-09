@@ -49,6 +49,9 @@ namespace GMTK2023.Game
         /// Invoked when an adventurer changes their location
         /// </summary>
         public event Action<AdventurerChangedLocationEvent> AdventurerChangedLocation;
+
+
+        public ILocation LocationOf(Adventurer adventurer);
     }
 
     public interface IQuestTracker

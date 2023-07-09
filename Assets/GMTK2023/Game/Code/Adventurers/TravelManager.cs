@@ -30,6 +30,9 @@ namespace GMTK2023.Game
             TimeSpan.FromSeconds(travelOpportunityIntervalSeconds);
 
 
+        public ILocation LocationOf(Adventurer adventurer) =>
+            locationByAdventurer[adventurer];
+
         private void SetAdventurerLocation(Adventurer adventurer, ILocation location)
         {
             // Remove from current location
