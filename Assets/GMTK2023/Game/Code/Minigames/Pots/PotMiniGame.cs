@@ -100,11 +100,6 @@ namespace GMTK2023.Game.MiniGames {
 
 						break;
 					case PotTool.None:
-
-						if (IsPrepared) {
-							OnAdventurerLeft();
-						}
-
 						break;
 					default:
 						throw new ArgumentOutOfRangeException();
@@ -174,7 +169,6 @@ namespace GMTK2023.Game.MiniGames {
 			if (state) {
 				playerActions!.SwitchCurrentActionMap("PotMiniGame");
 				gameObject.transform.localPosition = new Vector2(0, 0);
-				Debug.Log("Hi I Am Active - " + Name);
 				return;
 			}
 

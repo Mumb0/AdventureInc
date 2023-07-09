@@ -1,9 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace GMTK2023.Game.MiniGames {
 
@@ -57,6 +55,8 @@ namespace GMTK2023.Game.MiniGames {
 				}
 
 			}
+
+			map!.SetActive(false);
 
 		}
 
