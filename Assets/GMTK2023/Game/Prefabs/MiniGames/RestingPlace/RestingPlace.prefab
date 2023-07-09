@@ -234,5 +234,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   miniGameCanvas: {fileID: 5938210147616079286}
   playerActions: {fileID: 0}
-  stepGuideTexts:
-  - No tasks to do here.
+  miniGameTasks: []
+  questDurationInSeconds: 5
