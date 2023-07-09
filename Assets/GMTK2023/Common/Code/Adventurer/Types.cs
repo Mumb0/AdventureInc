@@ -10,7 +10,7 @@ namespace GMTK2023
         /// <summary>
         /// Name/title of the adventurer
         /// </summary>
-        public string Title { get; }
+        public string ColorName { get; }
 
         public float MoveChance { get; }
 

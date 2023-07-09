@@ -7,10 +7,10 @@ namespace GMTK2023
     {
         [SerializeField] [Range(0, 1)] private float moveChance;
         [SerializeField] [Range(0, 1)] private float randomWalkChance;
+        [SerializeField] private string colorName = "";
         [SerializeField] private Color32 displayColor;
 
-        /// <remarks>We use the asset name as the adventurers title</remarks>>
-        public string Title => name;
+        public string ColorName => colorName;
 
         public float MoveChance => moveChance;
 

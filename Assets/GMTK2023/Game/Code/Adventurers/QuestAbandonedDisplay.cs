@@ -24,7 +24,7 @@ namespace GMTK2023.Game
         private void OnQuestAbandoned(IQuestTracker.QuestAbandonedEvent e)
         {
             var miniGame = e.Quest.MiniGame;
-            var text = $"Attention!\n{e.Adventurer.Info.Title} could not {miniGame.ActivityDescription} because {miniGame.AbandonmentReason}";
+            var text = $"Attention!\nThe {e.Adventurer.Info.ColorName} adventurer could not {miniGame.ActivityDescription} because {miniGame.AbandonmentReason}";
             lastMessageTime = TimeSinceUnityStart;
             label.text = text;
         }
