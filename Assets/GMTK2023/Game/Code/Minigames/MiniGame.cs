@@ -41,7 +41,7 @@ namespace GMTK2023.Game.MiniGames {
 
 #region Methods
 
-		private void Awake() {
+		protected virtual void Awake() {
 			MainCamera = Camera.main;
 			Origin = transform.localPosition;
 		}

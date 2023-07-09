@@ -592,6 +592,54 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Torches",
+            "id": "5c31154d-b4be-42e5-a8fe-80cee05aa567",
+            "actions": [
+                {
+                    "name": "Click",
+                    "type": "Button",
+                    "id": "f22e1d64-e0d8-4549-81ab-1fdd65fb27e3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Point",
+                    "type": "Value",
+                    "id": "3d954972-2412-4d9a-97a2-d9d5d16157e8",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "81ab05fe-b328-48b4-a650-dd6ef0e12d86",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3b943b05-cbf8-4666-985b-2f132ec7ba77",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Point",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
