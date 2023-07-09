@@ -33,7 +33,7 @@ namespace GMTK2023.Game.MiniGames {
 		// NOTE: We re-use the game-objects name for the mini-games name
 		public string Name => gameObject.name;
 
-		public TimeSpan Duration { get; }
+		public TimeSpan Duration => TimeSpan.FromSeconds(questDurationInSeconds);
 
 		public int CurrentTaskStep { get; set; } = 0;
 
