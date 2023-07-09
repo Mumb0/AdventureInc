@@ -33,9 +33,16 @@ namespace GMTK2023.Game
             return new Quest(chosenMiniGame);
         }
 
+        private void AssignQuest(Adventurer adventurer)
+        {
+            var quest = ChooseQuestFor(adventurer);
+
+            questByAdventurer[adventurer] = quest;
+        }
+
         private void OnAdventurerEntered(IAdventurerTracker.AdventurerEnteredEvent e)
         {
-            questByAdventurer.Add(e.Adventurer, ChooseQuestFor(e.Adventurer));
+            AssignQuest(e.Adventurer);
         }
 
         private void OnAdventurerReachedQuestLocation(Adventurer adventurer, Quest quest)
@@ -45,6 +52,7 @@ namespace GMTK2023.Game
             // TODO: Do mini-game
 
             QuestComplete?.Invoke(new QuestCompletedEvent(adventurer));
+            AssignQuest(adventurer);
         }
 
         private void OnAdventurerChangedLocation(AdventurerChangedLocationEvent e)
