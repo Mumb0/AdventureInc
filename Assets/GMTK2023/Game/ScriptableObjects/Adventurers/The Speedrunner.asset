@@ -14,3 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveChance: 1
   randomWalkChance: 0
+  displayColor:
+    serializedVersion: 2
+    rgba: 4294958080

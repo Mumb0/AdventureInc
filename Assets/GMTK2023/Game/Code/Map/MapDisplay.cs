@@ -9,17 +9,16 @@ namespace GMTK2023.Game {
 
 #region Constants
 
-		public static int MaxAdventurers = 4;
+		public const int MaxAdventurers = 4;
 
 #endregion
 
 #region Fields
 
 		[SerializeField] private LocationDisplayLink[] locationDisplays = Array.Empty<LocationDisplayLink>();
-		[SerializeField] private Color32[] adventurerColors = Array.Empty<Color32>();
 
 		private IList<Adventurer> ActiveAdventurers { get; set; } = new Collection<Adventurer>();
-		private Dictionary<Adventurer, ILocation> LocationLog = new Dictionary<Adventurer, ILocation>();
+		private Dictionary<Adventurer, ILocation> locationLog = new Dictionary<Adventurer, ILocation>();
 
 #endregion
 
@@ -28,6 +27,8 @@ namespace GMTK2023.Game {
 		public Dictionary<ILocation, LocationDisplay>? Locations { get; } = new Dictionary<ILocation, LocationDisplay>();
 
 #endregion
+
+#region Methods
 
 		private void Awake() {
 
@@ -47,9 +48,12 @@ namespace GMTK2023.Game {
 		private void OnAdventurerStarted(IAdventurerLocationTracker.AdventurerLocationStartEvent e) {
 			if (ActiveAdventurers.Contains(e.Adventurer)) {
 
-				if (Locations?[e.Location].CurrentAdventurers < MaxAdventurers) {
-					Locations[e.Location].CurrentAdventurers++;
-					LocationLog.Add(e.Adventurer, e.Location);
+				int? currentLocationAdventurers = Locations?[e.Location].CurrentAdventurers;
+
+				if (currentLocationAdventurers < MaxAdventurers) {
+					Locations![e.Location].CurrentAdventurers++;
+					Locations[e.Location].AdventurerSlots[currentLocationAdventurers.Value].color = e.Adventurer.Info.DisplayColor;
+					locationLog.Add(e.Adventurer, e.Location);
 				}
 
 			}
@@ -58,16 +62,23 @@ namespace GMTK2023.Game {
 		private void OnAdventurerMoved(IAdventurerLocationTracker.AdventurerChangedLocationEvent e) {
 
 			if (ActiveAdventurers.Contains(e.Adventurer)) {
-				if (Locations?[e.Location].CurrentAdventurers < MaxAdventurers) {
 
-					Locations[LocationLog[e.Adventurer]].CurrentAdventurers--;
+				int? currentLocationAdventurers = Locations?[e.Location].CurrentAdventurers;
+
+				if (currentLocationAdventurers < MaxAdventurers) {
+
+					Locations![locationLog[e.Adventurer]].CurrentAdventurers--;
 
 					Locations[e.Location].CurrentAdventurers++;
+					Locations[e.Location].AdventurerSlots[currentLocationAdventurers.Value].color = e.Adventurer.Info.DisplayColor;
 
-					LocationLog[e.Adventurer] = e.Location;
+					locationLog[e.Adventurer] = e.Location;
+
 				}
 			}
 		}
+
+#endregion
 
 	}
 

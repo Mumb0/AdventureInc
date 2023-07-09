@@ -10,6 +10,8 @@ namespace GMTK2023.Game {
 
 		private int currentAdventurers = 0;
 
+		public Image[] AdventurerSlots => adventurerSlots;
+
 		public int CurrentAdventurers {
 			get => currentAdventurers;
 			set {
