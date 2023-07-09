@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace GMTK2023.Game
+namespace GMTK2023
 {
     /// <summary>
     /// IO functions for loading shift-infos
@@ -8,6 +8,11 @@ namespace GMTK2023.Game
     public static class ShiftDb
     {
         private const string ShiftPath = "Shifts/";
+
+
+        public static int ShiftCount =>
+            // Note: This is bad. We load all, just to count them
+            Resources.LoadAll<ShiftInfoAsset>(ShiftPath).Length;
 
 
         /// <summary>

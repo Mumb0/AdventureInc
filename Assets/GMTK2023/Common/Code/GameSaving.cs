@@ -37,17 +37,22 @@ namespace GMTK2023
             return JsonConvert.DeserializeObject<SavedGame>(fileContent!);
         }
 
+        public static async Task SaveAsync(SavedGame game)
+        {
+            if (!File.Exists(saveFilePath)) File.Create(saveFilePath).Close();
+
+            var json = JsonConvert.SerializeObject(game);
+
+            await File.WriteAllTextAsync(saveFilePath, json);
+        }
+
         /// <summary>
         /// Starts a new game
         /// </summary>
         /// <returns>The game that was started</returns>
         public static async Task<SavedGame> StartNewGameAsync()
         {
-            if (!File.Exists(saveFilePath)) File.Create(saveFilePath).Close();
-
-            var json = JsonConvert.SerializeObject(newGame);
-
-            await File.WriteAllTextAsync(saveFilePath, json);
+            await SaveAsync(newGame);
             return newGame;
         }
     }

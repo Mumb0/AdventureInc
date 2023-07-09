@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static GMTK2023.GameSaving;
 
 namespace GMTK2023.Game
 {
@@ -15,11 +16,14 @@ namespace GMTK2023.Game
         public event Action<IGameOverTracker.GameOverEvent>? GameOver;
 
 
+        private SavedGame savedGame = null!;
+
+
         private async void Start()
         {
             // Load game or start new if there is none
-            var savedGame = await GameSaving.TryLoadSavedGameAsync()
-                            ?? await GameSaving.StartNewGameAsync();
+            savedGame = await TryLoadSavedGameAsync()
+                        ?? await StartNewGameAsync();
 
             GameLoaded?.Invoke(new IGameLoader.GameLoadEvent(savedGame));
         }
@@ -38,8 +42,13 @@ namespace GMTK2023.Game
             HandleGameOver();
         }
 
-        private void OnShiftCompleted(IShiftProgressTracker.ShiftCompletedEvent obj)
+        private async void OnShiftCompleted(IShiftProgressTracker.ShiftCompletedEvent obj)
         {
+            if (savedGame.ShiftIndex < ShiftDb.ShiftCount - 1)
+                await SaveAsync(new SavedGame(ShiftIndex: savedGame.ShiftIndex + 1));
+            else
+                _ = await StartNewGameAsync();
+
             SceneManager.LoadScene(2); // Success
         }
 

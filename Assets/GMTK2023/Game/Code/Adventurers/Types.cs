@@ -5,22 +5,7 @@ using UnityEngine;
 
 namespace GMTK2023.Game
 {
-    /// <summary>
-    /// Describes an adventurer
-    /// </summary>
-    public interface IAdventurerInfo
-    {
-        /// <summary>
-        /// Name/title of the adventurer
-        /// </summary>
-        public string Title { get; }
 
-        public float MoveChance { get; }
-
-        public float RandomWalkChance { get; }
-
-        public Color32 DisplayColor { get; }
-    }
 
     /// <summary>
     /// An adventurer that is active in the game
