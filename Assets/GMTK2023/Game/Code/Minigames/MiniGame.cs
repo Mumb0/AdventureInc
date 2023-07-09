@@ -2,69 +2,71 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace GMTK2023.Game.MiniGames {
+namespace GMTK2023.Game.MiniGames
+{
+    public abstract class MiniGame : MonoBehaviour, IMiniGame
+    {
+        #region Events
 
-	public abstract class MiniGame : MonoBehaviour, IMiniGame {
+        public event Action? AllMiniGameTasksCompleted;
+        public event Action<int>? MiniGameTaskCompleted;
+        public event Action? AdventurerEnteredUnpreparedRoom;
 
-#region Events
+        #endregion
 
-		public event Action? AllMiniGameTasksCompleted;
-		public event Action<int>? MiniGameTaskCompleted;
-		public event Action? AdventurerEnteredUnpreparedRoom;
+        #region Fields
 
-#endregion
+        [SerializeField] internal Canvas? miniGameCanvas;
+        [SerializeField] internal PlayerInput? playerActions;
+        [SerializeField] private ActivityAsset? activity;
+        [SerializeField] private MiniGameTask[] miniGameTasks = Array.Empty<MiniGameTask>();
 
-#region Fields
+        #endregion
 
-		[SerializeField] internal Canvas? miniGameCanvas;
-		[SerializeField] internal PlayerInput? playerActions;
-		[SerializeField] private ActivityAsset activity;
-		[SerializeField] private MiniGameTask[] miniGameTasks = Array.Empty<MiniGameTask>();
+        #region Properties
 
-#endregion
+        public bool IsPrepared { get; set; } = true;
+        public abstract bool IsCredible { get; }
 
-#region Properties
+        public IActivity Activity => activity!;
 
-		public bool IsPrepared { get; set; } = true;
-		public abstract bool IsCredible { get; }
+        public int CurrentTaskStep { get; set; } = 0;
+        public MiniGameTask[] MiniGameTasks => miniGameTasks;
+        public Camera? MainCamera { get; private set; }
 
-		public IActivity Activity => activity;
+        protected Vector2 Origin { get; set; }
 
-		public int CurrentTaskStep { get; set; } = 0;
-		public MiniGameTask[] MiniGameTasks => miniGameTasks;
-		public Camera? MainCamera { get; private set; }
+        #endregion
 
-		protected Vector2 Origin { get; set; }
+        #region Methods
 
-#endregion
+        protected virtual void Awake()
+        {
+            MainCamera = Camera.main;
+            Origin = transform.localPosition;
+        }
 
-#region Methods
+        public abstract void SetActive(bool state);
 
-		protected virtual void Awake() {
-			MainCamera = Camera.main;
-			Origin = transform.localPosition;
-		}
+        public abstract void OnAdventurerEntered();
 
-		public abstract void SetActive(bool state);
+        public abstract void OnAdventurerLeft();
 
-		public abstract void OnAdventurerEntered();
+        protected virtual void OnTasksCompleted()
+        {
+            AllMiniGameTasksCompleted?.Invoke();
+        }
 
-		public abstract void OnAdventurerLeft();
+        protected virtual void OnAdventurerEnteredUnpreparedRoom()
+        {
+            AdventurerEnteredUnpreparedRoom?.Invoke();
+        }
 
-		protected virtual void OnTasksCompleted() {
-			AllMiniGameTasksCompleted?.Invoke();
-		}
+        protected virtual void OnMiniGameTaskCompleted(int currentTaskStep)
+        {
+            MiniGameTaskCompleted?.Invoke(CurrentTaskStep);
+        }
 
-		protected virtual void OnAdventurerEnteredUnpreparedRoom() {
-			AdventurerEnteredUnpreparedRoom?.Invoke();
-		}
-
-		protected virtual void OnMiniGameTaskCompleted(int currentTaskStep) {
-			MiniGameTaskCompleted?.Invoke(CurrentTaskStep);
-		}
-
-#endregion
-
-	}
-
+        #endregion
+    }
 }
