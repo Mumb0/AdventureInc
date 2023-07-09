@@ -18,8 +18,8 @@ namespace GMTK2023.Game.GMTK2023.Game.Code.Common
             get => credibility;
             set
             {
-                credibility = value;
-                CredibilityChanged?.Invoke(new ICredibilityTracker.CredibilityChangedEvent(value));
+                credibility = Mathf.Clamp(value, 0, startCredibility);
+                CredibilityChanged?.Invoke(new ICredibilityTracker.CredibilityChangedEvent(Credibility));
             }
         }
 
