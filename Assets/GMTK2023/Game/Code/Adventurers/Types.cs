@@ -49,7 +49,7 @@ namespace GMTK2023.Game
     {
         public record QuestStartEvent(Adventurer Adventurer, Quest Quest);
 
-        public record QuestCompletedEvent(Adventurer Adventurer);
+        public record QuestCompletedEvent(Adventurer Adventurer, Quest Quest);
 
         public record QuestAbandonedEvent(Adventurer Adventurer, Quest Quest);
 

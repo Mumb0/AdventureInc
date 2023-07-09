@@ -43,6 +43,12 @@ namespace GMTK2023.Game.MiniGames {
 			ActiveMiniGameChanged += OnActiveMiniGameChanged;
 		}
 
+		private void Awake()
+		{
+			Singleton.TryFind<IQuestTracker>()!.QuestComplete +=
+				e => OnAdventurerCompletedQuest(e.Quest.MiniGame);
+		}
+
 		public void OnMiniGameClicked(IMiniGame clickedMiniGame) {
 
 			foreach (IMiniGame mg in AllMiniGames) {
@@ -86,7 +92,8 @@ namespace GMTK2023.Game.MiniGames {
 		}
 
 		public void OnAdventurerCompletedQuest(IMiniGame miniGame) {
-			availableMiniGames.First(x => x == (MiniGame) miniGame).OnAdventurerLeft();
+			availableMiniGames.First(x => x == (MiniGame) miniGame)
+				.OnAdventurerLeft();
 		}
 
 		private void OnMiniGameTaskCompleted(int taskIndex) {

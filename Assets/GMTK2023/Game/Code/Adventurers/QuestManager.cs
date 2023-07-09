@@ -74,9 +74,9 @@ namespace GMTK2023.Game
             AssignQuest(e.Adventurer);
         }
 
-        private void CompleteQuest(Adventurer adventurer)
+        private void CompleteQuest(Adventurer adventurer, Quest quest)
         {
-            QuestComplete?.Invoke(new QuestCompletedEvent(adventurer));
+            QuestComplete?.Invoke(new QuestCompletedEvent(adventurer, quest));
             AssignQuest(adventurer);
         }
 
@@ -98,7 +98,7 @@ namespace GMTK2023.Game
             }
 
             await Task.Delay(quest.MiniGame.Activity.Duration);
-            CompleteQuest(adventurer);
+            CompleteQuest(adventurer, quest);
         }
 
         private void OnAdventurerReachedQuestLocation(Adventurer adventurer, Quest quest)
