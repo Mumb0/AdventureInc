@@ -23,6 +23,7 @@ namespace GMTK2023.Game
             new Dictionary<Adventurer, Quest>();
 
         private IMap map = null!;
+        private IAdventurerTracker adventurerTracker = null!;
         private IAdventurerLocationTracker adventurerLocationTracker = null!;
         private IMiniGameTracker miniGameTracker = null!;
 
@@ -35,18 +36,28 @@ namespace GMTK2023.Game
             // NOTE: We dont check for existence, because an adventurer should always have a quest
             questByAdventurer[adventurer];
 
+        private int NumberOfAdventurersPlaying(IMiniGame miniGame) =>
+            questByAdventurer.Values.Count(quest => quest.MiniGame == miniGame);
+
         private Quest ChooseQuestFor(Adventurer adventurer)
         {
             var currentLocation = adventurerLocationTracker.LocationOf(adventurer);
             var currentMiniGame = map.TryGetMiniGameFor(currentLocation);
 
+            bool CanPlay(IMiniGame miniGame)
+            {
+                var isNotCurrent = currentMiniGame == null || miniGame != currentMiniGame;
+                var hasCapacity = NumberOfAdventurersPlaying(miniGame) < miniGame.SupportedAdventurerCount;
+
+                return isNotCurrent && hasCapacity;
+            }
+
             var miniGames = miniGameTracker.AllMiniGames;
-            var possibleMiniGames = currentMiniGame != null
-                ? miniGames.Except(currentMiniGame).ToArray()
-                : miniGames;
+            var possibleMiniGames = miniGames.Where(CanPlay).ToArray();
 
             // NOTE: We force the nullable because there should always be at least 1 mini-game
-            var chosenMiniGame = possibleMiniGames.TryRandom()!;
+            var chosenMiniGame = possibleMiniGames.TryRandom()
+                                 ?? throw new Exception("No mini-game possible");
 
             return new Quest(chosenMiniGame);
         }
@@ -121,6 +132,7 @@ namespace GMTK2023.Game
                 OnAdventurerChangedLocation;
 
             miniGameTracker = Singleton.TryFind<IMiniGameTracker>()!;
+            adventurerTracker = Singleton.TryFind<IAdventurerTracker>()!;
             adventurerLocationTracker = Singleton.TryFind<IAdventurerLocationTracker>()!;
             map = Singleton.TryFind<IMap>()!;
         }

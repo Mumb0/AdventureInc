@@ -20,6 +20,7 @@ namespace GMTK2023.Game.MiniGames {
 		[SerializeField] internal PlayerInput? playerActions;
 		[SerializeField] private MiniGameTask[] miniGameTasks = Array.Empty<MiniGameTask>();
 		[SerializeField] private float questDurationInSeconds;
+		[SerializeField] private int supportedAdventurerCount = 1;
 		[SerializeField] private string displayName = "";
 		[SerializeField] private string abandonmentReason = "";
 
@@ -31,6 +32,7 @@ namespace GMTK2023.Game.MiniGames {
 		public abstract bool IsCredible { get; }
 
 		public string ActivityDescription => displayName;
+		public int SupportedAdventurerCount => supportedAdventurerCount;
 		public TimeSpan Duration => TimeSpan.FromSeconds(questDurationInSeconds);
 		public int CurrentTaskStep { get; set; } = 0;
 		public MiniGameTask[] MiniGameTasks => miniGameTasks;

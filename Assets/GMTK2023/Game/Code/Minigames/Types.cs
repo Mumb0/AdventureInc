@@ -9,6 +9,8 @@ namespace GMTK2023.Game.MiniGames {
 		public string ActivityDescription { get; }
 
 		public bool IsCredible { get; }
+		
+		public int SupportedAdventurerCount { get; }
 
 		public TimeSpan Duration { get; }
 		public bool IsPrepared { get; set; }

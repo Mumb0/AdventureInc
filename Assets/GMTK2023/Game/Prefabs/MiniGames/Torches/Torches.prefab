@@ -51,6 +51,7 @@ MonoBehaviour:
   - isCompleted: 0
     taskText: Light the torches
   questDurationInSeconds: 1
+  supportedAdventurerCount: 100
   displayName: rest at the town-square
   abandonmentReason: they could not see anything
 --- !u!1 &9222626004161763752

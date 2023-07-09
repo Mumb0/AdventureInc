@@ -14,14 +14,21 @@ namespace GMTK2023.Game
         public event Action<AdventurerEnteredEvent>? AdventurerEntered;
 
 
+        private readonly ISet<Adventurer> activeAdventures =
+            new HashSet<Adventurer>();
+
         private readonly ISet<InactiveAdventurer> inactiveAdventurers =
             new HashSet<InactiveAdventurer>();
+
+
+        public IEnumerable<Adventurer> ActiveAdventurers => activeAdventures;
 
 
         private void ActivateAdventurer(InactiveAdventurer inactiveAdventurer)
         {
             var adventurer = new Adventurer(inactiveAdventurer.Info);
             inactiveAdventurers.Remove(inactiveAdventurer);
+            activeAdventures.Add(adventurer);
 
             AdventurerEntered?.Invoke(new AdventurerEnteredEvent(adventurer));
         }
