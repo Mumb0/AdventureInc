@@ -37,10 +37,9 @@ namespace GMTK2023.Game
         /// Invoked when an adventurer enters the shift (spawns)
         /// </summary>
         public event Action<AdventurerEnteredEvent> AdventurerEntered;
-        
-        
-        public IEnumerable<Adventurer> ActiveAdventurers { get; }
 
+
+        public IEnumerable<Adventurer> ActiveAdventurers { get; }
     }
 
     public interface IAdventurerLocationTracker
@@ -87,6 +86,7 @@ namespace GMTK2023.Game
 
 
         public Quest CurrentQuestOf(Adventurer adventurer);
-
     }
+
+
 }
