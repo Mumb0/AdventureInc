@@ -7,9 +7,11 @@ namespace GMTK2023.Game
     /// Top-level game-manager.
     /// Responsible for starting/stopping the game
     /// </summary>
-    public class GameManager : MonoBehaviour, IGameLoader
+    public class GameManager : MonoBehaviour, IGameLoader, IGameOverTracker
     {
         public event Action<IGameLoader.GameLoadEvent>? GameLoaded;
+
+        public event Action<IGameOverTracker.GameOverEvent>? GameOver;
 
 
         private async void Start()
@@ -19,6 +21,18 @@ namespace GMTK2023.Game
                             ?? await GameSaving.StartNewGameAsync();
 
             GameLoaded?.Invoke(new IGameLoader.GameLoadEvent(savedGame));
+        }
+
+        private void OnCredibilityChanged(ICredibilityTracker.CredibilityChangedEvent e)
+        {
+            if (e.Credibility > 0) return;
+            GameOver?.Invoke(new IGameOverTracker.GameOverEvent());
+        }
+
+        private void Awake()
+        {
+            Singleton.TryFind<ICredibilityTracker>()!.CredibilityChanged +=
+                OnCredibilityChanged;
         }
     }
 }

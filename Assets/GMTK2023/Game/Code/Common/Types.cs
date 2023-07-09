@@ -14,6 +14,19 @@ namespace GMTK2023.Game
         public event Action<GameLoadEvent> GameLoaded;
     }
 
+    public interface IGameOverTracker
+    {
+
+        public record GameOverEvent;
+
+        
+        /// <summary>
+        /// Invoked when the player lost the game
+        /// </summary>
+        public event Action<GameOverEvent> GameOver;
+
+    }
+
     public interface ICredibilityTracker
     {
         public record CredibilityChangedEvent(int Credibility);
