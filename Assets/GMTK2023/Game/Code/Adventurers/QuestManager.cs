@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using GMTK2023.Game.MiniGames;
 using UnityEngine;
 using static GMTK2023.Game.IAdventurerLocationTracker;
@@ -54,14 +55,19 @@ namespace GMTK2023.Game
             AssignQuest(e.Adventurer);
         }
 
-        private void OnAdventurerReachedQuestLocation(Adventurer adventurer, Quest quest)
+        private async void DoQuest(Adventurer adventurer, Quest quest)
         {
             QuestStart?.Invoke(new QuestStartEvent(adventurer, quest));
 
-            // TODO: Do mini-game
-
+            await Task.Delay(quest.MiniGame.Duration);
+            
             QuestComplete?.Invoke(new QuestCompletedEvent(adventurer));
             AssignQuest(adventurer);
+        }
+
+        private void OnAdventurerReachedQuestLocation(Adventurer adventurer, Quest quest)
+        {
+            DoQuest(adventurer, quest);
         }
 
         private void OnAdventurerChangedLocation(AdventurerChangedLocationEvent e)

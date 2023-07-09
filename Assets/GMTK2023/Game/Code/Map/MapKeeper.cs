@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace GMTK2023.Game
 {
-    public class MapKeeper : MonoBehaviour, IMap
+    public class MapKeeper : MonoBehaviour, IMap, IRoutePlanner
     {
         [Serializable]
         public class LocationMiniGameLink
@@ -45,6 +45,12 @@ namespace GMTK2023.Game
         private void Awake()
         {
             locations = LocationDb.LoadLocations();
+        }
+
+        public ILocation FindNextLocationOnRoute(ILocation current, ILocation target)
+        {
+            // TODO: Implement actual route finding
+            return target;
         }
     }
 }

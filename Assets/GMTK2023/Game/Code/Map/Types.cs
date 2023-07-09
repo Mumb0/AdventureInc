@@ -8,6 +8,7 @@ namespace GMTK2023.Game
         public string Name { get; }
     }
 
+
     public interface IMap
     {
         public IEnumerable<ILocation> Locations { get; }
@@ -20,5 +21,10 @@ namespace GMTK2023.Game
 
         public bool HasMiniGameAt(ILocation location) =>
             TryGetMiniGameFor(location) != null;
+    }
+
+    public interface IRoutePlanner
+    {
+        ILocation FindNextLocationOnRoute(ILocation current, ILocation target);
     }
 }
