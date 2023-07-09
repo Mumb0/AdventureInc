@@ -172,7 +172,7 @@ namespace GMTK2023.Game.MiniGames {
 				return;
 			}
 
-			gameObject.transform.localPosition = new Vector2(0, 10);
+			gameObject.transform.localPosition = Origin;
 
 		}
 

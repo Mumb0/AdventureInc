@@ -35,12 +35,15 @@ namespace GMTK2023.Game.MiniGames {
 		public MiniGameTask[] MiniGameTasks => miniGameTasks;
 		public Camera? MainCamera { get; private set; }
 
+		protected Vector2 Origin { get; set; }
+
 #endregion
 
 #region Methods
 
 		private void Awake() {
 			MainCamera = Camera.main;
+			Origin = transform.localPosition;
 		}
 
 		public abstract void SetActive(bool state);
