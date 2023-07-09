@@ -71,7 +71,7 @@ namespace GMTK2023.Game.MiniGames {
 						if (CurrentTaskStep == 0) {
 							clickedObject = GetClickedObject(MousePosition, LayerMask.GetMask("PotPiece"));
 
-							if (clickedObject) {
+							if (clickedObject != null) {
 								clickedObject.GetComponent<PotPiece>().CleanPiece();
 							}
 						}
@@ -82,7 +82,7 @@ namespace GMTK2023.Game.MiniGames {
 						if (CurrentTaskStep == 1) {
 							clickedObject = GetClickedObject(MousePosition, LayerMask.GetMask("Pot"));
 
-							if (clickedObject) {
+							if (clickedObject != null) {
 								clickedObject.GetComponent<Pot>().PlacePot();
 							}
 						}
@@ -93,7 +93,7 @@ namespace GMTK2023.Game.MiniGames {
 						if (CurrentTaskStep == 2) {
 							clickedObject = GetClickedObject(MousePosition, LayerMask.GetMask("Pot"));
 
-							if (clickedObject) {
+							if (clickedObject != null) {
 								clickedObject.GetComponent<Pot>().FillPot();
 							}
 						}
