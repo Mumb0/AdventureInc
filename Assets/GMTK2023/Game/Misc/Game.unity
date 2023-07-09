@@ -630,7 +630,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c51c3c463bcc4e4db9c1d6aac761a6e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  travelOpportunityIntervalSeconds: 1
+  travelOpportunityIntervalSeconds: 5
 --- !u!114 &966599295
 MonoBehaviour:
   m_ObjectHideFlags: 0
