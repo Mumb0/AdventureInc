@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace GMTK2023
+namespace AdventureInc
 {
     [Serializable]
     public class CustomActivityWeight

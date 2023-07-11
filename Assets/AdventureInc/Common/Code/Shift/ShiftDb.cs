@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace GMTK2023
+namespace AdventureInc
 {
     /// <summary>
     /// IO functions for loading shift-infos

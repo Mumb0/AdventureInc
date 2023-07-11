@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using UnityEngine;
 
-namespace GMTK2023
+namespace AdventureInc.Game
 {
     public static class Chance
     {

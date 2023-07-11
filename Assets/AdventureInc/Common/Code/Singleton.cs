@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace GMTK2023
+namespace AdventureInc
 {
     /// <summary>
     /// Helper functions for finding singleton scripts

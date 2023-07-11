@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-namespace GMTK2023.Game.MiniGames
+namespace AdventureInc.Game.MiniGames
 {
     public class LinearLerper : MonoBehaviour
     {

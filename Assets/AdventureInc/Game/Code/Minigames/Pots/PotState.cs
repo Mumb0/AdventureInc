@@ -1,4 +1,4 @@
-namespace GMTK2023.Game.MiniGames {
+namespace AdventureInc.Game.MiniGames {
 
 	public enum PotState {
 

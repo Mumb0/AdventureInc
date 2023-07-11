@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace GMTK2023
+namespace AdventureInc
 {
     [CreateAssetMenu(fileName = "new Activity", menuName = "GMTK2023/Activity")]
     public class ActivityAsset : ScriptableObject, IActivity

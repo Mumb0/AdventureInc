@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GMTK2023
+namespace AdventureInc
 {
     public static class AnyExt
     {

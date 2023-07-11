@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using GMTK2023.Game.MiniGames;
+using AdventureInc.Game.MiniGames;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace GMTK2023.Game
+namespace AdventureInc.Game
 {
     public class MapDisplay : MonoBehaviour
     {

@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using GMTK2023.Game.MiniGames;
+using AdventureInc.Game.MiniGames;
 using UnityEngine;
-using static GMTK2023.Game.IAdventurerLocationTracker;
-using static GMTK2023.Game.IQuestTracker;
+using static AdventureInc.Game.IAdventurerLocationTracker;
+using static AdventureInc.Game.IQuestTracker;
 
-namespace GMTK2023.Game
+namespace AdventureInc.Game
 {
     public class QuestManager : MonoBehaviour, IQuestTracker
     {
-        public event Action<QuestStartEvent>? QuestStart;
-        public event Action<QuestCompletedEvent>? QuestComplete;
-        public event Action<QuestAbandonedEvent>? QuestAbandoned;
+        public event Action<IQuestTracker.QuestStartEvent>? QuestStart;
+        public event Action<IQuestTracker.QuestCompletedEvent>? QuestComplete;
+        public event Action<IQuestTracker.QuestAbandonedEvent>? QuestAbandoned;
 
 
         [SerializeField] private float waitSecondsAfterQuestAbandon;
@@ -76,20 +76,20 @@ namespace GMTK2023.Game
 
         private void CompleteQuest(Adventurer adventurer, Quest quest)
         {
-            QuestComplete?.Invoke(new QuestCompletedEvent(adventurer, quest));
+            QuestComplete?.Invoke(new IQuestTracker.QuestCompletedEvent(adventurer, quest));
             AssignQuest(adventurer);
         }
 
         private async void AbandonQuest(Adventurer adventurer, Quest quest)
         {
-            QuestAbandoned?.Invoke(new QuestAbandonedEvent(adventurer, quest));
+            QuestAbandoned?.Invoke(new IQuestTracker.QuestAbandonedEvent(adventurer, quest));
             await Task.Delay(WaitTimeAfterQuestAbandon);
             AssignQuest(adventurer);
         }
 
         private async void DoQuest(Adventurer adventurer, Quest quest)
         {
-            QuestStart?.Invoke(new QuestStartEvent(adventurer, quest));
+            QuestStart?.Invoke(new IQuestTracker.QuestStartEvent(adventurer, quest));
 
             if (!quest.MiniGame.IsCredible)
             {
@@ -106,7 +106,7 @@ namespace GMTK2023.Game
             DoQuest(adventurer, quest);
         }
 
-        private void OnAdventurerChangedLocation(AdventurerChangedLocationEvent e)
+        private void OnAdventurerChangedLocation(IAdventurerLocationTracker.AdventurerChangedLocationEvent e)
         {
             var quest = questByAdventurer[e.Adventurer];
             var questLocation = map.LocationOf(quest.MiniGame);

@@ -1,19 +1,19 @@
 ﻿using System;
 using UnityEngine;
-using static GMTK2023.Game.IShiftLoader;
-using static GMTK2023.Game.IShiftProgressTracker;
+using static AdventureInc.Game.IShiftLoader;
+using static AdventureInc.Game.IShiftProgressTracker;
 
-namespace GMTK2023.Game
+namespace AdventureInc.Game
 {
     public class ShiftManager : MonoBehaviour, IShiftLoader, IShiftProgressTracker
     {
         private record Shift(IShiftInfo Info, float StartTimeSeconds);
 
 
-        public event Action<ShiftLoadedEvent>? ShiftLoaded;
-        public event Action<ShiftStartedEvent>? ShiftStarted;
-        public event Action<ShiftProgressEvent>? ShiftProgressed;
-        public event Action<ShiftCompletedEvent>? ShiftCompleted;
+        public event Action<IShiftLoader.ShiftLoadedEvent>? ShiftLoaded;
+        public event Action<IShiftProgressTracker.ShiftStartedEvent>? ShiftStarted;
+        public event Action<IShiftProgressTracker.ShiftProgressEvent>? ShiftProgressed;
+        public event Action<IShiftProgressTracker.ShiftCompletedEvent>? ShiftCompleted;
 
 
         [SerializeField] private float shiftDurationInMinutes;
@@ -27,7 +27,7 @@ namespace GMTK2023.Game
         private void CompleteShift()
         {
             currentShift = null;
-            ShiftCompleted?.Invoke(new ShiftCompletedEvent());
+            ShiftCompleted?.Invoke(new IShiftProgressTracker.ShiftCompletedEvent());
         }
 
         private void ProgressShift(Shift shift)
@@ -36,7 +36,7 @@ namespace GMTK2023.Game
             var timeSinceStart = TimeSpan.FromSeconds(secondsSinceStart);
             var t = (float) (timeSinceStart.TotalSeconds / ShiftDuration.TotalSeconds);
 
-            ShiftProgressed?.Invoke(new ShiftProgressEvent(timeSinceStart, t));
+            ShiftProgressed?.Invoke(new IShiftProgressTracker.ShiftProgressEvent(timeSinceStart, t));
 
             if (timeSinceStart >= ShiftDuration)
                 CompleteShift();
@@ -52,7 +52,7 @@ namespace GMTK2023.Game
         {
             currentShift = new Shift(shiftInfo, Time.time);
 
-            ShiftStarted?.Invoke(new ShiftStartedEvent());
+            ShiftStarted?.Invoke(new IShiftProgressTracker.ShiftStartedEvent());
 
             ProgressShift(currentShift);
         }
@@ -62,7 +62,7 @@ namespace GMTK2023.Game
             // NOTE: We force the nullable here because a shift should always be found
             var shift = ShiftDb.TryLoadShiftByIndex(e.Game.ShiftIndex)!;
 
-            ShiftLoaded?.Invoke(new ShiftLoadedEvent(shift));
+            ShiftLoaded?.Invoke(new IShiftLoader.ShiftLoadedEvent(shift));
 
             StartShift(shift);
         }

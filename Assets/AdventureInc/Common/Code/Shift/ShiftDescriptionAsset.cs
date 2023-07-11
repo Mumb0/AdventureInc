@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GMTK2023
+namespace AdventureInc
 {
     [CreateAssetMenu(fileName = "New Shift-description", menuName = "GMTK2023/Shift")]
     public class ShiftInfoAsset : ScriptableObject, IShiftInfo

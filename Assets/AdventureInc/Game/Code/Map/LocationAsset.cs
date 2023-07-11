@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace GMTK2023.Game
+namespace AdventureInc.Game
 {
     [CreateAssetMenu(fileName = "new Location", menuName = "GMTK2023/Location")]
     public class LocationAsset : ScriptableObject, ILocation

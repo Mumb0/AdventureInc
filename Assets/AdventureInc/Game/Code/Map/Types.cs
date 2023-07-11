@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using GMTK2023.Game.MiniGames;
+using AdventureInc.Game.MiniGames;
 
-namespace GMTK2023.Game
+namespace AdventureInc.Game
 {
     public interface ILocation
     {

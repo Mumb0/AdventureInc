@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using UnityEngine;
 
-namespace GMTK2023
+namespace AdventureInc
 {
     /// <summary>
     /// Module with types and logic to interact with saved-games

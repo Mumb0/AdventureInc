@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using static GMTK2023.Game.IAdventurerLocationTracker;
+using static AdventureInc.Game.IAdventurerLocationTracker;
 
-namespace GMTK2023.Game
+namespace AdventureInc.Game
 {
     public class TravelManager : MonoBehaviour, IAdventurerLocationTracker
     {
-        public event Action<AdventurerLocationStartEvent>? AdventurerLocationStart;
-        public event Action<AdventurerChangedLocationEvent>? AdventurerChangedLocation;
+        public event Action<IAdventurerLocationTracker.AdventurerLocationStartEvent>? AdventurerLocationStart;
+        public event Action<IAdventurerLocationTracker.AdventurerChangedLocationEvent>? AdventurerChangedLocation;
 
 
         [SerializeField] private float travelOpportunityIntervalSeconds;
@@ -62,7 +62,7 @@ namespace GMTK2023.Game
         {
             SetAdventurerLocation(adventurer, location);
             AdventurerChangedLocation?.Invoke(
-                new AdventurerChangedLocationEvent(adventurer, location));
+                new IAdventurerLocationTracker.AdventurerChangedLocationEvent(adventurer, location));
         }
 
         private void StartAdventurerAtRandomLocation(Adventurer adventurer)
@@ -73,7 +73,7 @@ namespace GMTK2023.Game
 
             SetAdventurerLocation(adventurer, location);
             AdventurerLocationStart?.Invoke(
-                new AdventurerLocationStartEvent(adventurer, location));
+                new IAdventurerLocationTracker.AdventurerLocationStartEvent(adventurer, location));
         }
 
         private void UpdateAdventurerLocations()

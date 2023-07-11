@@ -1,6 +1,6 @@
 using System;
 
-namespace GMTK2023.Game.MiniGames {
+namespace AdventureInc.Game.MiniGames {
 
 	[Serializable]
 	public enum PotTool {

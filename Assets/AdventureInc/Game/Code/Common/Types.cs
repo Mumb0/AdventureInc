@@ -1,11 +1,11 @@
 ﻿using System;
-using static GMTK2023.GameSaving;
+using static AdventureInc.GameSaving;
 
-namespace GMTK2023.Game
+namespace AdventureInc.Game
 {
     public interface IGameLoader
     {
-        public record GameLoadEvent(SavedGame Game);
+        public record GameLoadEvent(GameSaving.SavedGame Game);
 
 
         /// <summary>

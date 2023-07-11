@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Random = UnityEngine.Random;
 
-namespace GMTK2023
+namespace AdventureInc
 {
     // ReSharper disable once InconsistentNaming
     public static class IEnumerableExt

@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace GMTK2023.Game {
+namespace AdventureInc.Game {
 
 	public class LocationDisplay : MonoBehaviour, IPointerDownHandler {
 

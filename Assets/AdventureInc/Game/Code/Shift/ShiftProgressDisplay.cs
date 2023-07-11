@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace GMTK2023.Game
+namespace AdventureInc.Game
 {
     [RequireComponent(typeof(Slider))]
     public class ShiftProgressDisplay : MonoBehaviour

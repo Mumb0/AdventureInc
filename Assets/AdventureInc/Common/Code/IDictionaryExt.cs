@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace GMTK2023
+namespace AdventureInc
 {
     // ReSharper disable once InconsistentNaming
     public static class IDictionaryExt

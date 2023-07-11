@@ -3,7 +3,7 @@ using System.Linq;
 using System.Reflection;
 using UnityEngine;
 
-namespace GMTK2023
+namespace AdventureInc
 {
     [CreateAssetMenu(fileName = "New Adventurer-info", menuName = "GMTK2023/Adventurer-info")]
     public class AdventurerInfoAsset : ScriptableObject, IAdventurerInfo

@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace GMTK2023.Game.GMTK2023.Game.Code.Common
+namespace AdventureInc.Game.GMTK2023.Game.Code.Common
 {
     public class CredibilityManager : MonoBehaviour, ICredibilityTracker
     {

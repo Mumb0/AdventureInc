@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace GMTK2023.Game {
+namespace AdventureInc.Game {
 
 	public class PotPiece : MonoBehaviour {
 

@@ -1,6 +1,6 @@
 {
-    "name": "GMTK2023.Common",
-    "rootNamespace": "GMTK2023",
+    "name": "AdventureInc.Common",
+    "rootNamespace": "AdventureInc",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace GMTK2023
+namespace AdventureInc
 {
     public class SceneLoaderScript : MonoBehaviour
     {

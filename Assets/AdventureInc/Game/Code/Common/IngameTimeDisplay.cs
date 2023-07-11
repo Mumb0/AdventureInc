@@ -1,7 +1,7 @@
 ﻿using TMPro;
 using UnityEngine;
 
-namespace GMTK2023.Game.GMTK2023.Game.Code.Common
+namespace AdventureInc.Game
 {
     public class IngameTimeDisplay : MonoBehaviour
     {

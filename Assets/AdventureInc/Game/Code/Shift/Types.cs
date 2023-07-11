@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GMTK2023.Game
+namespace AdventureInc.Game
 {
     public interface IShiftLoader
     {

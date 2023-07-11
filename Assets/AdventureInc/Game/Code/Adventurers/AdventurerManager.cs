@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using static GMTK2023.Game.IAdventurerTracker;
+using static AdventureInc.Game.IAdventurerTracker;
 
-namespace GMTK2023.Game
+namespace AdventureInc.Game
 {
     public class AdventurerManager : MonoBehaviour, IAdventurerTracker
     {
         private record InactiveAdventurer(IAdventurerInfo Info, TimeSpan EnterTime);
 
 
-        public event Action<AdventurerEnteredEvent>? AdventurerEntered;
+        public event Action<IAdventurerTracker.AdventurerEnteredEvent>? AdventurerEntered;
 
 
         private readonly ISet<Adventurer> activeAdventures =
@@ -30,7 +30,7 @@ namespace GMTK2023.Game
             inactiveAdventurers.Remove(inactiveAdventurer);
             activeAdventures.Add(adventurer);
 
-            AdventurerEntered?.Invoke(new AdventurerEnteredEvent(adventurer));
+            AdventurerEntered?.Invoke(new IAdventurerTracker.AdventurerEnteredEvent(adventurer));
         }
 
         private void OnShiftLoaded(IShiftLoader.ShiftLoadedEvent e)

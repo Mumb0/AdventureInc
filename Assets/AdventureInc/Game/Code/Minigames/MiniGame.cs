@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace GMTK2023.Game.MiniGames
+namespace AdventureInc.Game.MiniGames
 {
     public abstract class MiniGame : MonoBehaviour, IMiniGame
     {

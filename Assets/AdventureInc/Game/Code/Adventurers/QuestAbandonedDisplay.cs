@@ -1,9 +1,9 @@
 using System;
 using TMPro;
 using UnityEngine;
-using static GMTK2023.Game.TimeUtil;
+using static AdventureInc.Game.TimeUtil;
 
-namespace GMTK2023.Game
+namespace AdventureInc.Game
 {
     public class QuestAbandonedDisplay : MonoBehaviour
     {

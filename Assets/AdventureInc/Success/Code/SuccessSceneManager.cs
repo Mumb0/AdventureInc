@@ -3,9 +3,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using static GMTK2023.GameSaving;
+using static AdventureInc.GameSaving;
 
-namespace GMTK2023.Success
+namespace AdventureInc.Success
 {
     public class SuccessSceneManager : MonoBehaviour
     {

@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-namespace GMTK2023.Game.MiniGames {
+namespace AdventureInc.Game.MiniGames {
 
 	public class PotMiniGame : MiniGame {
 

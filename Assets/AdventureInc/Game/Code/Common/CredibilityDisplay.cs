@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace GMTK2023.Game
+namespace AdventureInc.Game
 {
     public class CredibilityDisplay : MonoBehaviour
     {

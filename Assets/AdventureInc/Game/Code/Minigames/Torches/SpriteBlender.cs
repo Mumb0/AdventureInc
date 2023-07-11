@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace GMTK2023.Game.MiniGames
+namespace AdventureInc.Game.MiniGames
 {
     [RequireComponent(typeof(Image))]
     public class SpriteBlender : MonoBehaviour

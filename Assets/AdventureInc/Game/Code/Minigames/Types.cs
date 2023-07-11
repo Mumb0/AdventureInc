@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace GMTK2023.Game.MiniGames {
+namespace AdventureInc.Game.MiniGames {
 
 	public interface IMiniGame {
 

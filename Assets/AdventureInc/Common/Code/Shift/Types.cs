@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GMTK2023
+namespace AdventureInc
 {
     /// <summary>
     /// Describes an adventurer in a shift

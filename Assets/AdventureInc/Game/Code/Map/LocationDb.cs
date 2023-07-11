@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace GMTK2023.Game
+namespace AdventureInc.Game
 {
     public static class LocationDb
     {

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace GMTK2023.Game.MiniGames
+namespace AdventureInc.Game.MiniGames
 {
     public class InnMiniGameController : MiniGame
     {

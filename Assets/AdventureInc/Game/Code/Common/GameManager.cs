@@ -1,9 +1,9 @@
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using static GMTK2023.GameSaving;
+using static AdventureInc.GameSaving;
 
-namespace GMTK2023.Game
+namespace AdventureInc.Game
 {
     /// <summary>
     /// Top-level game-manager.
@@ -16,7 +16,7 @@ namespace GMTK2023.Game
         public event Action<IGameOverTracker.GameOverEvent>? GameOver;
 
 
-        private SavedGame savedGame = null!;
+        private GameSaving.SavedGame savedGame = null!;
 
 
         private async void Start()
@@ -45,7 +45,7 @@ namespace GMTK2023.Game
         private async void OnShiftCompleted(IShiftProgressTracker.ShiftCompletedEvent obj)
         {
             if (savedGame.ShiftIndex < ShiftDb.ShiftCount - 1)
-                await SaveAsync(new SavedGame(ShiftIndex: savedGame.ShiftIndex + 1));
+                await SaveAsync(new GameSaving.SavedGame(ShiftIndex: savedGame.ShiftIndex + 1));
             else
                 _ = await StartNewGameAsync();
 
