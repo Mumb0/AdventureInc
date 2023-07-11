@@ -6,12 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/GMTK2023/Menu/Misc/Menu.unity
+    path: Assets/AdventureInc/Menu/Misc/Menu.unity
     guid: e17b765c335de6b479457b0208284312
   - enabled: 1
-    path: Assets/GMTK2023/Game/Misc/Game.unity
+    path: Assets/AdventureInc/Game/Misc/Game.unity
     guid: 6d3c320d7912c65448c0a99568037182
   - enabled: 1
-    path: Assets/GMTK2023/Success/Misc/Success.unity
+    path: Assets/AdventureInc/Success/Misc/Success.unity
     guid: dfe57a400aead4743b4bd4014d628b8c
   m_configObjects: {}
