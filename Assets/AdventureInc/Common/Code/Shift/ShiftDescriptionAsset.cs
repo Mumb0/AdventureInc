@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace AdventureInc
 {
-    [CreateAssetMenu(fileName = "New Shift-description", menuName = "GMTK2023/Shift")]
+    [CreateAssetMenu(fileName = "New Shift-description", menuName = "AdventureInc/Shift")]
     public class ShiftInfoAsset : ScriptableObject, IShiftInfo
     {
         [SerializeField] private AdventurerInShift[] adventurers =

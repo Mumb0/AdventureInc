@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace AdventureInc
 {
-    [CreateAssetMenu(fileName = "New Adventurer-info", menuName = "GMTK2023/Adventurer-info")]
+    [CreateAssetMenu(fileName = "New Adventurer-info", menuName = "AdventureInc/Adventurer-info")]
     public class AdventurerInfoAsset : ScriptableObject, IAdventurerInfo
     {
         [SerializeField] [Range(0, 1)] private float moveChance;

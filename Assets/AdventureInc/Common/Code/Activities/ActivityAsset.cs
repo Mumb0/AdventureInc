@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace AdventureInc
 {
-    [CreateAssetMenu(fileName = "new Activity", menuName = "GMTK2023/Activity")]
+    [CreateAssetMenu(fileName = "new Activity", menuName = "AdventureInc/Activity")]
     public class ActivityAsset : ScriptableObject, IActivity
     {
         [SerializeField] private string description = "";
